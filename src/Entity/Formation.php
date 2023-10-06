@@ -23,8 +23,6 @@ class Formation
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 191)]
-    private ?string $languages = null;
 
     public function getId(): ?int
     {
@@ -67,15 +65,4 @@ class Formation
         return $this;
     }
 
-    public function getLanguages(): ?string
-    {
-        return $this->languages;
-    }
-
-    public function setLanguages(string $languages): static
-    {
-        $this->languages = $languages;
-
-        return $this;
-    }
 }
