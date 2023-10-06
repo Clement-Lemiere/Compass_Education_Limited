@@ -64,5 +64,4 @@ class Formation
 
         return $this;
     }
-
 }
