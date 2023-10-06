@@ -17,8 +17,6 @@ class Language
     #[ORM\Column(length: 191)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $flag = null;
 
     public function getId(): ?int
     {
@@ -33,18 +31,6 @@ class Language
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFlag()
-    {
-        return $this->flag;
-    }
-
-    public function setFlag($flag): static
-    {
-        $this->flag = $flag;
 
         return $this;
     }
