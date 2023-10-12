@@ -244,7 +244,7 @@
   
 - ***Table Formation :***
   
-  - `formation_language_id` est une **clé étrangeree** liée à Formation, établissant une relation `OneToMany`
+  - `formation_language_id` est une **clé étrangeree** liée à Formation, établissant une relation `ManyToOne`
   
   - (Plusieurs formations peuvent être associées à une langue).
 
