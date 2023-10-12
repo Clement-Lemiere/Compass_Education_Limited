@@ -23,6 +23,10 @@ class Flag
     #[ORM\Column(type: Types::TEXT)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'flags')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Language $language = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Flag
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): static
+    {
+        $this->language = $language;
 
         return $this;
     }
