@@ -36,6 +36,9 @@ class Language
     #[ORM\ManyToMany(targetEntity: Teacher::class, mappedBy: 'language')]
     private Collection $teachers;
 
+    #[ORM\ManyToMany(targetEntity: Student::class, mappedBy: 'language')]
+    private Collection $students;
+
     public function __construct()
     {
         $this->flags = new ArrayCollection();
@@ -44,6 +47,7 @@ class Language
         $this->lessons = new ArrayCollection();
         $this->formations = new ArrayCollection();
         $this->teachers = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,6 +239,33 @@ class Language
     {
         if ($this->teachers->removeElement($teacher)) {
             $teacher->removeLanguage($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Student>
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): static
+    {
+        if (!$this->students->contains($student)) {
+            $this->students->add($student);
+            $student->addLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): static
+    {
+        if ($this->students->removeElement($student)) {
+            $student->removeLanguage($this);
         }
 
         return $this;

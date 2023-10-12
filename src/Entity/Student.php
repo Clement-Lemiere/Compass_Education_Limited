@@ -43,9 +43,13 @@ class Student
     #[ORM\OneToOne(mappedBy: 'student', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'students')]
+    private Collection $language;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
+        $this->language = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +189,30 @@ class Student
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguage(): Collection
+    {
+        return $this->language;
+    }
+
+    public function addLanguage(Language $language): static
+    {
+        if (!$this->language->contains($language)) {
+            $this->language->add($language);
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): static
+    {
+        $this->language->removeElement($language);
 
         return $this;
     }
