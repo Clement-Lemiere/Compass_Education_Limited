@@ -27,11 +27,15 @@ class Language
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Resource::class)]
     private Collection $resources;
 
+    #[ORM\OneToMany(mappedBy: 'language', targetEntity: Lesson::class)]
+    private Collection $lessons;
+
     public function __construct()
     {
         $this->flags = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
         $this->resources = new ArrayCollection();
+        $this->lessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,6 +139,36 @@ class Language
             // set the owning side to null (unless already changed)
             if ($resource->getLanguage() === $this) {
                 $resource->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getLessons(): Collection
+    {
+        return $this->lessons;
+    }
+
+    public function addLesson(Lesson $lesson): static
+    {
+        if (!$this->lessons->contains($lesson)) {
+            $this->lessons->add($lesson);
+            $lesson->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesson(Lesson $lesson): static
+    {
+        if ($this->lessons->removeElement($lesson)) {
+            // set the owning side to null (unless already changed)
+            if ($lesson->getLanguage() === $this) {
+                $lesson->setLanguage(null);
             }
         }
 

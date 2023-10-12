@@ -25,6 +25,10 @@ class Lesson
     #[ORM\ManyToMany(targetEntity: Assignment::class, mappedBy: 'lesson')]
     private Collection $assignments;
 
+    #[ORM\ManyToOne(inversedBy: 'lessons')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Language $language = null;
+
     public function __construct()
     {
         $this->assignments = new ArrayCollection();
@@ -82,6 +86,18 @@ class Lesson
         if ($this->assignments->removeElement($assignment)) {
             $assignment->removeLesson($this);
         }
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): static
+    {
+        $this->language = $language;
 
         return $this;
     }

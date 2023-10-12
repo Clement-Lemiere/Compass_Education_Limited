@@ -266,7 +266,7 @@
   
 - ***Table Lesson :***
 
-  - `lessons_language_id` est une **clé étrangère** liée à Lesson, établissant une relation `OneToMany`
+  - `lessons_language_id` est une **clé étrangère** liée à Lesson, établissant une relation `ManyToOne`
   
   - (Plusieurs leçons peuvent être associées à une seule langue).
 
