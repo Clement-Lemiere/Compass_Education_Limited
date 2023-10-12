@@ -40,6 +40,9 @@ class Student
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Payment::class)]
     private Collection $payments;
 
+    #[ORM\OneToOne(mappedBy: 'student', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
@@ -160,6 +163,28 @@ class Student
                 $payment->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setStudent(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getStudent() !== $this) {
+            $user->setStudent($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
