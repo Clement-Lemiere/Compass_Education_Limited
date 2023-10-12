@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
                 'enabled' => true,
             ],
         ];
-
+        
         foreach ($datas as $data) {
             $user = new User();
             $user->setEmail($data['email']);
