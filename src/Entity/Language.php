@@ -21,9 +21,13 @@ class Language
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Flag::class)]
     private Collection $flags;
 
+    #[ORM\OneToMany(mappedBy: 'language', targetEntity: Quiz::class)]
+    private Collection $quizzes;
+
     public function __construct()
     {
         $this->flags = new ArrayCollection();
+        $this->quizzes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Language
             // set the owning side to null (unless already changed)
             if ($flag->getLanguage() === $this) {
                 $flag->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quiz>
+     */
+    public function getQuizzes(): Collection
+    {
+        return $this->quizzes;
+    }
+
+    public function addQuiz(Quiz $quiz): static
+    {
+        if (!$this->quizzes->contains($quiz)) {
+            $this->quizzes->add($quiz);
+            $quiz->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuiz(Quiz $quiz): static
+    {
+        if ($this->quizzes->removeElement($quiz)) {
+            // set the owning side to null (unless already changed)
+            if ($quiz->getLanguage() === $this) {
+                $quiz->setLanguage(null);
             }
         }
 
