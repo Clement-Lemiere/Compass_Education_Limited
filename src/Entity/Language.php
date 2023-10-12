@@ -24,10 +24,14 @@ class Language
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Quiz::class)]
     private Collection $quizzes;
 
+    #[ORM\OneToMany(mappedBy: 'language', targetEntity: Resource::class)]
+    private Collection $resources;
+
     public function __construct()
     {
         $this->flags = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
+        $this->resources = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +105,36 @@ class Language
             // set the owning side to null (unless already changed)
             if ($quiz->getLanguage() === $this) {
                 $quiz->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Resource>
+     */
+    public function getResources(): Collection
+    {
+        return $this->resources;
+    }
+
+    public function addResource(Resource $resource): static
+    {
+        if (!$this->resources->contains($resource)) {
+            $this->resources->add($resource);
+            $resource->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResource(Resource $resource): static
+    {
+        if ($this->resources->removeElement($resource)) {
+            // set the owning side to null (unless already changed)
+            if ($resource->getLanguage() === $this) {
+                $resource->setLanguage(null);
             }
         }
 
