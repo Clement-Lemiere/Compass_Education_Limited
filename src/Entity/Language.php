@@ -33,6 +33,9 @@ class Language
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Formation::class)]
     private Collection $formations;
 
+    #[ORM\ManyToMany(targetEntity: Teacher::class, mappedBy: 'language')]
+    private Collection $teachers;
+
     public function __construct()
     {
         $this->flags = new ArrayCollection();
@@ -40,6 +43,7 @@ class Language
         $this->resources = new ArrayCollection();
         $this->lessons = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->teachers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +208,33 @@ class Language
             if ($formation->getLanguage() === $this) {
                 $formation->setLanguage(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Teacher>
+     */
+    public function getTeachers(): Collection
+    {
+        return $this->teachers;
+    }
+
+    public function addTeacher(Teacher $teacher): static
+    {
+        if (!$this->teachers->contains($teacher)) {
+            $this->teachers->add($teacher);
+            $teacher->addLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeacher(Teacher $teacher): static
+    {
+        if ($this->teachers->removeElement($teacher)) {
+            $teacher->removeLanguage($this);
         }
 
         return $this;

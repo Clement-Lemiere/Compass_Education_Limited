@@ -36,9 +36,13 @@ class Teacher
     #[ORM\OneToOne(mappedBy: 'teacher', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'teachers')]
+    private Collection $language;
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
+        $this->language = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,6 +158,30 @@ class Teacher
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguage(): Collection
+    {
+        return $this->language;
+    }
+
+    public function addLanguage(Language $language): static
+    {
+        if (!$this->language->contains($language)) {
+            $this->language->add($language);
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): static
+    {
+        $this->language->removeElement($language);
 
         return $this;
     }
