@@ -35,6 +35,10 @@ class Formation
     #[ORM\Column(length: 191, nullable: true)]
     private ?string $satisfaction = null;
 
+    #[ORM\ManyToOne(inversedBy: 'formations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Language $language = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +124,18 @@ class Formation
     public function setSatisfaction(?string $satisfaction): static
     {
         $this->satisfaction = $satisfaction;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): static
+    {
+        $this->language = $language;
 
         return $this;
     }
