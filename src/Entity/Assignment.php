@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AssignmentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,14 @@ class Assignment
 
     #[ORM\Column(length: 191)]
     private ?string $grade = null;
+
+    #[ORM\ManyToMany(targetEntity: Lesson::class, inversedBy: 'assignments')]
+    private Collection $lesson;
+
+    public function __construct()
+    {
+        $this->lesson = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,30 @@ class Assignment
     public function setGrade(string $grade): static
     {
         $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getLesson(): Collection
+    {
+        return $this->lesson;
+    }
+
+    public function addLesson(Lesson $lesson): static
+    {
+        if (!$this->lesson->contains($lesson)) {
+            $this->lesson->add($lesson);
+        }
+
+        return $this;
+    }
+
+    public function removeLesson(Lesson $lesson): static
+    {
+        $this->lesson->removeElement($lesson);
 
         return $this;
     }
