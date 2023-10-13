@@ -41,12 +41,14 @@ Création From scratch d'un site d'apprentissage en ligne de langues étrangère
 
 ## Tâches effectuées le Mercredi 11 Octobre 2023
 
-- Révision finale de la structure de base de données.
+- Révision de la structure de base de données.
 - création des tables de la base de données : `Resource`, `Quiz`, `Lesson`, `Flag`, `Assignment`.
 
 ## Tâches effectuées le Jeudi 12 Octobre 2023
 
-- Révision finale des relations entre les tables de la base de données.
+- Documentation et recherches de solutions pour l'intégration d'images à la base de données.
+- Révision finale de la structure de base de données et de son fichier `BDD.md`.
+- Révision finale des relations entre les tables de la base de données et de son `Unify Modeling Language (UML) Diagram`.
 - Création des relations :
 
     1. Many to One : `Flag` -> `Language`.
