@@ -175,19 +175,19 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'type' => 'Online course',
                 'date' => new DateTime('2023-10-04'),
-                'time' => new DateTimeInterface('13:30:00'),
+                'time' => new DateTime('13:30:00'),
                 'duration' => '30 minutes',
             ],
             [
                 'type' => 'Planning 2',
                 'date' => new DateTime('2023-08-04'),
-                'time' => new DateTimeInterface('14:15:00'),
+                'time' => new DateTime('14:15:00'),
                 'duration' => '45 minutes',
             ],
             [
                 'type' => 'Planning 3',
                 'date' => new DateTime('2023-10-04'),
-                'time' => new DateTimeInterface('15:15:00'),
+                'time' => new DateTime('15:15:00'),
                 'duration' => '45 minutes',
             ]
         ];
@@ -196,7 +196,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $planning = new Planning();
              $planning->setType($data['type']);
              $planning->setDate($data['date']);
-             $planning->setTime($data[time]);
+             $planning->setTime($data['time']);
              $planning->setDuration($data['duration']);
         }
         $this->manager->flush();
@@ -209,19 +209,45 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
         $datas = [
             [
-                'name' => 'Formation 1',
+                'title'=>'Formation 1',
+                'type' => 'Online course',
+                'duration' => '30 minutes',
+                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'startDate' => new DateTime('2023-10-04'),
+                'endDate' => new DateTime('2023-10-04'),
+                'satisfaction' => 5,
+
             ],
             [
-                'name' => 'Formation 2',
+                'title' => 'Formation 2',
+                'type' => 'Online course',
+                'duration' => '45 minutes',
+                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'startDate' => new DateTime('2023-10-04'),
+                'endDate' => new DateTime('2023-10-04'),
+                'satisfaction' => 5,
             ],
             [
-                'name' => 'Formation 3',
+                'title' => 'Formation 3',
+                'type' => 'Online course',
+                'duration' => '60 minutes',
+                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'startDate' => new DateTime('2023-10-04'),
+                'endDate' => new DateTime('2023-10-04'),
+                'satisfaction' => 5,
             ]
         ];
          
          foreach ($datas as $data) {
              $formation = new Formation();
-             $formation->setName($data['name']);
+             $formation->setTitle($data['title']);
+             $formation->setType($data['type']);
+             $formation->setDuration($data['duration']);
+             $formation->setDescription($data['description']);
+             $formation->setStartDate($data['startDate']);
+             $formation->setEndDate($data['endDate']);
+             $formation->setSatisfaction($data['satisfaction']);
+             
         }
         $this->manager->flush();
 
