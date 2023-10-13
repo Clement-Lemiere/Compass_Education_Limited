@@ -28,14 +28,8 @@ class Student
     #[ORM\Column(length: 191)]
     private ?string $nationality = null;
 
-    #[ORM\Column(length: 191, nullable: true)]
-    private ?string $grades = null;
-
     #[ORM\Column]
     private ?int $level = null;
-
-    #[ORM\Column(length: 191, nullable: true)]
-    private ?string $courses = null;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Payment::class)]
     private Collection $payments;
@@ -105,18 +99,6 @@ class Student
         return $this;
     }
 
-    public function getGrades(): ?string
-    {
-        return $this->grades;
-    }
-
-    public function setGrades(?string $grades): static
-    {
-        $this->grades = $grades;
-
-        return $this;
-    }
-
     public function getLevel(): ?int
     {
         return $this->level;
@@ -125,18 +107,6 @@ class Student
     public function setLevel(int $level): static
     {
         $this->level = $level;
-
-        return $this;
-    }
-
-    public function getCourses(): ?string
-    {
-        return $this->courses;
-    }
-
-    public function setCourses(?string $courses): static
-    {
-        $this->courses = $courses;
 
         return $this;
     }

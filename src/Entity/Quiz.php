@@ -15,13 +15,13 @@ class Quiz
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $questions = null;
+    private ?string $question = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $answers = null;
+    private ?string $answer = null;
 
     #[ORM\Column]
-    private ?int $scores = null;
+    private ?int $score = null;
 
     #[ORM\Column]
     private ?int $level = null;
@@ -35,38 +35,38 @@ class Quiz
         return $this->id;
     }
 
-    public function getQuestions(): ?string
+    public function getQuestion(): ?string
     {
-        return $this->questions;
+        return $this->question;
     }
 
-    public function setQuestions(string $questions): static
+    public function setQuestion(string $question): static
     {
-        $this->questions = $questions;
+        $this->question = $question;
 
         return $this;
     }
 
-    public function getAnswers(): ?string
+    public function getAnswer(): ?string
     {
-        return $this->answers;
+        return $this->answer;
     }
 
-    public function setAnswers(string $answers): static
+    public function setAnswer(string $answer): static
     {
-        $this->answers = $answers;
+        $this->answer = $answer;
 
         return $this;
     }
 
-    public function getScores(): ?int
+    public function getScore(): ?int
     {
-        return $this->scores;
+        return $this->score;
     }
 
-    public function setScores(int $scores): static
+    public function setScore(int $score): static
     {
-        $this->scores = $scores;
+        $this->score = $score;
 
         return $this;
     }

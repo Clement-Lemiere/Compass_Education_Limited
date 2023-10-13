@@ -63,8 +63,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'lastName' => 'Doe',
                 'birthDate' => new DateTime('1990-01-01'),
                 'nationality' => 'USA',
-                'courses' => ['Chinese'],
-                'grades' => ['7'],
                 'level' => 5,
             ],
             [
@@ -72,8 +70,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'lastName' => 'Bellane',
                 'birthDate' => new DateTime('1990-01-01'),
                 'nationality' => 'UK',
-                'courses' => ['Chinese'],
-                'grades' => ['10'],
                 'level' => 3,
             ],
             [
@@ -81,8 +77,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'lastName' => 'Kirigaya',
                 'birthDate' => new DateTime('1990-01-01'),
                 'nationality' => 'Japan',
-                'courses' => ['French'],
-                'grades' => ['8'],
                 'level' => 7,
             ]
         ];
@@ -93,8 +87,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $student->setLastName($data['lastName']);
              $student->setBirthDate($data['birthDate']);
              $student->setNationality($data['nationality']);
-             $student->setCourses($data['courses'][0]);
-             $student->setGrades($data['grades'][0]);
              $student->setLevel($data['level']);
         }
         $this->manager->flush();
@@ -107,13 +99,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //     $student->setLastName($this->faker->lastName());
         //     $student->setBirthDate($this->faker->dateTimeBetween('-30 years'));
         //     $student->setNationality($this->faker->country());
-
-        //     $arrayCourses = $this->faker->randomElements(['Chinese', 'Spanish', 'French']);
-        //     $student->setCourses($arrayCourses !== null ? [$arrayCourses] : null);
-
-        //     $arrayGrades = $this->faker->randomElements([10, 7, 5, 8, 9, 6]);
-        //     $student->setGrades($arrayGrades !== null ? [$arrayGrades] : null);
-
         //     $student->setLevel($this->faker->numberBetween(1, 10));
 
         //     $this->manager->persist($student);
@@ -220,7 +205,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
             [
                 'title' => 'Formation 2',
-                'type' => 'Online course',
+                'objective' => 'Online course',
                 'duration' => '45 minutes',
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
                 'startDate' => new DateTime('2023-10-04'),
@@ -229,7 +214,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
             [
                 'title' => 'Formation 3',
-                'type' => 'Online course',
+                'objective' => 'Online course',
                 'duration' => '60 minutes',
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
                 'startDate' => new DateTime('2023-10-04'),
@@ -241,7 +226,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
          foreach ($datas as $data) {
              $formation = new Formation();
              $formation->setTitle($data['title']);
-             $formation->setType($data['type']);
+             $formation->setObjective($data['Objective']);
              $formation->setDuration($data['duration']);
              $formation->setDescription($data['description']);
              $formation->setStartDate($data['startDate']);
@@ -259,23 +244,23 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
         $datas = [
             [
-                'questions' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
-                'answers' => ['answer 1'],
-                'scores' => 5 ,
+                'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'answer' => ['answer 1'],
+                'score' => 5 ,
                 'level' => 1,
                 'language' => 1
             ],
             [
-                'questions' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, quas?',
-                'answers' => ['answer 4'],
-                'scores' => 5,
+                'question' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, quas?',
+                'answer' => ['answer 4'],
+                'score' => 5,
                 'level' => 1,
                 'language' => 1
             ],
             [
-                'questions' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
-                'answers' => ['answer 2'],
-                'scores' => 5,
+                'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'answer' => ['answer 2'],
+                'score' => 5,
                 'level' => 1,
                 'language' => 1
             ]          
@@ -284,9 +269,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
          
          foreach ($datas as $data) {
              $quiz = new Quiz();
-             $quiz->setQuestions($data['question']);
-             $quiz->setAnswers($data['answer'][0]);
-             $quiz->setScores($data['score']);
+             $quiz->setQuestion($data['question']);
+             $quiz->setAnswer($data['answer'][0]);
+             $quiz->setScore($data['score']);
              $quiz->setLevel($data['level']);
          }
         $this->manager->flush();
@@ -333,12 +318,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'title' => 'Lesson 1',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'exercices' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
             ],
             [
                 'title' => 'Lesson 2',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'exercices' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
             ],
         ];
         foreach ($datas as $data) {

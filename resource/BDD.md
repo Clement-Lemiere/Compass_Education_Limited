@@ -43,10 +43,6 @@
    - *birthdate: Date*
    - `nationality`: La nationalité de l'utilisateur.
    - *nationality: VARCHAR(191)*
-   - `courses`: Les cours que l'étudiant suit.
-   - *courses: VARCHAR(191) (nullable)*
-   - `grades`: Les notes de l'étudiant.
-   - *grades: VARCHAR(191) (nullable)*
    - `level`: Le niveau de l'étudiant.
    - *level: INT*
    - `User_id`: Clé étrangère vers l'utilisateur associé
@@ -80,13 +76,11 @@
 
    - `id_formation`: L'identifiant de la formation.
    - *id_formation: INT (clé primaire)*
-   - `type`: Le type de formation.
-   - *type: VARCHAR(191) ( 1 séance, 2 séance, etc ...)*
    - `duration`: La durée de la formation.
    - *duration: DATETIME ( 30 minutes, 45 mintures, 1 heures etc ...)*
    - `cost`: Le coût de la formation.
    - *cost: float ( le prix )*
-   - `objectives`: Les objectifs de la formation.
+   - `objective`: Les objectifs de la formation.
    - *objectives: VARCHAR(191)*
    - `satisfaction`: La satisfaction de la formation.
    - *satisfaction : VARCHAR(191)*
@@ -130,10 +124,12 @@
 
    - `id_lesson`: L'identifiant de la leçon.
    - *id_lesson: INT (clé primaire)*
+   - `title`: Le titre de la leçon.
+   - *title: VARCHAR(191)*
    - `content`: Le contenu de la leçon.
    - *content: TEXT*
-   - `exercises`: Les exercices de la leçon.
-   - *exercises: TEXT (nullable)*
+   - `exercise`: Les exercices de la leçon.
+   - *exercise: TEXT (nullable)*
    - `resource_id`: Clé étrangère vers la ressource associée.
    - *resource_id: INT (clé étrangère vers Resources)*
    - `language_id`: Clé étrangère vers la langue associée.
@@ -149,6 +145,8 @@
     - *title: VARCHAR(191)*
     - `content`: La description de l'affectation.
     - *content: Text*
+    - `start_date`: La date d'arrivée de l'affectation.
+    - *start_date: Datetime*
     - `due_date`: La date d'échéance de l'affectation.
     - *due_date: Datetime*
     - `grade`: La note de l'affectation.

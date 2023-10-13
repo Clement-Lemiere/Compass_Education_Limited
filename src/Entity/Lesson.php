@@ -16,11 +16,14 @@ class Lesson
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 191)]
+    private ?string $title = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $exercices = null;
+    private ?string $exercice = null;
 
     #[ORM\ManyToMany(targetEntity: Assignment::class, mappedBy: 'lesson')]
     private Collection $assignments;
@@ -39,6 +42,18 @@ class Lesson
         return $this->id;
     }
 
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
     public function getContent(): ?string
     {
         return $this->content;
@@ -51,14 +66,14 @@ class Lesson
         return $this;
     }
 
-    public function getExercices(): ?string
+    public function getExercice(): ?string
     {
-        return $this->exercices;
+        return $this->exercice;
     }
 
-    public function setExercices(?string $exercices): static
+    public function setExercice(?string $exercice): static
     {
-        $this->exercices = $exercices;
+        $this->exercice = $exercice;
 
         return $this;
     }

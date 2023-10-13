@@ -20,7 +20,7 @@ class Formation
     private ?string $title = null;
 
     #[ORM\Column(length: 191)]
-    private ?string $type = null;
+    private ?string $objective = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $duration = null;
@@ -66,14 +66,14 @@ class Formation
         return $this;
     }
 
-    public function getType(): ?string
+    public function getObjective(): ?string
     {
-        return $this->type;
+        return $this->objective;
     }
 
-    public function setType(string $type): static
+    public function setObjective(string $objective): static
     {
-        $this->type = $type;
+        $this->objective = $objective;
 
         return $this;
     }
