@@ -21,7 +21,7 @@ class Resource
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    private ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $publishedDate = null;
@@ -59,14 +59,14 @@ class Resource
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getContent(): ?string
     {
-        return $this->description;
+        return $this->content;
     }
 
-    public function setDescription(string $description): static
+    public function setContent(string $content): static
     {
-        $this->description = $description;
+        $this->content = $content;
 
         return $this;
     }

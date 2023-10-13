@@ -24,8 +24,8 @@
    - *lastName VARCHAR(191)*
    - `nationality`: Les qualifications de l'enseignant.
    - *nationality: VARCHAR(191)*
-   - `qualifications`: Les langues que l'enseignant enseigne.
-   - *qualifications: VARCHAR(191)*
+   - `qualification`: Les langues que l'enseignant enseigne.
+   - *qualification: VARCHAR(191)*
    - `availability`: L'emploi du temps ou la disponibilité de l'enseignant.
    - *availability: VARCHAR(191) (nullable)*
    - `User_id`: Clé étrangère vers l'utilisateur associé
@@ -76,12 +76,14 @@
 
    - `id_formation`: L'identifiant de la formation.
    - *id_formation: INT (clé primaire)*
+   - `title`: Le titre de la formation.
+   - *title: VARCHAR(191)*
    - `duration`: La durée de la formation.
    - *duration: DATETIME ( 30 minutes, 45 mintures, 1 heures etc ...)*
    - `cost`: Le coût de la formation.
    - *cost: float ( le prix )*
    - `objective`: Les objectifs de la formation.
-   - *objectives: VARCHAR(191)*
+   - *objective: VARCHAR(191)*
    - `satisfaction`: La satisfaction de la formation.
    - *satisfaction : VARCHAR(191)*
    - `startDate`: La date de début de la formation.
@@ -94,8 +96,6 @@
    - *id_payment: INT (clé primaire)*
    - `date`: La date du paiement.
    - *date: DATETIME*
-   - `amount`: Le montant du paiement.
-   - *amount: float*
    - `type`: Le type de paiement.
    - *type: VARCHAR(191)*
    - `id_payment`: L'identifiant du paiement.
@@ -113,8 +113,8 @@
    - *type: VARCHAR(191)*
    - `title`: Le titre de la ressource.
    - *title: VARCHAR(191)*
-   - `description`: La description de la ressource.
-   - *description: TEXT*
+   - `content`: La contenu de la ressource.
+   - *content: TEXT*
    - `published_date`: La date de publication de la ressource.
    - *published_date: DATETIME*
    - `language_id`: Clé étrangère vers la langue associée.
@@ -158,12 +158,14 @@
 
     - `id_quiz`: L'identifiant du quiz.
     - *id_quiz: INT (clé primaire)*
-    - `questions`: Les questions du quiz.
-    - *questions: TEXT*
-    - `answers`: Les réponses aux questions.
-    - *answers: TEXT*
-    - `scores`: Les scores associés aux réponses.
-    - *scores: INT*
+    - `title`: Le titre du quiz.
+    - *title: VARCHAR(191)*
+    - `question`: Les questions du quiz.
+    - *question: TEXT*
+    - `answer`: Les réponses aux questions.
+    - *answer: TEXT*
+    - `score`: Les scores associés aux réponses.
+    - *score: INT*
     - `level`: le niveau du quiz
     - *level : INT*
     - `resource_id`: Clé étrangère vers la ressource associée.
@@ -188,10 +190,10 @@
 
     - `id_faq`: L'identifiant de la FAQ.
     - *id_faq: INT (clé primaire)*
-    - `questions`: Les questions de la FAQ.
-    - *questions: TEXT*
-    - `answers`: Les réponses aux questions de la FAQ.
-    - *answers: TEXT*
+    - `question`: Les questions de la FAQ.
+    - *question: TEXT*
+    - `answer`: Les réponses aux questions de la FAQ.
+    - *answer: TEXT*
 
 2. ***Newsletter***
 

@@ -114,7 +114,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'lastName' => 'Kirigaya',
                 'nationality' => 'Japan',
                 'availability' => 'available',
-                'qualifications' => ['japanese'],
+                'qualification' => ['japanese'],
             ],
         ];
          
@@ -124,7 +124,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $teacher->setLastName($data['lastName']);
              $teacher->setNationality($data['nationality']);
              $teacher->setAvailability($data['availability']);
-             $teacher->setQualifications($data['qualifications'][0]);
+             $teacher->setQualification($data['qualification'][0]);
         }
         $this->manager->flush();
 
@@ -318,12 +318,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'title' => 'Lesson 1',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercices' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
             ],
             [
                 'title' => 'Lesson 2',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercices' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
             ],
         ];
         foreach ($datas as $data) {

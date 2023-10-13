@@ -25,7 +25,7 @@ class Teacher
     private ?string $nationality = null;
 
     #[ORM\Column(length: 191)]
-    private ?string $qualifications = null;
+    private ?string $qualification = null;
 
     #[ORM\Column(length: 191)]
     private ?string $availability = null;
@@ -86,14 +86,14 @@ class Teacher
         return $this;
     }
 
-    public function getQualifications(): ?string
+    public function getQualification(): ?string
     {
-        return $this->qualifications;
+        return $this->qualification;
     }
 
-    public function setQualifications(string $qualifications): static
+    public function setQualification(string $qualification): static
     {
-        $this->qualifications = $qualifications;
+        $this->qualification = $qualification;
 
         return $this;
     }

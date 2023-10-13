@@ -25,14 +25,11 @@ class Formation
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $duration = null;
 
-    #[ORM\Column(length: 191)]
-    private ?string $description = null;
+    #[ORM\Column]
+    private ?float $cost = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $startDate = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(length: 191, nullable: true)]
     private ?string $satisfaction = null;
@@ -90,14 +87,14 @@ class Formation
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getCost(): ?float
     {
-        return $this->description;
+        return $this->cost;
     }
 
-    public function setDescription(string $description): static
+    public function setCost(float $cost): static
     {
-        $this->description = $description;
+        $this->cost = $cost;
 
         return $this;
     }
@@ -110,18 +107,6 @@ class Formation
     public function setStartDate(\DateTimeInterface $startDate): static
     {
         $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    public function getEndDate(): ?\DateTimeInterface
-    {
-        return $this->endDate;
-    }
-
-    public function setEndDate(\DateTimeInterface $endDate): static
-    {
-        $this->endDate = $endDate;
 
         return $this;
     }
