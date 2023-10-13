@@ -50,6 +50,6 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
     
             $this->manager->persist($user);
         }
-    
+        $this->manager->flush();
     }
 }
