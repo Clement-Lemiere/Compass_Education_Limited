@@ -176,19 +176,19 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'type' => 'Online course',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('13:30:00'),
-                'duration' => '30 minutes',
+
             ],
             [
                 'type' => 'Planning 2',
                 'date' => new DateTime('2023-08-04'),
                 'time' => new DateTime('14:15:00'),
-                'duration' => '45 minutes',
+
             ],
             [
                 'type' => 'Planning 3',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('15:15:00'),
-                'duration' => '45 minutes',
+
             ]
         ];
          
@@ -197,7 +197,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $planning->setType($data['type']);
              $planning->setDate($data['date']);
              $planning->setTime($data['time']);
-             $planning->setDuration($data['duration']);
+
         }
         $this->manager->flush();
 
@@ -247,7 +247,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $formation->setStartDate($data['startDate']);
              $formation->setEndDate($data['endDate']);
              $formation->setSatisfaction($data['satisfaction']);
-             
+
         }
         $this->manager->flush();
 
@@ -259,24 +259,35 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
         $datas = [
             [
-                'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
-                'answer' => ['answer 1'],
+                'questions' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'answers' => ['answer 1'],
+                'scores' => 5 ,
+                'level' => 1,
+                'language' => 1
             ],
             [
-                'question' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, quas?',
-                'answer' => ['answer 4'],
+                'questions' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, quas?',
+                'answers' => ['answer 4'],
+                'scores' => 5,
+                'level' => 1,
+                'language' => 1
             ],
             [
-                'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
-                'answer' => ['answer 2'],
+                'questions' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
+                'answers' => ['answer 2'],
+                'scores' => 5,
+                'level' => 1,
+                'language' => 1
             ]          
             
         ];
          
          foreach ($datas as $data) {
              $quiz = new Quiz();
-             $quiz->setQuestion($data['question']);
-             $quiz->setAnswer($data['answer'][0]);
+             $quiz->setQuestions($data['question']);
+             $quiz->setAnswers($data['answer'][0]);
+             $quiz->setScores($data['score']);
+             $quiz->setLevel($data['level']);
          }
         $this->manager->flush();
 
