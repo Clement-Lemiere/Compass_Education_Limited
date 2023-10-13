@@ -28,7 +28,7 @@ class Teacher
     private ?string $qualifications = null;
 
     #[ORM\Column(length: 191)]
-    private ?string $availablility = null;
+    private ?string $availability = null;
 
     #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Planning::class)]
     private Collection $plannings;
@@ -98,14 +98,14 @@ class Teacher
         return $this;
     }
 
-    public function getAvailablility(): ?string
+    public function getAvailability(): ?string
     {
-        return $this->availablility;
+        return $this->availability;
     }
 
-    public function setAvailablility(string $availablility): static
+    public function setAvailability(string $availability): static
     {
-        $this->availablility = $availablility;
+        $this->availability = $availability;
 
         return $this;
     }

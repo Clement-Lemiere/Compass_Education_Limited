@@ -1,5 +1,5 @@
-#!/bin/bash
-#! commande bin/dofilo.sh
+# !/bin/bash
+# ! commande bin/dofilo.sh
 
 php bin/console doctrine:database:drop --force --if-exists
 php bin/console doctrine:database:create --no-interaction
