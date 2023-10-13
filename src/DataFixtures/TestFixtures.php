@@ -56,7 +56,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
     public function loadStudents(): void
     {
-        //données statiques
+        //static datas
         $datas = [
             [
                 'firstName' => 'John',
@@ -99,12 +99,30 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         }
         $this->manager->flush();
 
-        // données dynamiques
+        // dynamic datas
+
+        for ($i = 0; $i < 10; $i++) {
+            $student = new Student();
+            $student->setFirstName($this->faker->firstName());
+            $student->setLastName($this->faker->lastName());
+            $student->setBirthDate($this->faker->dateTimeBetween('-30 years'));
+            $student->setNationality($this->faker->country());
+
+            $arrayCourses = $this->faker->randomElements(['Chinese', 'Spanish', 'French']);
+            $student->setCourses($arrayCourses !== null ? [$arrayCourses] : null);
+
+            $arrayGrades = $this->faker->randomElements([10, 7, 5, 8, 9, 6]);
+            $student->setGrades($arrayGrades !== null ? [$arrayGrades] : null);
+
+            $student->setLevel($this->faker->numberBetween(1, 10));
+
+            $this->manager->persist($student);
+        }
     }
 
     public function loadTeachers(): void
     {
-        //données statiques
+        //static datas
         $datas = [
             [
                 'firstName' => 'Yuna',
@@ -124,11 +142,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
              $teacher->setQualifications($data['qualifications']);
         }
         $this->manager->flush();
+
+        
     }
 
     public function loadLanguages(): void
     {
-        //données statiques
+        //static datas
         $datas = [
             [
                 'name' => 'French',
