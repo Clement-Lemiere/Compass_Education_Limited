@@ -46,12 +46,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadTeachers();
         $this->loadLanguages();
         $this->loadPlannings();
-        // $this->loadFormations();
-        // $this->loadQuizzes();
+        $this->loadFormations();
+        $this->loadQuizzes();
         $this->loadAssignments();
-        // $this->loadLessons();
-        // $this->loadFlags();
-        // $this->loadResources();
+        $this->loadLessons();
+        $this->loadFlags();
+        $this->loadResources();
+        $this->loadPayments();
     }
 
     public function loadStudents(): void
@@ -108,11 +109,14 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($student);
         }
         $this->manager->flush();
+
+        // dynamic datas
     }
 
     public function loadTeachers(): void
     {
-        //static datas
+
+        // static datas
         $datas = [
             [
                 'email' => 'doe.mi@example.com',
@@ -165,11 +169,14 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($teacher);
         }
         $this->manager->flush();
+        
+        // dynamic datas
     }
-    
+
     public function loadLanguages(): void
     {
-        //static datas
+        
+        // static datas
         $datas = [
             [
                 'name' => 'French',
@@ -189,10 +196,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($language);
         }
         $this->manager->flush();
+
+        // Dynamic datas
     }
 
     public function loadPlannings(): void
     {
+        //static datas
 
         $teacherRepository = $this->manager->getRepository(Teacher::class);
         $teachers = $teacherRepository->findAll();
@@ -200,7 +210,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $teacher1 = $teacherRepository->find(1);
         $teacher2 = $teacherRepository->find(2);
         $teacher3 = $teacherRepository->find(3);
-        //static datas
+        
         $datas = [
             [
                 'type' => 'Online course',
@@ -240,6 +250,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function loadFormations(): void
     {
         //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+        
         $datas = [
             [
                 'title' => 'Formation 1',
@@ -248,7 +265,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
                 'cost' => 100,
-
+                'language' => $language1,
             ],
             [
                 'title' => 'Formation 2',
@@ -257,6 +274,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
                 'cost' => 50,
+                'language' => $language2,
             ],
             [
                 'title' => 'Formation 3',
@@ -265,6 +283,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 3,
                 'cost' => 75,
+                'language' => $language3,
             ]
         ];
 
@@ -276,6 +295,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $formation->setStartDate($data['startDate']);
             $formation->setSatisfaction($data['satisfaction']);
             $formation->setCost($data['cost']);
+            $formation->setLanguage($data['language']);
 
             $this->manager->persist($formation);
         }
@@ -287,27 +307,37 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function loadQuizzes(): void
     {
         //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+
         $datas = [
             [
                 'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
                 'answer' => ['answer 1'],
+                'title' => 'Quiz 1',
                 'score' => 5,
                 'level' => 1,
-                'language' => 1
+                'language' => $language1,
             ],
             [
                 'question' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, quas?',
                 'answer' => ['answer 4'],
+                'title' => 'Quiz 2',
                 'score' => 5,
                 'level' => 1,
-                'language' => 1
+                'language' => $language2
             ],
             [
                 'question' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil distinctio quidem nam explicabo, vel alias?',
                 'answer' => ['answer 2'],
+                'title' => 'Quiz 3',
                 'score' => 5,
                 'level' => 1,
-                'language' => 1
+                'language' => $language3
             ]
 
         ];
@@ -318,12 +348,58 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $quiz->setAnswer($data['answer'][0]);
             $quiz->setScore($data['score']);
             $quiz->setLevel($data['level']);
+            $quiz->setTitle($data['title']);
+            $quiz->setLanguage($data['language']);
             
             $this->manager->persist($quiz);
         }
         $this->manager->flush();
 
         //données dynamiques
+    }
+    public function loadLessons(): void
+    {
+        //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+
+        $datas = [
+            [
+                'title' => 'Lesson 1',
+                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
+                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'language' => $language1
+            ],
+            [
+                'title' => 'Lesson 2',
+                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
+                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'language' => $language2
+            ],
+            [
+                'title' => 'Lesson 3',
+                'content' => 'Dolores ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
+                'exercice' => 'Pecate ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam! Lorem ipsum dolor sit.',
+                'language' => $language3
+            ]
+        ];
+
+        foreach ($datas as $data) {
+            $lesson = new Lesson();
+            $lesson->setTitle($data['title']);
+            $lesson->setContent($data['content']);
+            $lesson->setExercice($data['exercice']);
+            $lesson->setLanguage($data['language']);
+
+            $this->manager->persist($lesson);
+        }
+        $this->manager->flush();
+
+        // dynamic datas
     }
 
     public function loadAssignments(): void
@@ -362,53 +438,45 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //Dynamic datas
     }
 
-    public function loadLessons(): void
-    {
-        //static datas
-        $datas = [
-            [
-                'title' => 'Lesson 1',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
-            ],
-            [
-                'title' => 'Lesson 2',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
-            ]
-        ];
-
-        foreach ($datas as $data) {
-            $lesson = new Lesson();
-            $lesson->setTitle($data['title']);
-            $lesson->setContent($data['content']);
-            $lesson->setExercice($data['exercice']);
-
-            $this->manager->persist($lesson);
-        }
-        $this->manager->flush();
-
-        // dynamic datas
-    }
 
     public function loadFlags(): void
     {
         //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+
         $datas = [
             [
                 'country' => 'Flag 1',
+                'image' => 'Flag 1',
+                'iso_code' => 'Flag 1',
+                'language' => $language1
             ],
             [
                 'country' => 'Flag 2',
+                'image' => 'Flag 2',
+                'iso_code' => 'Flag 2',
+                'language' => $language2
             ],
             [
                 'country' => 'Flag 3',
+                'image' => 'Flag 3',
+                'iso_code' => 'Flag 3',
+                'language' => $language3
             ]
         ];
 
         foreach ($datas as $data) {
             $flag = new Flag();
             $flag->setCountry($data['country']);
+            $flag->setImage($data['image']);
+            $flag->setIsoCode($data['iso_code']);
+            $flag->setLanguage($data['language']);
 
             $this->manager->persist($flag);
         }
@@ -420,18 +488,34 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function loadResources(): void
     {
         //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+
         $datas = [
             [
                 'type' => 'Resource 1',
                 'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
                 'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
                 'publishedDate' => new DateTime('2023-10-02'),
+                'language' => $language1
             ],
             [
                 'type' => 'Resource 2',
                 'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
                 'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
-                'publishedDate' => new DateTime('2023-10-02'),
+                'publishedDate' => new DateTime('2023-10-08'),
+                'language' => $language2
+            ],
+            [
+                'type' => 'Resource 3',
+                'title' => 'Consectetur adipisicing elit.',
+                'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
+                'publishedDate' => new DateTime('2023-09-22'),
+                'language' => $language3
             ]
         ];
         foreach ($datas as $data) {
@@ -440,10 +524,59 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $resource->setTitle($data['title']);
             $resource->setContent($data['content']);
             $resource->setPublishedDate($data['publishedDate']);
+            $resource->setLanguage($data['language']);
 
             $this->manager->persist($resource);
         }
 
+        $this->manager->flush();
+    }
+
+    public function loadPayments(): void
+    {
+        //static datas
+
+        $formationRepository = $this->manager->getRepository(Formation::class);
+        $formations = $formationRepository->findAll();
+        $formation1 = $formationRepository->find(1);
+        $formation2 = $formationRepository->find(2);
+        $formation3 = $formationRepository->find(3);
+        $studentRepository = $this->manager->getRepository(Student::class);
+        $students = $studentRepository->findAll();
+        $student1 = $studentRepository->find(1);
+        $student2 = $studentRepository->find(2);
+        $student3 = $studentRepository->find(3);
+
+        $datas = [
+            [
+                'date' => new DateTime('2023-10-02'),
+                'type' => 'Online course',
+                'formation' => $formation1,
+                'student' => $student1
+            ],
+            [
+                'date' => new DateTime('2023-10-04'),
+                'type' => 'Online course',
+                'formation' => $formation2,
+                'student' => $student2
+            ],
+            [
+                'date' => new DateTime('2023-10-09'),
+                'type' => 'Online course',
+                'formation' => $formation3,
+                'student' => $student3
+            ]
+        ];
+
+        foreach ($datas as $data) {
+            $payment = new Payment();
+            $payment->setDate($data['date']);
+            $payment->setType($data['type']);
+            $payment->setFormation($data['formation']);
+            $payment->setStudent($data['student']);
+
+            $this->manager->persist($payment);
+        }
         $this->manager->flush();
     }
 }
