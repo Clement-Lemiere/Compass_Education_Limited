@@ -46,7 +46,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadTeachers();
         $this->loadLanguages();
         $this->loadPlannings();
-        // $this->loadFormations();
+        $this->loadFormations();
         // $this->loadQuizzes();
         $this->loadAssignments();
         // $this->loadLessons();
@@ -108,11 +108,14 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($student);
         }
         $this->manager->flush();
+
+        // dynamic datas
     }
 
     public function loadTeachers(): void
     {
-        //static datas
+
+        // static datas
         $datas = [
             [
                 'email' => 'doe.mi@example.com',
@@ -165,11 +168,14 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($teacher);
         }
         $this->manager->flush();
+        
+        // dynamic datas
     }
-    
+
     public function loadLanguages(): void
     {
-        //static datas
+        
+        // static datas
         $datas = [
             [
                 'name' => 'French',
@@ -189,10 +195,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($language);
         }
         $this->manager->flush();
+
+        // Dynamic datas
     }
 
     public function loadPlannings(): void
     {
+        //static datas
 
         $teacherRepository = $this->manager->getRepository(Teacher::class);
         $teachers = $teacherRepository->findAll();
@@ -200,7 +209,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $teacher1 = $teacherRepository->find(1);
         $teacher2 = $teacherRepository->find(2);
         $teacher3 = $teacherRepository->find(3);
-        //static datas
+        
         $datas = [
             [
                 'type' => 'Online course',
@@ -240,6 +249,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function loadFormations(): void
     {
         //static datas
+
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+        
         $datas = [
             [
                 'title' => 'Formation 1',
@@ -248,7 +264,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
                 'cost' => 100,
-
+                'language' => $language1,
             ],
             [
                 'title' => 'Formation 2',
@@ -257,6 +273,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
                 'cost' => 50,
+                'language' => $language2,
             ],
             [
                 'title' => 'Formation 3',
@@ -265,6 +282,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 3,
                 'cost' => 75,
+                'language' => $language3,
             ]
         ];
 
@@ -276,6 +294,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $formation->setStartDate($data['startDate']);
             $formation->setSatisfaction($data['satisfaction']);
             $formation->setCost($data['cost']);
+            $formation->setLanguage($data['language']);
 
             $this->manager->persist($formation);
         }
@@ -375,6 +394,11 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'title' => 'Lesson 2',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
                 'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+            ],
+            [
+                'title' => 'Lesson 3',
+                'content' => 'Dolores ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
+                'exercice' => 'Pecate ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam! Lorem ipsum dolor sit.',
             ]
         ];
 
