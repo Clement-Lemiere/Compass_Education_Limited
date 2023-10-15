@@ -42,127 +42,131 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
-        $this->loadusers();
+        $this->loadStudents();
+        $this->loadTeachers();
         $this->loadLanguages();
         $this->loadPlannings();
-        $this->loadFormations();
-        $this->loadQuizzes();
+        // $this->loadFormations();
+        // $this->loadQuizzes();
         $this->loadAssignments();
-        $this->loadLessons();
-        $this->loadFlags();
-        $this->loadResources();
+        // $this->loadLessons();
+        // $this->loadFlags();
+        // $this->loadResources();
     }
 
-    public function loadUsers(): void
+    public function loadStudents(): void
     {
-        // données statiques
+        //static datas
         $datas = [
-
             [
                 'email' => 'foo.foo@example.com',
                 'password' => '123',
                 'roles' => ['ROLE_USER'],
-                'firstName' => 'John',
+
+                'firstName' => 'Mike',
                 'lastName' => 'Doe',
-                'birthDate' => '1990-01-01 10:00:00',
+                'birthDate' => new DateTime(),
                 'nationality' => 'USA',
                 'level' => 5,
-                'availability' => 'available',
-                'qualification' => ['japanese'],
             ],
             [
-                'email' => 'bar.bar@example.com',
+                'email' => 'bat.bar@example.com',
                 'password' => '123',
                 'roles' => ['ROLE_USER'],
                 'firstName' => 'Jane',
                 'lastName' => 'Bellane',
-                'birthDate' => '1990-01-01 10:00:00',
-                'nationality' => 'UK',
-                'level' => 3,
-                'availability' => 'available',
-                'qualification' => ['japanese'],
+                'birthDate' => new DateTime(),
+                'nationality' => 'France',
+                'level' => 6,
             ],
             [
                 'email' => 'baz.baz@example.com',
                 'password' => '123',
                 'roles' => ['ROLE_USER'],
-                'firstName' => 'Yuna',
-                'lastName' => 'Kirigaya',
-                'birthDate' => '1990-01-01 10:00:00',
-                'nationality' => 'Japan',
+
+                'firstName' => 'John',
+                'lastName' => 'Doe',
+                'birthDate' => new DateTime(),
+                'nationality' => 'USA',
                 'level' => 7,
-                'availability' => 'available',
-                'qualification' => ['japanese'],
-            ]
-
+            ],
         ];
-
         foreach ($datas as $data) {
             $user = new User();
             $user->setEmail($data['email']);
-            $password = $this->hasher->hashPassword($user, $data['password']);
-            $user->setPassword($password);
+            $user->setPassword($this->hasher->hashPassword($user, $data['password']));
             $user->setRoles($data['roles']);
 
-            $this->manager->persist($user);
-
             $student = new Student();
+            $student->setUser($user);
             $student->setFirstName($data['firstName']);
             $student->setLastName($data['lastName']);
-            $birthDate = new DateTime($data['birthDate']);
-            $student->setBirthDate($birthDate);
+            $student->setBirthDate($data['birthDate']);
             $student->setNationality($data['nationality']);
             $student->setLevel($data['level']);
 
             $this->manager->persist($student);
+        }
+        $this->manager->flush();
+    }
+
+    public function loadTeachers(): void
+    {
+        //static datas
+        $datas = [
+            [
+                'email' => 'doe.mi@example.com',
+                'password' => '123',
+                'roles' => ['ROLE_USER'],
+
+                'firstName' => 'Micheal',
+                'lastName' => 'Donokey',
+                'nationality' => 'USA',
+                'availability' => 'Available',
+                'qualification' => 'English(US)',
+            ],
+            [
+                'email' => 'ge.la@example.com',
+                'password' => '123',
+                'roles' => ['ROLE_USER'],
+
+                'firstName' => 'Gérard',
+                'lastName' => 'Lambert',
+                'nationality' => 'France',
+                'availability' => 'Available',
+                'qualification' => 'French',
+            ],
+            [
+                'email' => 'ta.li@example.com',
+                'password' => '123',
+                'roles' => ['ROLE_USER'],
+
+                'firstName' => 'Tangzhi',
+                'lastName' => 'li',
+                'nationality' => 'China',
+                'availability' => 'Available',
+                'qualification' => 'Chinese',
+            ],
+        ];
+        foreach ($datas as $data) {
+            $user = new User();
+            $user->setEmail($data['email']);
+            $user->setPassword($this->hasher->hashPassword($user, $data['password']));
+            $user->setRoles($data['roles']);
 
             $teacher = new Teacher();
+            $teacher->setUser($user);
             $teacher->setFirstName($data['firstName']);
             $teacher->setLastName($data['lastName']);
             $teacher->setNationality($data['nationality']);
             $teacher->setAvailability($data['availability']);
-            $teacher->setQualification($data['qualification'][0]);
-
-            $this->manager->persist($teacher);
-
-            $this->manager->flush();
-        }
-
-
-        // données dynamiques
-        for ($i = 0; $i < 50; $i++) {
-            $user = new User();
-            $user->setEmail($this->faker->unique()->safeEmail());
-            $password = $this->hasher->hashPassword($user, '123');
-            $user->setPassword($password);
-            $user->setRoles(['ROLE_USER']);
-
-            $this->manager->persist($user);
-
-
-            $student = new Student();
-            $student->setFirstName($this->faker->firstName());
-            $student->setLastName($this->faker->lastName());
-            $student->setBirthDate($this->faker->dateTimeBetween('-30 years'));
-            $student->setNationality($this->faker->country());
-            $student->setLevel($this->faker->numberBetween(1, 10));
-
-            $this->manager->persist($student);
-
-            $teacher = new Teacher();
-            $teacher->setFirstName($this->faker->firstName());
-            $teacher->setLastName($this->faker->lastName());
-            $teacher->setNationality($this->faker->country());
-            $teacher->setAvailability($this->faker->randomElement(['available', 'unavailable']));
-            $teacher->setQualification($this->faker->randomElement(['japanese', 'english', 'chinese']));
+            $teacher->setQualification($data['qualification']);
 
             $this->manager->persist($teacher);
         }
-
         $this->manager->flush();
     }
-
-
+    
     public function loadLanguages(): void
     {
         //static datas
@@ -181,31 +185,41 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         foreach ($datas as $data) {
             $language = new Language();
             $language->setName($data['name']);
+
+            $this->manager->persist($language);
         }
         $this->manager->flush();
     }
 
     public function loadPlannings(): void
     {
+
+        $teacherRepository = $this->manager->getRepository(Teacher::class);
+        $teachers = $teacherRepository->findAll();
+
+        $teacher1 = $teacherRepository->find(1);
+        $teacher2 = $teacherRepository->find(2);
+        $teacher3 = $teacherRepository->find(3);
         //static datas
         $datas = [
             [
                 'type' => 'Online course',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('13:30:00'),
+                'teacher' => [$teacher1],
 
             ],
             [
                 'type' => 'Planning 2',
                 'date' => new DateTime('2023-08-04'),
                 'time' => new DateTime('14:15:00'),
-
+                'teacher' => [$teacher2],
             ],
             [
                 'type' => 'Planning 3',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('15:15:00'),
-
+                'teacher' => [$teacher3],
             ]
         ];
 
@@ -214,6 +228,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $planning->setType($data['type']);
             $planning->setDate($data['date']);
             $planning->setTime($data['time']);
+            $planning->setTeacher($data['teacher'][0]);
+
+            $this->manager->persist($planning);
         }
         $this->manager->flush();
 
@@ -230,6 +247,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'duration' => 30,
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
+                'cost' => 100,
 
             ],
             [
@@ -238,13 +256,15 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'duration' => 45,
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
+                'cost' => 50,
             ],
             [
                 'title' => 'Formation 3',
                 'objective' => 'Online course',
                 'duration' => 60,
                 'startDate' => new DateTime('2023-10-04'),
-                'satisfaction' => 5,
+                'satisfaction' => 3,
+                'cost' => 75,
             ]
         ];
 
@@ -255,6 +275,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $formation->setDuration($data['duration']);
             $formation->setStartDate($data['startDate']);
             $formation->setSatisfaction($data['satisfaction']);
+            $formation->setCost($data['cost']);
+
+            $this->manager->persist($formation);
         }
         $this->manager->flush();
 
@@ -295,6 +318,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $quiz->setAnswer($data['answer'][0]);
             $quiz->setScore($data['score']);
             $quiz->setLevel($data['level']);
+            
+            $this->manager->persist($quiz);
         }
         $this->manager->flush();
 
@@ -319,6 +344,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'dueDate' => new DateTime('2023-10-10'),
                 'grade' => 8,
             ],
+            // 3ème assignement ?
         ];
         foreach ($datas as $data) {
             $assignment = new Assignment();
@@ -327,6 +353,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $assignment->setStartDate($data['startDate']);
             $assignment->setDueDate($data['dueDate']);
             $assignment->setGrade($data['grade']);
+
+            $this->manager->persist($assignment);
+
         }
         $this->manager->flush();
 
@@ -354,7 +383,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $lesson->setTitle($data['title']);
             $lesson->setContent($data['content']);
             $lesson->setExercice($data['exercice']);
+
+            $this->manager->persist($lesson);
         }
+        $this->manager->flush();
 
         // dynamic datas
     }
@@ -377,6 +409,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         foreach ($datas as $data) {
             $flag = new Flag();
             $flag->setCountry($data['country']);
+
+            $this->manager->persist($flag);
         }
         $this->manager->flush();
 
@@ -406,6 +440,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $resource->setTitle($data['title']);
             $resource->setContent($data['content']);
             $resource->setPublishedDate($data['publishedDate']);
+
+            $this->manager->persist($resource);
         }
 
         $this->manager->flush();
