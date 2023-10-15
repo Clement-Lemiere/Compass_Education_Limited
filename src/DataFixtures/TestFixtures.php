@@ -111,6 +111,34 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         // dynamic datas
+        for ($i = 0; $i < 20; $i++) {
+            $user = new User();
+            $user->setEmail($this->faker->unique()->safeEmail());
+            $password = $this->hasher->hashPassword($user, '123');
+            $user->setPassword($password);
+            $user->setRoles(['ROLE_USER']);
+
+            $this->manager->persist($user);
+
+            $student = new Student();
+            $student->setFirstName($this->faker->firstName());
+            $student->setLastName($this->faker->lastName());
+
+            $nationality = $this->faker->country();
+            $student->setNationality($nationality);
+
+            $birthDate = $this->faker->dateTimeBetween('-80 years', '-5 years');
+            $student->setBirthDate($birthDate);
+
+            $level = $this->faker->numberBetween(1, 10);
+            $student->setLevel($level);
+
+
+            $student->setUser($user);
+
+            $this->manager->persist($user);
+        }
+        $this->manager->flush();
     }
 
     public function loadTeachers(): void
@@ -171,6 +199,32 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
         
         // dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $user = new User();
+            $user->setEmail($this->faker->unique()->safeEmail());
+            $password = $this->hasher->hashPassword($user, '123');
+            $user->setPassword($password);
+            $user->setRoles(['ROLE_USER']);
+
+            $this->manager->persist($user);
+
+            $teacher = new Teacher();
+            $teacher->setFirstName($this->faker->firstName());
+            $teacher->setLastName($this->faker->lastName());
+            $teacher->setNationality($this->faker->country());
+
+            $qualification = $this->faker->randomElement(['English(US)', 'English(Uk)', 'French', 'Chinese', 'Spanish', 'Japanese', 'Russian', 'German', 'Italian', 'Portuguese', 'Korean', 'Arabic']);
+            $teacher->setQualification($qualification);
+
+            $availability = $this->faker->randomElement(['Available', 'Busy']);
+            $teacher->setAvailability($availability);
+
+            $teacher->setUser($user);
+
+            $this->manager->persist($user);
+        }
+        $this->manager->flush();
     }
 
     public function loadLanguages(): void
@@ -186,7 +240,31 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
             [
                 'name' => 'Chinese',
-            ]
+            ],
+            [
+                'name' => 'Spanish',
+            ],
+            [
+                'name' => 'Japanese',
+            ],
+            [
+                'name' => 'Russian',
+            ],
+            [
+                'name' => 'German',
+            ],
+            [
+                'name' => 'Italian',
+            ],
+            [
+                'name' => 'Portuguese',
+            ],
+            [
+                'name' => 'Korean',
+            ],
+            [
+                'name' => 'Arabic',
+            ],
         ];
 
         foreach ($datas as $data) {
@@ -198,6 +276,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         // Dynamic datas
+
+        
     }
 
     public function loadPlannings(): void
@@ -245,6 +325,17 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         // dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $planning = new Planning();
+            $planning->setType($this->faker->randomElement(['Online course', 'Planning 2', 'Planning 3']));
+            $planning->setDate($this->faker->dateTimeBetween('-1 year', 'now'));
+            $planning->setTime($this->faker->dateTimeBetween('-1 year', 'now'));
+            $planning->setTeacher($this->faker->randomElement($teachers));
+
+            $this->manager->persist($planning);
+        }
+        $this->manager->flush();
     }
 
     public function loadFormations(): void
@@ -302,6 +393,20 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         // dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $formation = new Formation();
+            $formation->setTitle($this->faker->sentence());
+            $formation->setObjective($this->faker->sentence());
+            $formation->setDuration($this->faker->numberBetween(30, 60));
+            $formation->setStartDate($this->faker->dateTimeBetween('-1 year', 'now'));
+            $formation->setSatisfaction($this->faker->numberBetween(1, 5));
+            $formation->setCost($this->faker->numberBetween(50, 100));
+            $formation->setLanguage($this->faker->randomElement($languages));
+
+            $this->manager->persist($formation);
+        }
+        $this->manager->flush();
     }
 
     public function loadQuizzes(): void
@@ -356,6 +461,19 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         //données dynamiques
+
+        for ($i = 0; $i < 20; $i++) {
+            $quiz = new Quiz();
+            $quiz->setQuestion($this->faker->sentence());
+            $quiz->setAnswer($this->faker->sentence());
+            $quiz->setScore($this->faker->numberBetween(1, 10));
+            $quiz->setLevel($this->faker->numberBetween(1, 10));
+            $quiz->setTitle($this->faker->sentence());
+            $quiz->setLanguage($this->faker->randomElement($languages));
+
+            $this->manager->persist($quiz);
+        }
+        $this->manager->flush();
     }
     public function loadLessons(): void
     {
@@ -400,6 +518,17 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         // dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $lesson = new Lesson();
+            $lesson->setTitle($this->faker->sentence());
+            $lesson->setContent($this->faker->sentence());
+            $lesson->setExercice($this->faker->sentence());
+            $lesson->setLanguage($this->faker->randomElement($languages));
+
+            $this->manager->persist($lesson);
+        }
+        $this->manager->flush();
     }
 
     public function loadAssignments(): void
@@ -436,6 +565,17 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         //Dynamic datas
+        for ($i = 0; $i < 20; $i++) {
+            $assignment = new Assignment();
+            $assignment->setTitle($this->faker->sentence());
+            $assignment->setContent($this->faker->sentence());
+            $assignment->setStartDate($this->faker->dateTimeBetween('-1 year', 'now'));
+            $assignment->setDueDate($this->faker->dateTimeBetween('-1 year', 'now'));
+            $assignment->setGrade($this->faker->numberBetween(1, 10));
+
+            $this->manager->persist($assignment);
+        }
+        $this->manager->flush();
     }
 
 
@@ -483,6 +623,17 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->manager->flush();
 
         //dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $flag = new Flag();
+            $flag->setCountry($this->faker->country());
+            $flag->setImage($this->faker->image());
+            $flag->setIsoCode($this->faker->countryCode());
+            $flag->setLanguage($this->faker->randomElement($languages));
+
+            $this->manager->persist($flag);
+        }
+        $this->manager->flush();
     }
 
     public function loadResources(): void
@@ -530,6 +681,20 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         }
 
         $this->manager->flush();
+
+        //dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $resource = new Resource();
+            $resource->setType($this->faker->word());
+            $resource->setTitle($this->faker->sentence());
+            $resource->setContent($this->faker->paragraph());
+            $resource->setPublishedDate($this->faker->dateTime());
+            $resource->setLanguage($this->faker->randomElement($languages));
+
+            $this->manager->persist($resource);
+        }
+        $this->manager->flush();
     }
 
     public function loadPayments(): void
@@ -574,6 +739,19 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $payment->setType($data['type']);
             $payment->setFormation($data['formation']);
             $payment->setStudent($data['student']);
+
+            $this->manager->persist($payment);
+        }
+        $this->manager->flush();
+
+        //dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $payment = new Payment();
+            $payment->setDate($this->faker->dateTime());
+            $payment->setType($this->faker->word());
+            $payment->setFormation($this->faker->randomElement($formations));
+            $payment->setStudent($this->faker->randomElement($students));
 
             $this->manager->persist($payment);
         }
