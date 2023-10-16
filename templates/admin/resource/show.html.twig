@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resource{% endblock %}
+
+{% block body %}
+    <h1>Resource</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ resource.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ resource.type }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ resource.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ resource.content }}</td>
+            </tr>
+            <tr>
+                <th>PublishedDate</th>
+                <td>{{ resource.publishedDate ? resource.publishedDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_resource_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_resource_edit', {'id': resource.id}) }}">edit</a>
+
+    {{ include('admin/resource/_delete_form.html.twig') }}
+{% endblock %}
