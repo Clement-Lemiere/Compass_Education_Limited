@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Flag index{% endblock %}
+
+{% block body %}
+    <h1>Flag index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Country</th>
+                <th>IsoCode</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for flag in flags %}
+            <tr>
+                <td>{{ flag.id }}</td>
+                <td>{{ flag.country }}</td>
+                <td>{{ flag.isoCode }}</td>
+                <td>{{ flag.image }}</td>
+                <td>
+                    <a href="{{ path('app_admin_flag_show', {'id': flag.id}) }}">show</a>
+                    <a href="{{ path('app_admin_flag_edit', {'id': flag.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_flag_new') }}">Create new</a>
+{% endblock %}
