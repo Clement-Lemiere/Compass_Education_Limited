@@ -3,28 +3,29 @@
 {% block title %}Planning index{% endblock %}
 
 {% block body %}
-    <h1>Planning index</h1>
-
-    <table class="table">
-        <thead>
+<div {{ react_component('Navbar') }}></div> 
+    <h1 class="text-5xl font-extrabold text-center">Planning index</h1>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>actions</th>
+                <th scope="col" class="px-6 py-3">Id</th>
+                <th scope="col" class="px-6 py-3">Type</th>
+                <th scope="col" class="px-6 py-3">Date</th>
+                <th scope="col" class="px-6 py-3">Time</th>
+                <th scope="col" class="px-6 py-3">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for planning in plannings %}
-            <tr>
-                <td>{{ planning.id }}</td>
-                <td>{{ planning.type }}</td>
-                <td>{{ planning.date ? planning.date|date('Y-m-d') : '' }}</td>
-                <td>{{ planning.time ? planning.time|date('H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_admin_planning_show', {'id': planning.id}) }}">show</a>
-                    <a href="{{ path('app_admin_planning_edit', {'id': planning.id}) }}">edit</a>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4">{{ planning.id }}</td>
+                <td class="px-6 py-4">{{ planning.type }}</td>
+                <td class="px-6 py-4">{{ planning.date ? planning.date|date('Y-m-d') : '' }}</td>
+                <td class="px-6 py-4">{{ planning.time ? planning.time|date('H:i:s') : '' }}</td>
+                <td class="px-6 py-4">
+                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_planning_show', {'id': planning.id}) }}">show</a>
+                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_planning_edit', {'id': planning.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +35,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_planning_new') }}">Create new</a>
+</div>
+    <a class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 px-6 py-4" href="{{ path('app_admin_planning_new') }}">Create new</a>
 {% endblock %}
