@@ -62,3 +62,18 @@ Création From scratch d'un site d'apprentissage en ligne de langues étrangère
     9. Many to Many : `Student` -> `Language`.
 
 - Résolution de conflit Git : Défaillance de fichier de migrations.
+
+## Tâches effectuées le Vendredi 13 Octobre 2023
+
+- Création des données statiques et dynamiques.
+- Installation de React UX.
+
+## Tâches effectuées le Lundi 16 Octobre 2023
+
+- Création des CRUD's pour les tables de la base de données
+
+## Tâches effectuées le Mardi 17 Octobre 2023
+
+- Creation de style temporaire pour le BackLog.
+
+## Tâches effectuées le Mercredi 18 Octobre 2023
