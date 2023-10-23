@@ -34,9 +34,13 @@ class Assignment
     #[ORM\ManyToMany(targetEntity: Lesson::class, inversedBy: 'assignments')]
     private Collection $lesson;
 
+    #[ORM\ManyToMany(targetEntity: Student::class, mappedBy: 'assignments')]
+    private Collection $students;
+
     public function __construct()
     {
         $this->lesson = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +128,33 @@ class Assignment
     public function removeLesson(Lesson $lesson): static
     {
         $this->lesson->removeElement($lesson);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Student>
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): static
+    {
+        if (!$this->students->contains($student)) {
+            $this->students->add($student);
+            $student->addAssignment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): static
+    {
+        if ($this->students->removeElement($student)) {
+            $student->removeAssignment($this);
+        }
 
         return $this;
     }
