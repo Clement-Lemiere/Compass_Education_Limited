@@ -12,7 +12,6 @@
                     <th scope="col" class="px-6 py-3">Id</th>
                     <th scope="col" class="px-6 py-3">Email</th>
                     <th scope="col" class="px-6 py-3">Roles</th>
-                    <th scope="col" class="px-6 py-3">Password</th>
                     <th scope="col" class="px-6 py-3">actions</th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@
                     <td class="px-6 py-4">{{ user.id }}</td>
                     <td class="px-6 py-4">{{ user.email }}</td>
                     <td class="px-6 py-4">{{ user.roles ? user.roles|json_encode : '' }}</td>
-                    <td class="px-6 py-4">{{ user.password }}</td>
                     <td class="px-6 py-4">
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>

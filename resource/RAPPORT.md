@@ -74,6 +74,20 @@ Création From scratch d'un site d'apprentissage en ligne de langues étrangère
 
 ## Tâches effectuées le Mardi 17 Octobre 2023
 
-- Creation de style temporaire pour le BackLog.
+- Creation de style temporaire pour le BackOffice.
 
 ## Tâches effectuées le Mercredi 18 Octobre 2023
+
+- Création du Wireframe du Backlog Student (Dashboard).
+
+## Tâches effectuées le Jeudi 19 Octobre 2023
+
+- Création du Wireframe du Backlog Student (Profile, Calendar, progress, Mailbox, Payment et Edit profile).
+
+## Tâches effectuées le Vendredi 20 Octobre 2023
+
+- Documentation sur l'intégration d'un Mailer.
+
+## Tâches effectuées le Lundi 23 Octobre 2023
+
+- Définition de la liste des fonctionnalités prioritaires.
