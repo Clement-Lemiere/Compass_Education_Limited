@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show student{% endblock %}
+
+{% block body %}
+
+<h2>Show every students</h2>
+{# Show all students #}
+{% for student in students %}
+__________________________________________________________________________________
+    <p>ID : {{ student.id}}</p>
+    <p>Fullname:  {{ student.firstName }} {{ student.lastName }}</p>
+    <p>Nationality : {{ student.nationality }}, Level : {{ student.level }}</p>
+___________________________________________________________________________________
+{% endfor %}
+___________________________________________________________________________________
+
+<h2>Show student ID 7</h2>
+
+<p>ID : {{ student7.id}}</p>
+<p>Fullname:  {{ student7.firstName }} {{ student7.lastName }}</p>
+<p>Nationality : {{ student7.nationality }}, Level : {{ student7.level }}</p>
+
+___________________________________________________________________________________
+___________________________________________________________________________________
+
+<h2>Show student ID 2 Update</h2>
+
+<p>ID : {{ student2.id}}</p>
+<p>Fullname:  {{ student2.firstName }} {{ student2.lastName }}</p>
+<p>Nationality : {{ student2.nationality }}, Level : {{ student2.level }}</p>
+
+___________________________________________________________________________________
+
+<h2>Show new student </h2>
+
+<p>ID : {{ newstudent.id}}</p>
+<p>Fullname:  {{ newstudent.firstName }} {{ newstudent.lastName }}</p>
+<p>Nationality : {{ newstudent.nationality }}, Level : {{ newstudent.level }}</p>
+
+{% endblock %}

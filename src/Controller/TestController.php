@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Entity\Student;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,6 +52,57 @@ class TestController extends AbstractController
             'users'=> $users,
             'user7'=> $user7,
             'user2'=> $user2
+        ]);
+
+
+        
+    }
+    #[Route ('/student', name: 'app_test_student')]
+    public function student(ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        // appel du répository Student
+        $studentRepository = $em->getRepository(Student::class);
+
+        // Find all students
+        $students = $studentRepository->findAll();
+
+        // Create a new student
+        $newStudent = new Student();
+        $newStudent->setFirstName('Julien');
+        $newStudent->setLastName('Parsy');
+        $newStudent->setBirthdate(new DateTime('1993-07-26 06:30:00'));
+        $newStudent->setNationality('Français');
+        $newStudent->setLevel(1);
+        $newStudent->setUser($this->getUser());
+
+        $em->persist($newStudent);
+        $em->flush();
+
+
+        // Find student where id = 7
+        $student7 = $studentRepository->find(7);
+
+        // Update student where id = 2
+        $student2 = $studentRepository->find(2);
+        if ($student2) {
+            $student2->setFirstName('corge');
+            $student2->setLastName('grault');
+            $student2->setBirthdate(new DateTime('1996-01-01 00:00:00'));
+            $student2->setNationality('French');
+            $student2->setLevel(1);
+            $student2->setUser($this->getUser());
+
+            $em->persist($student2);
+            $em->flush();
+        }
+
+        return $this->render('test/student.html.twig', [
+            'controller_name' => 'TestController',
+            'students'=> $students,
+            'newstudent'=> $newStudent,
+            'student2'=> $student2,
+            'student7'=> $student7,
         ]);
     }
 }
