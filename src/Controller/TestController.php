@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestController extends AbstractController
 {
     #[Route('/user', name: 'app_test_user')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function user(ManagerRegistry $doctrine): Response
     {
                 $em = $doctrine->getManager();
                 $userRepository = $em->getRepository(User::class);
@@ -47,9 +47,9 @@ class TestController extends AbstractController
         return $this->render('test/user.html.twig', [
             'controller_name' => 'TestController',
             'newUser'=> '$newUser',
-            'users'=> '$users',
-            'user7'=> '$user7',
-            'user2'=> '$user2'
+            'users'=> $users,
+            'user7'=> $user7,
+            'user2'=> $user2
         ]);
     }
 }
