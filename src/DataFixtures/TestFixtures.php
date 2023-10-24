@@ -627,7 +627,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         for ($i = 0; $i < 20; $i++) {
             $flag = new Flag();
             $flag->setCountry($this->faker->country());
-            $flag->setImage($this->faker->image());
+            $flag->setImage($this->faker->word());
             $flag->setIsoCode($this->faker->countryCode());
             $flag->setLanguage($this->faker->randomElement($languages));
 
