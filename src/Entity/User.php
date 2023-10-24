@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    private ?email $email = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -132,4 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    // public function __toString(){
+    //     return $this->email;
+    // }
 }
