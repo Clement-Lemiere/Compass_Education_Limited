@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\User;
-use App\Repository\UserRepository;
 use App\Entity\Student;
+use App\Entity\Session;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,7 +74,6 @@ class TestController extends AbstractController
         $newStudent->setBirthdate(new DateTime('1993-07-26 06:30:00'));
         $newStudent->setNationality('Français');
         $newStudent->setLevel(1);
-        $newStudent->setUser($this->getUser());
 
         $em->persist($newStudent);
         $em->flush();
@@ -91,7 +90,6 @@ class TestController extends AbstractController
             $student2->setBirthdate(new DateTime('1996-01-01 00:00:00'));
             $student2->setNationality('French');
             $student2->setLevel(1);
-            $student2->setUser($this->getUser());
 
             $em->persist($student2);
             $em->flush();
@@ -103,6 +101,58 @@ class TestController extends AbstractController
             'newstudent'=> $newStudent,
             'student2'=> $student2,
             'student7'=> $student7,
+        ]);
+    }
+    // Create function session for test
+    #[Route('/session', name: 'app_test_session')]
+    public function session(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Session
+        $sessionRepository = $em->getRepository(Session::class);
+
+        // Find all sessions
+        $sessions = $sessionRepository->findAll();
+
+        // Create a new session
+        $newSession = new Session();
+        $newSession->setType('Type');
+        $newSession->setDate((new DateTime('2023-01-01')));
+        $newSession->setTime((new DateTime('00:50:00')));
+
+
+        $em->persist($newSession);
+        $em->flush();
+
+        // Find session where id = 7
+        $session7 = $sessionRepository->find(7);
+
+        // Update session where id = 2
+        $session2 = $sessionRepository->find(2);
+        if ($session2) {
+            $session2->setType('Type2');
+            $session2->setDate((new DateTime('2023-01-01')));
+            $session2->setTime((new DateTime('00:45:00')));
+
+            $em->persist($session2);
+            $em->flush();
+        }
+
+        // Delete session where id = 3
+        $deleteSession = $sessionRepository->find(3);
+        if ($deleteSession) {
+            $em->remove($deleteSession);
+            $em->flush();
+        }
+
+        return $this->render('test/session.html.twig', [
+            'controller_name' => 'TestController',
+            'sessions' => $sessions,
+            'newSession' => $newSession,
+            'session2' => $session2,
+            'session7' => $session7,
+            'deleteSession' => $deleteSession,
         ]);
     }
 }
