@@ -7,6 +7,8 @@ use App\Entity\Assignment;
 use App\Entity\User;
 use App\Entity\Student;
 use App\Entity\Session;
+use App\Entity\Resource;
+use App\Entity\Language;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,11 +55,9 @@ class TestController extends AbstractController
             'users'=> $users,
             'user7'=> $user7,
             'user2'=> $user2
-        ]);
-
-
-        
+        ]);  
     }
+
     #[Route ('/student', name: 'app_test_student')]
     public function student(ManagerRegistry $doctrine): Response
     {
@@ -203,10 +203,6 @@ class TestController extends AbstractController
             $em->flush();
         }
 
-
-
-
-
         return $this->render('test/assignment.html.twig', [
             'controller_name' => 'TestController',
             'assignments' => $assignments,
@@ -216,4 +212,61 @@ class TestController extends AbstractController
             'deleteAssignment' => $deleteAssignment,
         ]);
     }
+
+    #[Route ('/resource', name: 'app_test_resource')]
+    public function resource(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Resource
+        $resourceRepository = $em->getRepository(Resource::class);
+        $languageRepository = $em->getRepository(Language::class);
+
+        // Find all resources
+        $resources = $resourceRepository->findAll();
+
+        // Create a new resource
+        $newResource = new Resource();
+        $newResource->setType('Type');
+        $newResource->setTitle('Title');
+        $newResource->setContent('Content');
+        $newResource->setPublishedDate(new DateTime('2023-01-01'));
+        $newResource->setLanguage($languageRepository->find(1));
+        
+        $em->persist($newResource);
+        $em->flush();
+
+        // Find resource where id = 7
+        $resource7 = $resourceRepository->find(7);
+
+        // Update resource where id = 2
+        $updateResource = $resourceRepository->find(2);
+        if ($updateResource) {
+            $updateResource->setType('Type2');
+            $updateResource->setTitle('Title2');
+            $updateResource->setContent('Content2');
+            $updateResource->setPublishedDate(new DateTime('2023-01-01'));
+            $updateResource->setLanguage($languageRepository->find(1));
+            
+
+            $em->persist($updateResource);
+            $em->flush();
+        }
+
+        $deleteResource = $resourceRepository->find(3);
+        if ($deleteResource) {
+            $em->remove($deleteResource);
+            $em->flush();
+        }
+
+        return $this->render('test/resource.html.twig', [
+            'controller_name' => 'TestController',
+            'resources' => $resources,
+            'newResource' => $newResource,
+            'updateResource' => $updateResource,
+            'resource7' => $resource7,
+            'deleteResource' => $deleteResource,
+        ]);
+    }
+
 }

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show resource{% endblock %}
+
+{% block body %}
+
+<h2>Show every resource</h2>
+{% for resource in resources %}
+_________________________________________________________________________________
+
+    <p>ID : {{ resource.id}}</p>
+    <p>title : {{ resource.title }}</p>
+    <p>content : {{ resource.content }}</p>
+    <p>Published date:  {{ resource.publishedDate|date('Y-m-d')}}</p>
+    <p>Language: {{ resource.language.name }}</p>
+
+{% endfor %}
+___________________________________________________________________________________
+
+<h2>Show resource ID 7</h2>
+
+    <p>ID : {{ resource7.id}}</p>
+    <p>title : {{ resource7.title }}</p>
+    <p>content : {{ resource7.content }}</p>
+    <p>published Date:  {{ resource7.publishedDate|date('Y-m-d')}}</p>
+    <p>Language: {{ resource7.language.name }}</p>
+___________________________________________________________________________________
+
+ <h2>Show resource ID 2 Update</h2>
+
+    <p>ID : {{ updateResource.id}}</p>
+    <p>title : {{ updateResource.title }}</p>
+    <p>content : {{ updateResource.content }}</p>
+    <p>published Date:  {{ updateResource.publishedDate|date('Y-m-d')}}</p>
+    <p>Language: {{ updateResource.language.name }}</p>
+___________________________________________________________________________________
+
+<h2>Show new resource </h2>
+
+    <p>ID : {{ newResource.id}}</p>
+    <p>title : {{ newResource.title }}</p>
+    <p>content : {{ newResource.content }}</p>
+    <p>published Date:  {{ newResource.publishedDate|date('Y-m-d')}}</p>
+    <p>Language: {{ newResource.language.name }}</p>
+
+{% endblock %}
