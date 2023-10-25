@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PlanningRepository;
+use App\Repository\SessionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PlanningRepository::class)]
-class Planning
+#[ORM\Entity(repositoryClass: SessionRepository::class)]
+class Session
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,9 +23,12 @@ class Planning
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $time = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plannings')]
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Teacher $teacher = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    private ?Student $student = null;
 
     public function getId(): ?int
     {
@@ -76,6 +79,18 @@ class Planning
     public function setTeacher(?Teacher $teacher): static
     {
         $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): static
+    {
+        $this->student = $student;
 
         return $this;
     }

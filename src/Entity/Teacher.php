@@ -30,8 +30,8 @@ class Teacher
     #[ORM\Column(length: 191)]
     private ?string $availability = null;
 
-    #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Planning::class)]
-    private Collection $plannings;
+    #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Session::class)]
+    private Collection $sessions;
 
     #[ORM\OneToOne(mappedBy: 'teacher', cascade: ['persist', 'remove'])]
     private ?User $user = null;
@@ -41,7 +41,7 @@ class Teacher
 
     public function __construct()
     {
-        $this->plannings = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
         $this->language = new ArrayCollection();
     }
 
@@ -111,29 +111,29 @@ class Teacher
     }
 
     /**
-     * @return Collection<int, Planning>
+     * @return Collection<int, Session>
      */
-    public function getPlannings(): Collection
+    public function getSessions(): Collection
     {
-        return $this->plannings;
+        return $this->sessions;
     }
 
-    public function addPlanning(Planning $planning): static
+    public function addSession(Session $session): static
     {
-        if (!$this->plannings->contains($planning)) {
-            $this->plannings->add($planning);
-            $planning->setTeacher($this);
+        if (!$this->sessions->contains($session)) {
+            $this->sessions->add($session);
+            $session->setTeacher($this);
         }
 
         return $this;
     }
 
-    public function removePlanning(Planning $planning): static
+    public function removeSession(Session $session): static
     {
-        if ($this->plannings->removeElement($planning)) {
+        if ($this->sessions->removeElement($session)) {
             // set the owning side to null (unless already changed)
-            if ($planning->getTeacher() === $this) {
-                $planning->setTeacher(null);
+            if ($session->getTeacher() === $this) {
+                $session->setTeacher(null);
             }
         }
 
