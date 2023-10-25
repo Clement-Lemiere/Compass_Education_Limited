@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show payment{% endblock %}
+
+{% block body %}
+
+<h2>Show every payment</h2>
+{# Show all payment #}
+{% for payment in payments %}
+__________________________________________________________________________________
+    <p>ID : {{ payment.id}}</p>
+    <p>DateTime:  {{ payment.date|date('Y-m-d H-m-s')}}</p>
+    <p>Type : {{ payment.type }}</p>
+    <p>Formation Name : {{ payment.formation.title}}</p>
+    <p>Student name : {{ payment.student.lastname }}</p>
+___________________________________________________________________________________
+{% endfor %}
+___________________________________________________________________________________
+<h2>Show payment ID 7</h2>
+
+    <p>ID : {{ payment7.id}}</p>
+    <p>DateTime:  {{ payment7.date|date('Y-m-d H-m-s')}}</p>
+    <p>Type : {{ payment7.type }}</p>
+    <p>Formation Name : {{ payment7.formation.title}}</p>
+    <p>Student name : {{ payment7.student.lastname }}</p>
+
+___________________________________________________________________________________
+___________________________________________________________________________________
+
+ <h2>Show payment ID 2 Update</h2>
+
+    <p>ID : {{ updatePayment2.id}}</p>
+    <p>DateTime:  {{ updatePayment2.date|date('Y-m-d H-m-s')}}</p>
+    <p>Type : {{ updatePayment2.type }}</p>
+    <p>Formation Name : {{ updatePayment2.formation.title}}</p>
+    <p>Student name : {{ updatePayment2.student.lastname }}</p>
+
+
+
+___________________________________________________________________________________
+
+
+<h2>Show new payment </h2>
+
+    <p>ID : {{ newPayment.id}}</p>
+    <p>Date:  {{ newPayment.date|date('Y-m-d H-m-s')}} </p>
+    <p>Type : {{ newPayment.type }}</p>
+    <p>Formation Name : {{ newPayment.formation.title}}</p>
+    <p>Student name : {{ newPayment.student.lastname }}</p>
+
+
+{% endblock %}

@@ -10,6 +10,8 @@ use App\Entity\Session;
 use App\Entity\Resource;
 use App\Entity\Language;
 use App\Entity\Quiz;
+use App\Entity\Payment;
+use App\Entity\Formation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -325,5 +327,67 @@ class TestController extends AbstractController
             'quiz7' => $quiz7,
             'deleteQuiz' => $deleteQuiz,
         ]);
+    }
+
+    #[Route ('/payment', name: 'app_test_payment')]
+    public function payment(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Payment
+        $paymentRepository = $em->getRepository(Payment::class);
+        $studentRepository = $em->getRepository(Student::class);
+        $formationRepository = $em->getRepository(Formation::class);
+
+        // Find all payments
+        $payments = $paymentRepository->findAll();
+
+        // Create a new payment
+        $newPayment = new Payment();
+        $newPayment->setDate(new DateTime('2023-01-01 15:34:25'));
+        $newPayment->setType('Type');
+        $newPayment->setFormation($formationRepository->find(1));
+        $newPayment->setStudent($studentRepository->find(1));
+
+        $em->persist($newPayment);
+        $em->flush();
+
+        // Find payment where id = 7
+        $payment7 = $paymentRepository->find(7);
+
+        // Update payment where id = 2
+        $updatePayment2 = $paymentRepository->find(2);
+        if ($updatePayment2) {
+            $newPayment->setDate(new DateTime('2023-05-01 00:59:30'));
+            $updatePayment2->setType('Type2');
+            $updatePayment2->setFormation($formationRepository->find(1));
+            $updatePayment2->setStudent($studentRepository->find(1));
+
+            $em->persist($updatePayment2);
+            $em->flush();
+
+        }
+
+        // Delete payment where id = 3
+        $deletePayment = $paymentRepository->find(3);
+        if ($deletePayment) {
+            $em->remove($deletePayment);
+            $em->flush();
+        }
+
+
+
+
+        return $this->render('test/payment.html.twig', [
+            'controller_name' => 'TestController',
+            'payments' => $payments,
+            'newPayment' => $newPayment,
+            'updatePayment2' => $updatePayment2,
+            'payment7' => $payment7,
+            'deletePayment' => $deletePayment,
+        ]);
+
+
+
     }
 }
