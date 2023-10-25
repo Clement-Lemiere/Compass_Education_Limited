@@ -9,6 +9,7 @@ use App\Entity\Student;
 use App\Entity\Session;
 use App\Entity\Resource;
 use App\Entity\Language;
+use App\Entity\Quiz;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -269,4 +270,60 @@ class TestController extends AbstractController
         ]);
     }
 
+    #[Route ('/quiz', name: 'app_test_quiz')]
+    public function quiz(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Quiz
+        $quizRepository = $em->getRepository(Quiz::class);
+        $languageRepository = $em->getRepository(Language::class);
+
+        // Find all quizzes
+        $quizzes = $quizRepository->findAll();
+
+        // Create a new quiz
+        $newQuiz = new Quiz();
+        $newQuiz->setTitle('Title');
+        $newQuiz->setQuestion('Question');
+        $newQuiz->setAnswer('Answer');
+        $newQuiz->setScore(10);
+        $newQuiz->setLevel(1);
+        $newQuiz->setLanguage($languageRepository->find(4));
+
+        $em->persist($newQuiz);
+        $em->flush();
+
+        // Find quiz where id = 7
+        $quiz7 = $quizRepository->find(7);
+
+        // Update quiz where id = 2
+        $updateQuiz2 = $quizRepository->find(2);
+        if ($updateQuiz2) {
+            $updateQuiz2->setTitle('Title2');
+            $updateQuiz2->setQuestion('Question2');
+            $updateQuiz2->setAnswer('Answer2');
+            $updateQuiz2->setScore(20);
+            $updateQuiz2->setLevel(2);
+            $updateQuiz2->setLanguage($languageRepository->find(4));
+
+            $em->persist($updateQuiz2);
+            $em->flush();
+        }
+
+        // Delete quiz where id = 3
+        $deleteQuiz = $quizRepository->find(3);
+        if ($deleteQuiz) {
+            $em->remove($deleteQuiz);
+            $em->flush();
+        }
+        return $this->render('test/quiz.html.twig', [
+            'controller_name' => 'TestController',
+            'quizzes' => $quizzes,
+            'newQuiz' => $newQuiz,
+            'updateQuiz2' => $updateQuiz2,
+            'quiz7' => $quiz7,
+            'deleteQuiz' => $deleteQuiz,
+        ]);
+    }
 }
