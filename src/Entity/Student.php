@@ -40,10 +40,18 @@ class Student
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'students')]
     private Collection $language;
 
+    #[ORM\ManyToMany(targetEntity: Assignment::class, inversedBy: 'students')]
+    private Collection $assignments;
+
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Session::class)]
+    private Collection $sessions;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
         $this->language = new ArrayCollection();
+        $this->assignments = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,6 +191,60 @@ class Student
     public function removeLanguage(Language $language): static
     {
         $this->language->removeElement($language);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Assignment>
+     */
+    public function getAssignments(): Collection
+    {
+        return $this->assignments;
+    }
+
+    public function addAssignment(Assignment $assignment): static
+    {
+        if (!$this->assignments->contains($assignment)) {
+            $this->assignments->add($assignment);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignment(Assignment $assignment): static
+    {
+        $this->assignments->removeElement($assignment);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): static
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions->add($session);
+            $session->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): static
+    {
+        if ($this->sessions->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getStudent() === $this) {
+                $session->setStudent(null);
+            }
+        }
 
         return $this;
     }

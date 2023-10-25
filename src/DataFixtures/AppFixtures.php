@@ -15,20 +15,22 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
     private $faker;
     private $hasher;
     private $manager;
-    public function load(ObjectManager $manager): void
-    {
-        $this->manager = $manager;
-        $this->loadAdmins();
-    }
-    
+
+
     public function  __construct(UserPasswordHasherInterface $hasher)
     {
-        $this->faker = FakerFactory::create('en_EN');
-         $this->hasher = $hasher;
+        $this->faker = FakerFactory::create('en_US');
+        $this->hasher = $hasher;
     }
     public static function getGroups(): array
     {
         return ['prod','test'];
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $this->manager = $manager;
+        $this->loadAdmins();
     }
 
     public function loadAdmins(): void

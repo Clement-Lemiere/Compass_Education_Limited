@@ -59,15 +59,15 @@
    - `lessons_language_id`: Clé étrangère vers les leçons associées
    - *lessons_language_id: INT (clé étrangère vers Lessons)*
 
-5. ***Planning***
+5. ***Session***
 
-   - `id_planning`: L'identifiant du planning.
-   - *id_planning: INT (clé primaire)*
-   - `type`: Le type de planning.
+   - `id_session`: L'identifiant du session.
+   - *id_session: INT (clé primaire)*
+   - `type`: Le type de session.
    - *type: VARCHAR(191)*
-   - `date`: La date du planning.
+   - `date`: La date du session.
    - *date: DATETIME*
-   - `time`: L'heure du planning.
+   - `time`: L'heure du session.
    - *time: TIME*
    - `teacher_id`: Clé étrangère vers l'enseignant associé.
    - *teacher_id: INT (clé étrangère vers Teacher)*
@@ -236,11 +236,11 @@
   
   - (Plusieurs étudiants peuvent se former à plusieurs langues).
   
-- ***Table Planning :***
+- ***Table Session :***
   
   - teacher_id est une **clé étrangère** liée à Teacher, établissant une relation `ManyToOne`
   
-  - (Plusieurs séances dans planning peuvent être associés à un seul enseignant).
+  - (Plusieurs séances dans session peuvent être associés à un seul enseignant).
   
 - ***Table Formation :***
   

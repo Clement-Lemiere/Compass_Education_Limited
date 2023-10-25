@@ -12,7 +12,7 @@ const navigation = [
   { name: 'Student', href: '/admin/student', current: false },
   { name: 'Resource', href: '/admin/resource', current: false },
   { name: 'Quiz', href: '/admin/quiz', current: false },
-  { name: 'Planning', href: '/admin/planning', current: false },
+  { name: 'Session', href: '/admin/session', current: false },
   { name: 'Payment', href: '/admin/payment', current: false },
   { name: 'Lesson', href: '/admin/lesson', current: false },
   { name: 'Language', href: '/admin/language', current: false },

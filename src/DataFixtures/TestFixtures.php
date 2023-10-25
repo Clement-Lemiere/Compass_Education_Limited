@@ -7,7 +7,7 @@ use App\Entity\User;
 use App\Entity\Student;
 use App\Entity\Teacher;
 use App\Entity\Language;
-use App\Entity\Planning;
+use App\Entity\Session;
 use App\Entity\Formation;
 use App\Entity\Quiz;
 use App\Entity\Assignment;
@@ -45,7 +45,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadStudents();
         $this->loadTeachers();
         $this->loadLanguages();
-        $this->loadPlannings();
+        $this->loadSessions();
         $this->loadFormations();
         $this->loadQuizzes();
         $this->loadAssignments();
@@ -280,7 +280,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         
     }
 
-    public function loadPlannings(): void
+    public function loadSessions(): void
     {
         //static datas
 
@@ -300,13 +300,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
             ],
             [
-                'type' => 'Planning 2',
+                'type' => 'Session 2',
                 'date' => new DateTime('2023-08-04'),
                 'time' => new DateTime('14:15:00'),
                 'teacher' => [$teacher2],
             ],
             [
-                'type' => 'Planning 3',
+                'type' => 'Session 3',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('15:15:00'),
                 'teacher' => [$teacher3],
@@ -314,26 +314,26 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         ];
 
         foreach ($datas as $data) {
-            $planning = new Planning();
-            $planning->setType($data['type']);
-            $planning->setDate($data['date']);
-            $planning->setTime($data['time']);
-            $planning->setTeacher($data['teacher'][0]);
+            $session = new Session();
+            $session->setType($data['type']);
+            $session->setDate($data['date']);
+            $session->setTime($data['time']);
+            $session->setTeacher($data['teacher'][0]);
 
-            $this->manager->persist($planning);
+            $this->manager->persist($session);
         }
         $this->manager->flush();
 
         // dynamic datas
 
         for ($i = 0; $i < 20; $i++) {
-            $planning = new Planning();
-            $planning->setType($this->faker->randomElement(['Online course', 'Planning 2', 'Planning 3']));
-            $planning->setDate($this->faker->dateTimeBetween('-1 year', 'now'));
-            $planning->setTime($this->faker->dateTimeBetween('-1 year', 'now'));
-            $planning->setTeacher($this->faker->randomElement($teachers));
+            $session = new Session();
+            $session->setType($this->faker->randomElement(['Online course', 'Session 2', 'Session 3']));
+            $session->setDate($this->faker->dateTimeBetween('-1 year', 'now'));
+            $session->setTime($this->faker->dateTimeBetween('-1 year', 'now'));
+            $session->setTeacher($this->faker->randomElement($teachers));
 
-            $this->manager->persist($planning);
+            $this->manager->persist($session);
         }
         $this->manager->flush();
     }
@@ -627,7 +627,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         for ($i = 0; $i < 20; $i++) {
             $flag = new Flag();
             $flag->setCountry($this->faker->country());
-            $flag->setImage($this->faker->image());
+            $flag->setImage($this->faker->word());
             $flag->setIsoCode($this->faker->countryCode());
             $flag->setLanguage($this->faker->randomElement($languages));
 

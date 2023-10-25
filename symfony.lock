@@ -64,7 +64,6 @@
             "tests/bootstrap.php"
         ]
     },
-    
     "stof/doctrine-extensions-bundle": {
         "version": "1.8",
         "recipe": {
