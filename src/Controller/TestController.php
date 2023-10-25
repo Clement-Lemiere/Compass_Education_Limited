@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Assignment;
 use App\Entity\User;
 use App\Entity\Student;
 use App\Entity\Session;
@@ -153,6 +154,66 @@ class TestController extends AbstractController
             'session2' => $session2,
             'session7' => $session7,
             'deleteSession' => $deleteSession,
+        ]);
+    }
+
+    #[Route('/assignment', name: 'app_test_assignment')]
+    public function assignment(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Assignment
+        $assignmentRepository = $em->getRepository(Assignment::class);
+
+        // Find all assignments
+        $assignments = $assignmentRepository->findAll();
+
+        // Create a new assignment
+        $newAssignment = new Assignment();
+        $newAssignment->setTitle('newAssignment');
+        $newAssignment->setContent('Content, not content');
+        $newAssignment->setStartDate(new DateTime('2023-01-01'));
+        $newAssignment->setDueDate(new DateTime('2023-12-30'));
+        $newAssignment->setGrade('Grade');
+
+        $em->persist($newAssignment);
+        $em->flush();
+
+        // Find assignment where id = 7
+        $assignment7 = $assignmentRepository->find(7);
+
+        // Update assignment where id = 2
+        $updateAssignment = $assignmentRepository->find(2);
+
+        if ($updateAssignment) {
+            $updateAssignment->setTitle('newupdateAssignment');
+            $updateAssignment->setContent('Content, not content');
+            $updateAssignment->setStartDate(new DateTime('2023-01-01'));
+            $updateAssignment->setDueDate(new DateTime('2023-12-30'));
+            $updateAssignment->setGrade('Grade');
+
+            $em->persist($updateAssignment);
+            $em->flush();
+        }
+
+        // Delete assignment where id = 3
+        $deleteAssignment = $assignmentRepository->find(3);
+        if ($deleteAssignment) {
+            $em->remove($deleteAssignment);
+            $em->flush();
+        }
+
+
+
+
+
+        return $this->render('test/assignment.html.twig', [
+            'controller_name' => 'TestController',
+            'assignments' => $assignments,
+            'newAssignment' => $newAssignment,
+            'updateAssignment' => $updateAssignment,
+            'assignment7' => $assignment7,
+            'deleteAssignment' => $deleteAssignment,
         ]);
     }
 }
