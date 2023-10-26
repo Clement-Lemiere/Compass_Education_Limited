@@ -14,6 +14,7 @@ use App\Entity\Quiz;
 use App\Entity\Resource;
 use App\Entity\Student;
 use App\Entity\Session;
+use App\Entity\Teacher;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -72,6 +73,63 @@ class TestController extends AbstractController
         ]);  
     }
 
+    #[Route('/teacher', name:'app_test_teacher')]
+    public function teacher(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        
+        // call repository
+        $userRepository = $em->getRepository(User::class);
+        $teacherRepository = $em->getRepository(Teacher::class);
+
+        // Find all teachers
+        $teachers = $teacherRepository->findAll();
+
+        // Create a new teacher
+        $newTeacher = new Teacher();
+        $newTeacher->setFirstName('Clement');
+        $newTeacher->setLastName('Lemiere');
+        $newTeacher->setNationality('Français');
+        $newTeacher->setQualification('Master');
+        $newTeacher->setAvailability('Available');
+        
+        $em->persist($newTeacher);
+        $em->flush();
+
+        // Find teacher where id = 7
+        $teacher7 = $teacherRepository->find(7);
+
+        // Update teacher where id = 2
+        $updateTeacher2 = $teacherRepository->find(2);
+        if ($updateTeacher2) {
+            $updateTeacher2->setFirstName('george');
+            $updateTeacher2->setLastName('sand');
+            $updateTeacher2->setNationality('Français');
+            $updateTeacher2->setQualification('Master');
+            $updateTeacher2->setAvailability('Available');
+
+            $em->persist($updateTeacher2);
+            $em->flush();
+        }
+
+        // Delete teacher where id = 3
+        $deleteTeacher3 = $teacherRepository->find(3);
+        if ($deleteTeacher3) {
+            $em->remove($deleteTeacher3);
+            $em->flush();
+        }
+
+        return $this->render('test/teacher.html.twig', [
+            'controller_name' => 'TestController',
+            'teachers'=> $teachers,    
+            'newTeacher'=> $newTeacher,
+            'updateTeacher2'=> $updateTeacher2,
+            'teacher7'=> $teacher7,
+            'deleteTeacher3'=> $deleteTeacher3,
+        ]);
+    }
+
     #[Route ('/student', name: 'app_test_student')]
     public function student(ManagerRegistry $doctrine): Response
     {
@@ -100,15 +158,15 @@ class TestController extends AbstractController
         $student7 = $studentRepository->find(7);
 
         // Update student where id = 2
-        $student2 = $studentRepository->find(2);
-        if ($student2) {
-            $student2->setFirstName('corge');
-            $student2->setLastName('grault');
-            $student2->setBirthdate(new DateTime('1996-01-01 00:00:00'));
-            $student2->setNationality('French');
-            $student2->setLevel(1);
+        $updateStudent2 = $studentRepository->find(2);
+        if ($updateStudent2) {
+            $updateStudent2->setFirstName('corge');
+            $updateStudent2->setLastName('grault');
+            $updateStudent2->setBirthdate(new DateTime('1996-01-01 00:00:00'));
+            $updateStudent2->setNationality('French');
+            $updateStudent2->setLevel(1);
 
-            $em->persist($student2);
+            $em->persist($updateStudent2);
             $em->flush();
         }
 
@@ -116,7 +174,7 @@ class TestController extends AbstractController
             'controller_name' => 'TestController',
             'students'=> $students,
             'newstudent'=> $newStudent,
-            'student2'=> $student2,
+            'updateStudent2'=> $updateStudent2,
             'student7'=> $student7,
         ]);
     }
