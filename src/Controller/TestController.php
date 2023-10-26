@@ -484,4 +484,60 @@ class TestController extends AbstractController
             , 'language7' => $language7
         ]);
     }
+
+    #[Route ('/formation', name:'app_test_formation')]
+    public function formation(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+
+        // call repository Formation
+        $formationRepository = $em->getRepository(Formation::class);
+        $languageRepository = $em->getRepository(Language::class);
+        $paymentRepository = $em->getRepository(Payment::class);
+
+        // Find all formations
+        $formations = $formationRepository->findAll();
+
+        // Create a new formation
+        $newFormation = new Formation();
+        $newFormation->setTitle('Title');
+        $newFormation->setObjective('Objective');
+        $newFormation->setDuration(1);
+        $newFormation->setCost(100);
+        $newFormation->setStartDate(new DateTime('2023-01-01'));
+        $newFormation->setSatisfaction('Satisfaction');
+        $newFormation->setLanguage($languageRepository->find(4));
+        $newFormation->addPayment($paymentRepository->find(1));
+
+        $em->persist($newFormation);
+        $em->flush();
+
+        // Find formation where id = 7
+        $formation7 = $formationRepository->find(7);
+
+        // Update formation where id = 2
+        $updateFormation2 = $formationRepository->find(2);
+        if ($updateFormation2) {
+            $updateFormation2->setTitle('Title2');
+            $updateFormation2->setObjective('Objective2');
+            $updateFormation2->setDuration(2);
+            $updateFormation2->setCost(200);
+            $updateFormation2->setStartDate(new DateTime('2023-05-01'));
+            $updateFormation2->setSatisfaction('Satisfaction2');
+            $updateFormation2->setLanguage($languageRepository->find(4));
+            $updateFormation2->addPayment($paymentRepository->find(1));
+
+            $em->persist($updateFormation2);
+            $em->flush();
+        }
+        
+        return $this->render('test/formation.html.twig', [
+            'controller_name' => 'TestController',
+            'formations' => $formations,
+            'newFormation' => $newFormation,
+            'updateFormation2' => $updateFormation2,
+            'formation7' => $formation7,
+        ]);
+    }
 }
