@@ -26,15 +26,23 @@ class TestController extends AbstractController
     #[Route('/user', name: 'app_test_user')]
     public function user(ManagerRegistry $doctrine): Response
     {
+                // call doctrine
                 $em = $doctrine->getManager();
+                
+                // call repository
                 $userRepository = $em->getRepository(User::class);
 
-                // $newUser = new User ();
-                // $newUser->setEmail('Xia.Zhang@qq.com');
-                // $newUser->setPassword('123');
-                // $newUser->setRoles(['ROLE_USER']);
-                // $em->persist($newUser);
-                // $em->flush();
+                // Générer une adresse e-mail aléatoire
+                $randomEmail = uniqid('user', true) . '@example.com';
+
+                // Create a new user
+                $newUser = new User ();
+                $newUser->setEmail($randomEmail);
+                $newUser->setPassword('123');
+                $newUser->setRoles(['ROLE_USER']);
+
+                $em->persist($newUser);
+                $em->flush();
 
                 // Find all users
                 $users = $userRepository->findAll();
@@ -43,9 +51,9 @@ class TestController extends AbstractController
                 $user7 = $userRepository->find(7);
 
                 // Update user 2
-                $user2 = $userRepository->find(2);
-                if ($user2) {
-                    $user2->setEmail('corge@example.com');
+                $userUpdate2 = $userRepository->find(2);
+                if ($userUpdate2) {
+                    $userUpdate2->setEmail('corge@example.com');
                     $em->flush();
                 }
                 // Delete user 3
@@ -57,10 +65,10 @@ class TestController extends AbstractController
                 
         return $this->render('test/user.html.twig', [
             'controller_name' => 'TestController',
-            'newUser'=> '$newUser',
+            'newUser'=> $newUser,
             'users'=> $users,
+            'userUpdate2'=> $userUpdate2,
             'user7'=> $user7,
-            'user2'=> $user2
         ]);  
     }
 
