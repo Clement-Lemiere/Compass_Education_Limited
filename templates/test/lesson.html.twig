@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show lesson{% endblock %}
+
+{% block body %}
+
+<h2>Show every lesson</h2>
+{% for lesson in lessons %}
+_________________________________________________________________________________
+
+    <p>ID : {{ lesson.id}}</p>
+    <p>title : {{ lesson.title }}</p>
+    <p>content : {{ lesson.content }}</p>
+    <p>Exercice : {{ lesson.exercice }}</p>
+    <p>Language: {{ lesson.language.name }}</p>
+
+{% endfor %}
+___________________________________________________________________________________
+
+<h2>Show lesson ID 7</h2>
+
+    <p>ID : {{ lesson7.id}}</p>
+    <p>title : {{ lesson7.title }}</p>
+    <p>content : {{ lesson7.content }}</p>
+    <p>Exercice : {{ lesson7.exercice }}</p>
+    <p>Language: {{ lesson7.language.name }}</p>
+___________________________________________________________________________________
+
+ <h2>Show lesson ID 2 Update</h2>
+
+    <p>ID : {{ updateLesson2.id}}</p>
+    <p>title : {{ updateLesson2.title }}</p>
+    <p>content : {{ updateLesson2.content }}</p>
+    <p>Exercice : {{ updateLesson2.exercice }}</p>
+    <p>Language: {{ updateLesson2.language.name }}</p>
+___________________________________________________________________________________
+
+<h2>Show new Lesson </h2>
+
+    <p>ID : {{ newLesson.id}}</p>
+    <p>title : {{ newLesson.title }}</p>
+    <p>content : {{ newLesson.content }}</p>
+    <p>Exercice : {{ newLesson.exercice }}</p>
+    <p>Language: {{ newLesson.language.name }}</p>
+
+{% endblock %}

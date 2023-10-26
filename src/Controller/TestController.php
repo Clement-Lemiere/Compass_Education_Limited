@@ -4,14 +4,15 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Assignment;
-use App\Entity\User;
+use App\Entity\Formation;
+use App\Entity\Language;
+use App\Entity\Lesson;
+use App\Entity\Payment;
+use App\Entity\Quiz;
+use App\Entity\Resource;
 use App\Entity\Student;
 use App\Entity\Session;
-use App\Entity\Resource;
-use App\Entity\Language;
-use App\Entity\Quiz;
-use App\Entity\Payment;
-use App\Entity\Formation;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -375,9 +376,6 @@ class TestController extends AbstractController
             $em->flush();
         }
 
-
-
-
         return $this->render('test/payment.html.twig', [
             'controller_name' => 'TestController',
             'payments' => $payments,
@@ -386,8 +384,59 @@ class TestController extends AbstractController
             'payment7' => $payment7,
             'deletePayment' => $deletePayment,
         ]);
+    }
 
+    #[Route ('/lesson', name: 'app_test_lesson')]
+    public function lesson(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Lesson
+        $lessonRepository = $em->getRepository(Lesson::class);
+        $languageRepository = $em->getRepository(Language::class);
+        $assignmentRepository = $em->getRepository(Assignment::class);
 
+        // Find all lessons
+        $lessons = $lessonRepository->findAll();
 
+        // Create a new lesson
+        $newLesson = new Lesson();
+        $newLesson->setTitle('Title');
+        $newLesson->setContent('Content');
+        $newLesson->setExercice('Exercice');
+        $newLesson->setLanguage($languageRepository->find(1));
+
+        $em->persist($newLesson);
+        $em->flush();
+
+        // Find lesson where id = 7
+        $lesson7 = $lessonRepository->find(7);
+
+        // Update lesson where id = 2
+        $updateLesson2 = $lessonRepository->find(2);
+        if ($updateLesson2) {
+            $updateLesson2->setTitle('Title2');
+            $updateLesson2->setContent('Content2');
+            $updateLesson2->setExercice('Exercice2');
+            $updateLesson2->setLanguage($languageRepository->find(1));
+
+            $em->persist($updateLesson2);
+            $em->flush();
+        }
+
+        $deleteLesson3 = $lessonRepository->find(3);
+        if ($deleteLesson3) {
+            $em->remove($deleteLesson3);
+            $em->flush();
+        }
+
+        return $this->render('test/lesson.html.twig', [
+            'controller_name' => 'TestController',
+            'lessons' => $lessons,
+            'newLesson' => $newLesson,
+            'updateLesson2' => $updateLesson2,
+            'deleteLesson3' => $deleteLesson3,
+            'lesson7' => $lesson7,
+        ]);
     }
 }

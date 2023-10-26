@@ -91,3 +91,15 @@ Création From scratch d'un site d'apprentissage en ligne de langues étrangère
 ## Tâches effectuées le Lundi 23 Octobre 2023
 
 - Définition de la liste des fonctionnalités prioritaires.
+
+## Tâches effectuées le Mardi 24 Octobre 2023
+
+- Mise à jour de composer et de ses plugins.
+
+## Tâches effectuées le Mercredi 25 Octobre 2023
+
+- Création des testController assignment, payment; quiz, resource, session et student et de leurs twig respectifs.
+
+## Tâches effectuées le Jeudi 26 Octobre 2023
+
+- Création des testController lesson, language, formation, flag et FAQ et de leurs twig respectifs.
