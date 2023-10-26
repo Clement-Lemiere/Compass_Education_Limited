@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show teacher{% endblock %}
+
+{% block body %}
+
+<h2>Show every teachers</h2>
+{% for teacher in teachers %}
+__________________________________________________________________________________
+    <p>ID : {{ teacher.id}}</p>
+    <p>Fullname:  {{ teacher.firstName }} {{ teacher.lastName }}</p>
+    <p>Nationality : {{ teacher.nationality }}</p>
+    <p>Qualification : {{ teacher.qualification }}</p>
+    <p>Availability : {{ teacher.availability }}</p>
+___________________________________________________________________________________
+{% endfor %}
+
+<h2>Show teacher ID 7</h2>
+
+<p>ID : {{ teacher7.id}}</p>
+<p>Fullname:  {{ teacher7.firstName }} {{ teacher7.lastName }}</p>
+<p>Nationality : {{ teacher7.nationality }}</p>
+<p>Qualification : {{ teacher7.qualification }}</p>
+<p>Availability : {{ teacher7.availability }}</p>
+
+___________________________________________________________________________________
+
+<h2>Show new Teacher </h2>
+
+<p>ID : {{ newTeacher.id}}</p>
+<p>Fullname:  {{ newTeacher.firstName }} {{ newTeacher.lastName }}</p>
+<p>Nationality : {{ newTeacher.nationality }}</p>
+<p>Qualification : {{ newTeacher.qualification }}</p>
+<p>Availability : {{ newTeacher.availability }}</p>
+
+___________________________________________________________________________________
+
+<h2>Show teacher ID 2 Update</h2>
+
+<p>ID : {{ updateTeacher2.id}}</p>
+<p>Fullname:  {{ updateTeacher2.firstName }} {{ updateTeacher2.lastName }}</p>
+<p>Nationality : {{updateTeacher2.nationality }}</p>
+<p>Qualification : {{ updateTeacher2.qualification }}</p>
+<p>Availability : {{ updateTeacher2.availability }}</p>
+
+{% endblock %}
