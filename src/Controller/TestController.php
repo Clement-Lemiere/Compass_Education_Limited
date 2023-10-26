@@ -604,4 +604,31 @@ class TestController extends AbstractController
             'deleteFlag3'=> $deleteFlag3,
         ]);
     }
+
+    #[Route ('/faq', name: 'app_test_faq')]
+    public function faq(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+
+        // call repository
+        $faqRepository = $em->getRepository(FAQ::class);
+
+        // Find all faqs
+        $faqs = $faqRepository->findAll();
+
+        // Create a new faq
+        $newFaq = new FAQ();
+        $newFaq->setQuestion('Question');
+        $newFaq->setAnswer('Answer');
+
+        $em->persist($newFaq);
+        $em->flush();
+
+        return $this->render('test/faq.html.twig', [
+            'controller_name' => 'TestController',
+            'faqs' => $faqs,
+            'newFaq' => $newFaq,
+        ]);
+    }
 }

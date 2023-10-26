@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Quiz{% endblock %}
+
+{% block body %}
+
+<h2>Show every FAQ</h2>
+{% for faq in faqs %}
+__________________________________________________________________________________________________
+    <p>Id : {{ faq.id }}</p>
+    <p>Question : {{ faq.question }}</p>
+    <p>Answer : {{ faq.answer }}</p>
+__________________________________________________________________________________________________
+{% endfor %}
+
+<h2>Show newFaq</h2>
+
+    <p>Id : {{ newFaq.id }}</p>
+    <p>Question : {{ newFaq.question }}</p>
+    <p>Answer : {{ newFaq.answer }}</p>
+__________________________________________________________________________________________________
+
+{% endblock %}
