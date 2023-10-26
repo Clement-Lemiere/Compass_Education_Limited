@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Assignment;
+use App\Entity\FAQ;
+use App\Entity\Flag;
 use App\Entity\Formation;
 use App\Entity\Language;
 use App\Entity\Lesson;
@@ -394,7 +396,6 @@ class TestController extends AbstractController
         // call repository Lesson
         $lessonRepository = $em->getRepository(Lesson::class);
         $languageRepository = $em->getRepository(Language::class);
-        $assignmentRepository = $em->getRepository(Assignment::class);
 
         // Find all lessons
         $lessons = $lessonRepository->findAll();
@@ -437,6 +438,50 @@ class TestController extends AbstractController
             'updateLesson2' => $updateLesson2,
             'deleteLesson3' => $deleteLesson3,
             'lesson7' => $lesson7,
+        ]);
+    }
+
+    #[Route ('/language', name: 'app_test_language')]
+    public function language(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+        // call repository Language
+        $languageRepository = $em->getRepository(Language::class);
+        $formationRepository = $em->getRepository(Formation::class);
+
+        // Find all languages
+        $languages = $languageRepository->findAll();
+
+        // Create a new language
+        $newLanguage = new Language();
+        $newLanguage->setName('Chinese');
+        $newLanguage->addFormation($formationRepository->find(1));
+
+
+        $em->persist($newLanguage);
+        $em->flush();
+
+        // Find language where id = 7
+        $language7 = $languageRepository->find(7);
+        
+        // Update language where id = 2
+        $updateLanguage2 = $languageRepository->find(2);
+        if ($updateLanguage2) {
+            $updateLanguage2->setName('English');
+            $updateLanguage2->addFormation($formationRepository->find(1));
+
+            $em->persist($updateLanguage2);
+            $em->flush();
+        }
+
+
+        return $this->render('test/language.html.twig', [   
+            'controller_name' => 'TestController',
+            'languages' => $languages
+            , 'newLanguage' => $newLanguage
+            , 'updateLanguage2' => $updateLanguage2
+            , 'language7' => $language7
         ]);
     }
 }
