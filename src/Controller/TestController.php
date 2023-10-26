@@ -67,8 +67,10 @@ class TestController extends AbstractController
     #[Route ('/student', name: 'app_test_student')]
     public function student(ManagerRegistry $doctrine): Response
     {
+        // call doctrine
         $em = $doctrine->getManager();
-        // appel du répository Student
+
+        // Call repository 
         $studentRepository = $em->getRepository(Student::class);
 
         // Find all students
@@ -116,7 +118,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Session
+
+        // call repository 
         $sessionRepository = $em->getRepository(Session::class);
 
         // Find all sessions
@@ -168,7 +171,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Assignment
+
+        // call repository
         $assignmentRepository = $em->getRepository(Assignment::class);
 
         // Find all assignments
@@ -224,7 +228,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Resource
+
+        // call repository
         $resourceRepository = $em->getRepository(Resource::class);
         $languageRepository = $em->getRepository(Language::class);
 
@@ -280,7 +285,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Quiz
+
+        // call repository 
         $quizRepository = $em->getRepository(Quiz::class);
         $languageRepository = $em->getRepository(Language::class);
 
@@ -337,7 +343,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Payment
+
+        // call repository
         $paymentRepository = $em->getRepository(Payment::class);
         $studentRepository = $em->getRepository(Student::class);
         $formationRepository = $em->getRepository(Formation::class);
@@ -393,7 +400,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Lesson
+
+        // call repository
         $lessonRepository = $em->getRepository(Lesson::class);
         $languageRepository = $em->getRepository(Language::class);
 
@@ -446,7 +454,8 @@ class TestController extends AbstractController
     {
         // call doctrine
         $em = $doctrine->getManager();
-        // call repository Language
+
+        // call repository
         $languageRepository = $em->getRepository(Language::class);
         $formationRepository = $em->getRepository(Formation::class);
 
@@ -491,7 +500,7 @@ class TestController extends AbstractController
         // call doctrine
         $em = $doctrine->getManager();
 
-        // call repository Formation
+        // call repository
         $formationRepository = $em->getRepository(Formation::class);
         $languageRepository = $em->getRepository(Language::class);
         $paymentRepository = $em->getRepository(Payment::class);
@@ -531,13 +540,68 @@ class TestController extends AbstractController
             $em->persist($updateFormation2);
             $em->flush();
         }
-        
+
         return $this->render('test/formation.html.twig', [
             'controller_name' => 'TestController',
             'formations' => $formations,
             'newFormation' => $newFormation,
             'updateFormation2' => $updateFormation2,
             'formation7' => $formation7,
+        ]);
+    }
+
+    #[Route ('/flag', name: 'app_test_flag')]
+    public function flag(ManagerRegistry $doctrine): Response
+    {
+        // call doctrine
+        $em = $doctrine->getManager();
+
+        // call repository Flag
+        $flagRepository = $em->getRepository(Flag::class);
+        $languageRepository = $em->getRepository(Language::class);
+
+        // Find all flags
+        $flags = $flagRepository->findAll();
+
+        // Create a new flag
+        $newFlag = new Flag();
+        $newFlag->setCountry('Country');
+        $newFlag->setIsoCode('IsoCode');
+        $newFlag->setImage('Image');
+        $newFlag->setLanguage($languageRepository->find(1));
+
+        $em->persist($newFlag);
+        $em->flush();
+
+        // Find flag where id = 7
+        $flag7 = $flagRepository->find(7);
+
+        // Update flag where id = 2
+        $updateFlag2 = $flagRepository->find(2);
+        if ($updateFlag2) {
+            $updateFlag2->setCountry('Country2');
+            $updateFlag2->setIsoCode('IsoCode2');
+            $updateFlag2->setImage('Image2');
+            $updateFlag2->setLanguage($languageRepository->find(1));
+
+            $em->persist($updateFlag2);
+            $em->flush();
+        }
+
+        // Delete flag where id = 2
+        $deleteFlag3 = $flagRepository->find(3);
+        if ($deleteFlag3) {
+            $em->remove($deleteFlag3);
+            $em->flush();
+        }
+
+        return $this->render('test/flag.html.twig', [
+            'controller_name' => 'TestController',
+            'flags' => $flags,
+            'newFlag' => $newFlag,
+            'updateFlag2' => $updateFlag2,
+            'flag7' => $flag7,
+            'deleteFlag3'=> $deleteFlag3,
         ]);
     }
 }

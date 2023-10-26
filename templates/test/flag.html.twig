@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block country %}Show flag{% endblock %}
+
+{% block body %}
+
+<h2>Show every flag</h2>
+{% for flag in flags %}
+_________________________________________________________________________________
+
+    <p>ID : {{ flag.id}}</p>
+    <p>country : {{ flag.country }}</p>
+    <p>isocode : {{ flag.isoCode }}</p>
+    <p>image : {{ flag.image }}</p>
+    <p>Language: {{ flag.language.name }}</p>
+
+{% endfor %}
+___________________________________________________________________________________
+
+<h2>Show flag ID 7</h2>
+
+    <p>ID : {{ flag7.id}}</p>
+    <p>country : {{ flag7.country }}</p>
+    <p>isoCode : {{ flag7.isoCode }}</p>
+    <p>image : {{ flag7.image }}</p>
+    <p>Language: {{ flag7.language.name }}</p>
+___________________________________________________________________________________
+
+ <h2>Show flag ID 2 Update</h2>
+
+    <p>ID : {{ updateFlag2.id}}</p>
+    <p>country : {{ updateFlag2.country }}</p>
+    <p>isoCode : {{ updateFlag2.isoCode }}</p>
+    <p>image : {{ updateFlag2.image }}</p>
+    <p>Language: {{ updateFlag2.language.name }}</p>
+___________________________________________________________________________________
+
+<h2>Show new Flag </h2>
+
+    <p>ID : {{ newFlag.id}}</p>
+    <p>country : {{ newFlag.country }}</p>
+    <p>isoCode : {{ newFlag.isoCode }}</p>
+    <p>image : {{ newFlag.image }}</p>
+    <p>Language: {{ newFlag.language.name }}</p>
+
+{% endblock %}
