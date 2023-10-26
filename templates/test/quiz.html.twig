@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Quiz{% endblock %}
+
+{% block body %}
+
+<h2>Show every quizzes</h2>
+{% for quiz in quizzes %}
+__________________________________________________________________________________________________
+    <p>Id : {{ quiz.id }}</p>
+    <p>Title : {{ quiz.title }}</p>
+    <p>Question : {{ quiz.question }}</p>
+    <p>Answer : {{ quiz.answer }}</p>
+    <p>Score : {{ quiz.score }}</p>
+    <p>Level : {{ quiz.level }}</p>
+__________________________________________________________________________________________________
+{% endfor %}
+
+<h2>Show newQuiz</h2>
+
+    <p>Id : {{ newQuiz.id }}</p>
+    <p>Title : {{ newQuiz.title }}</p>
+    <p>Question : {{ newQuiz.question }}</p>
+    <p>Answer : {{ newQuiz.answer }}</p>
+    <p>Score : {{ newQuiz.score }}</p>
+    <p>Level : {{ newQuiz.level }}</p>
+__________________________________________________________________________________________________
+
+<h2>Show quiz id7</h2>
+
+    <p>Id : {{ quiz7.id }}</p>
+    <p>Title : {{ quiz7.title }}</p>
+    <p>Question : {{ quiz7.question }}</p>
+    <p>Answer : {{ quiz7.answer }}</p>
+    <p>Score : {{ quiz7.score }}</p>
+    <p>Level : {{ quiz7.level }}</p>
+__________________________________________________________________________________________________
+
+<h2>Show updateQuiz2</h2>
+
+    <p>Id : {{ updateQuiz2.id }}</p>
+    <p>Title : {{ updateQuiz2.title }}</p>
+    <p>Question : {{ updateQuiz2.question }}</p>
+    <p>Answer : {{ updateQuiz2.answer }}</p>
+    <p>Score : {{ updateQuiz2.score }}</p>
+    <p>Level : {{ updateQuiz2.level }}</p>
+
+{% endblock %}
+
+    
+    

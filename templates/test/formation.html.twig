@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Quiz{% endblock %}
+
+{% block body %}
+
+<h2>Show every quizzes</h2>
+{% for formation in formations %}
+__________________________________________________________________________________________________
+    <p>Id : {{ formation.id }}</p>
+    <p>Objective :{{ formation.Objective }}</p>
+    <p>Duration :{{ formation.Duration }}</p>
+    <p>Cost :{{ formation.Cost }}</p>
+    <p>StartDate :{{ formation.StartDate|date('Y-m-d') }}</p>
+    <p>Satisfaction :{{ formation.Satisfaction }}</p>
+__________________________________________________________________________________________________
+{% endfor %}
+
+<h2>Show newFormation</h2>
+
+    <p>Id : {{ newFormation.id }}</p>
+    <p>Objective :{{ newFormation.title }}</p>
+    <p>Duration :{{ newFormation.Duration }}</p>
+    <p>Cost :{{ newFormation.Cost }}</p>
+    <p>StartDate :{{ newFormation.StartDate|date('Y-m-d') }}</p>
+    <p>Satisfaction :{{ newFormation.Satisfaction }}</p>
+__________________________________________________________________________________________________
+
+<h2>Show formation id 7</h2>
+    <p>Id : {{ formation7.id }}</p>
+    <p>Objective :{{ formation7.title }}</p>
+    <p>Duration :{{ formation7.Duration }}</p>
+    <p>Cost :{{ formation7.Cost }}</p>
+    <p>StartDate :{{ formation7.StartDate|date('Y-m-d') }}</p>
+    <p>Satisfaction :{{ formation7.Satisfaction }}</p>
+__________________________________________________________________________________________________
+
+<h2>Show updateFormation ID 2</h2>
+
+    <p>Id : {{ updateFormation2.id }}</p>
+    <p>Objective :{{ updateFormation2.title }}</p>
+    <p>Duration :{{ updateFormation2.Duration }}</p>
+    <p>Cost :{{ updateFormation2.Cost }}</p>
+    <p>StartDate :{{ updateFormation2.StartDate|date('Y-m-d') }}</p>
+    <p>Satisfaction :{{ updateFormation2.Satisfaction }}</p>
+
+{% endblock %}

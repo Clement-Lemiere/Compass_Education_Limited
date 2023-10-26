@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Assignment{% endblock %}
+
+{% block body %}
+
+<h2>Show every Assignment</h2>
+{# Show all Assignment #}
+{% for assignment in assignments %}
+__________________________________________________________________________________
+    <p>ID : {{ assignment.id}}</p>
+    <p>title : {{ assignment.title }}</p>
+    <p>content : {{ assignment.content }}</p>
+    <p>Startdate:  {{ assignment.startDate|date('Y-m-d')}} Duedate : {{ assignment.dueDate|date('H:i:s')}}</p>
+    <p>Grade : {{ assignment.grade }}</p>
+___________________________________________________________________________________
+{% endfor %}
+___________________________________________________________________________________
+<h2>Show assignment ID 7</h2>
+
+    <p>ID : {{ assignment7.id}}</p>
+    <p>title : {{ assignment7.title }}</p>
+    <p>content : {{ assignment7.content }}</p>
+    <p>Startdate:  {{ assignment7.startDate|date('Y-m-d')}} Duedate : {{ assignment7.dueDate|date('H:i:s')}}</p>
+    <p>Grade : {{ assignment7.grade }}</p>
+
+___________________________________________________________________________________
+___________________________________________________________________________________
+
+ <h2>Show assignment ID 2 Update</h2>
+
+    <p>ID : {{ updateAssignment.id}}</p>
+    <p>title : {{ updateAssignment.title }}</p>
+    <p>content : {{ updateAssignment.content }}</p>
+    <p>Startdate:  {{ updateAssignment.startDate|date('Y-m-d')}} Duedate : {{ updateAssignment.dueDate|date('H:i:s')}}</p>
+    <p>Grade : {{ updateAssignment.grade }}</p>
+
+
+
+___________________________________________________________________________________
+
+
+<h2>Show new assignment </h2>
+
+    <p>ID : {{ newAssignment.id}}</p>
+    <p>title : {{ newAssignment.title }}</p>
+    <p>content : {{ newAssignment.content }}</p>
+    <p>Startdate:  {{ newAssignment.startDate|date('Y-m-d')}} Duedate : {{ newAssignment.dueDate|date('H:i:s')}}</p>
+    <p>Grade : {{ newAssignment.grade }}</p>
+
+
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Session{% endblock %}
+
+{% block body %}
+
+<h2>Show every Session</h2>
+{# Show all Session #}
+{% for session in sessions %}
+__________________________________________________________________________________
+    <p>ID : {{ session.id}}</p>
+    <p>Type : {{ session.type }}</p>
+    <p>DateTime:  {{ session.date|date('Y-m-d')}} {{ session.time|date('H:i:s')}}</p>
+___________________________________________________________________________________
+{% endfor %}
+___________________________________________________________________________________
+<h2>Show Session ID 7</h2>
+
+    <p>ID : {{ session7.id}}</p>
+    <p>Type : {{ session7.type }}</p>
+    <p>DateTime:  {{ session7.date|date('Y-m-d')}} {{ session7.time|date('H:i:s')}}</p>
+
+___________________________________________________________________________________
+___________________________________________________________________________________
+
+ <h2>Show Session ID 2 Update</h2>
+
+    <p>ID : {{ session2.id}}</p>
+    <p>Type : {{ session2.type }}</p>
+    <p>DateTime:  {{ session2.date|date('Y-m-d')}} {{ session2.time|date('H:i:s')}}</p>
+
+
+
+___________________________________________________________________________________
+
+
+<h2>Show new session </h2>
+
+    <p>ID : {{ newSession.id}}</p>
+    <p>Type : {{ newSession.type }}</p>
+    <p>DateTime:  {{ newSession.date|date('Y-m-d')}} {{ newSession.time|date('H:i:s')}}</p>
+
+
+{% endblock %}
+
