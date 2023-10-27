@@ -98,8 +98,10 @@ Création From scratch d'un site d'apprentissage en ligne de langues étrangère
 
 ## Tâches effectuées le Mercredi 25 Octobre 2023
 
-- Création des testController assignment, payment; quiz, resource, session et student et de leurs twig respectifs.
+- Création des testController pour les tables `Assignment`, `Payment`, `Quiz`, `Resource`, `Session` et `student` et de leurs `test.html.twig` respectifs.
 
 ## Tâches effectuées le Jeudi 26 Octobre 2023
 
-- Création des testController lesson, language, formation, flag et FAQ et de leurs twig respectifs.
+- Création des testController pour les tables `Teacher`,`Lesson`, `Language`, `Formation`, `Flag` et `FAQ` et de leurs `test.html.twig` respectifs.
+
+## Tâches effectuées le Vendredi 27 Octobre 2023
