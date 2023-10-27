@@ -19,6 +19,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
                 <td>
+                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_user_password', {'id': user.id}) }}">Edit Password</a>
                     <a href="{{ path('app_profile_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_profile_edit', {'id': user.id}) }}">edit</a>
                 </td>

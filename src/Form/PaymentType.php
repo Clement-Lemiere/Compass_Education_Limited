@@ -15,7 +15,7 @@ class PaymentType extends AbstractType
             ->add('date')
             ->add('type')
             ->add('formation')
-            ->add('student')
+            // ->add('student', StudentType::class)
         ;
     }
 

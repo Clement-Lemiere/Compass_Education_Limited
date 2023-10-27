@@ -17,9 +17,9 @@ class TeacherType extends AbstractType
             ->add('nationality')
             ->add('qualification')
             ->add('availability')
-            ->add('user')
             ->add('language')
-        ;
+            ->add('user', UserType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

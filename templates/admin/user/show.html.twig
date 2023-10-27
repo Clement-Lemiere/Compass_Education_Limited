@@ -8,12 +8,22 @@
     <table class="table">
         <tbody>
             <tr>
-                <th class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">Id : </th>
+                <th>Id : </th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
                 <th>Email : </th>
                 <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>FullName :</th>
+            {% if user.student is not null %}
+                <td>{{ user.student.firstName }} {{ user.student.lastName }}, is a Student</td>
+            {% elseif user.teacher is not null %}
+                <td>{{ user.teacher.firstName }} {{ user.teacher.lastName }}, is a Teacher</td>
+            {% else %}
+                <td>User has no associated student or teacher</td>
+            {% endif %}
             </tr>
             <tr>
                 <th>Roles : </th>
