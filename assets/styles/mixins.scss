@@ -1,0 +1,17 @@
+@mixin dFlex($direction) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: $direction;
+}
+
+@mixin centerXY($Xs, $Ys) {
+    justify-content: $Xs;
+    align-items: $Ys;
+}
+
+@mixin roundedBtn {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: transparent;
+    box-shadow: 0 0 2px 0 black;
+}
