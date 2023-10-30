@@ -17,11 +17,14 @@ class StudentType extends AbstractType
             ->add('birthdate')
             ->add('nationality')
             ->add('level')
-            ->add('user')
             ->add('language')
+            ->add('user', UserType::class, [
+                'label'=> 'Edit Email',
+            ]);
         ;
     }
 
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

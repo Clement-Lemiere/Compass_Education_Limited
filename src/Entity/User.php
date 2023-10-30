@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Student;
+use App\Entity\Teacher;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -139,4 +141,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(){
         return $this->email;
     }
+
 }
