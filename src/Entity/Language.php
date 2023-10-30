@@ -261,7 +261,6 @@ class Language
 
         return $this;
     }
-
     public function removeStudent(Student $student): static
     {
         if ($this->students->removeElement($student)) {
