@@ -39,7 +39,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'admin@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_ADMIN'],
+                'roles' => ['admin'],
             ],
         ];
         

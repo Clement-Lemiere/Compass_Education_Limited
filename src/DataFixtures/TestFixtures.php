@@ -62,7 +62,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'foo.foo@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['student'],
 
                 'firstName' => 'Mike',
                 'lastName' => 'Doe',
@@ -73,7 +73,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'bat.bar@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['student'],
                 'firstName' => 'Jane',
                 'lastName' => 'Bellane',
                 'birthDate' => new DateTime(),
@@ -83,7 +83,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'baz.baz@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['student'],
 
                 'firstName' => 'John',
                 'lastName' => 'Doe',
@@ -116,7 +116,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $user->setEmail($this->faker->unique()->safeEmail());
             $password = $this->hasher->hashPassword($user, '123');
             $user->setPassword($password);
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['student']);
 
             $this->manager->persist($user);
 
@@ -149,7 +149,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'doe.mi@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['teacher'],
 
                 'firstName' => 'Micheal',
                 'lastName' => 'Donokey',
@@ -160,7 +160,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'ge.la@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['teacher'],
 
                 'firstName' => 'Gérard',
                 'lastName' => 'Lambert',
@@ -171,7 +171,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'email' => 'ta.li@example.com',
                 'password' => '123',
-                'roles' => ['ROLE_USER'],
+                'roles' => ['teacher'],
 
                 'firstName' => 'Tangzhi',
                 'lastName' => 'li',
@@ -205,7 +205,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $user->setEmail($this->faker->unique()->safeEmail());
             $password = $this->hasher->hashPassword($user, '123');
             $user->setPassword($password);
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['teacher']);
 
             $this->manager->persist($user);
 
