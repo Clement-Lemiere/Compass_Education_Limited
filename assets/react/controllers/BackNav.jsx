@@ -3,8 +3,6 @@ import React from 'react'
 
 const navigation = [
   { name: 'User', href: '/admin/user', current: true },
-  { name: 'Teacher', href: '/admin/teacher', current: false },
-  { name: 'Student', href: '/admin/student', current: false },
   { name: 'Resource', href: '/admin/resource', current: false },
   { name: 'Quiz', href: '/admin/quiz', current: false },
   { name: 'Session', href: '/admin/session', current: false },
@@ -23,7 +21,7 @@ function classNames(...classes) {
 
 const BackNav = () => {
     return (
-        <nav className="frontNav">
+        <nav className="backNav">
             <div className="logo">
                 <h2>Logo</h2>
             </div>
@@ -40,6 +38,11 @@ const BackNav = () => {
                     </li>
                 ))}
             </ul>
+            <div className="logoutBtn">
+                <a href="/logout">
+                    Logout
+                </a>
+            </div>
         </nav>
     );
 }

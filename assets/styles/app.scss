@@ -3,10 +3,10 @@
 
 // _________________||| HEADER \\\________________
 
-// _________________||| NAVBAR \\\________________
+// _________________||| NAVBARS \\\________________
 
 
-.frontNav {
+.frontNav, .backNav {
     @include dFlex(row);
     @include centerXY(space-between, center);
     background: linear-gradient( 100deg, $primaryLight, $primaryDark);
@@ -57,7 +57,7 @@
             }
         }
     }
-    .loginBtn {
+    .loginBtn, .logoutBtn {
         @include dFlex(row);
         @include centerXY(center, center);
         font-size: 20px;
@@ -76,6 +76,16 @@
                 color: $primaryDark;
             }
         }
+    }
+}
+
+.backNav{
+    ul{
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+    }
+    .logoutBtn{
+        height: 80px;
     }
 }
 
