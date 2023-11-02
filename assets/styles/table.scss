@@ -1,0 +1,60 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+// _________________||| TITLE \\\________________
+
+.tableTitle{
+    text-align: center;
+}
+
+.tableFeatures{
+    @include dFlex(row);
+    @include centerXY(space-evenly, center);
+    margin-block: 20px;
+    
+    .newBtn{
+        @include roundedBtn;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .searchForm{
+        @include dFlex(row);
+        background-color: $primaryDark;
+        padding: 5px;
+        border-radius: 10px;
+        
+        label{
+            padding-inline: 10px;
+            text-align: center;
+            color: white;
+            margin-top: 4px;
+        }
+        input {
+            border-radius: 5px;
+        }
+        button {
+            margin-inline: 5px;
+            padding-inline: 5px;
+            border: transparent;
+            border-radius: 10px;
+            background-color: $primaryLight;
+            color: $primaryDark;
+            cursor: pointer;
+        }
+    }
+}
+
+table {
+    min-width: 80vw;
+    max-width: 99vw;
+    margin: 0 auto;
+    border-spacing: 0;
+    border: solid 1px;
+
+    th, td{
+        border: solid 1px;
+        text-align: center;
+        padding: 3px 5px;
+    }
+}

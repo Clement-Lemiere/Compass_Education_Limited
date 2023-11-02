@@ -11,5 +11,6 @@ import './bootstrap.js';
 import './styles/normalize.css';
 import './styles/app.scss';
 import './styles/form.scss';
+import './styles/table.scss';
 
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));
