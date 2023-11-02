@@ -18,7 +18,6 @@ class StudentType extends AbstractType
             ->add('nationality')
             ->add('level')
             ->add('language')
-            ->add('user', UserType::class);
         ;
     }
 

@@ -29,8 +29,8 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>
-                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show Profile</a>
-                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit Email</a>
+                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
 
                 </td>
             </tr>

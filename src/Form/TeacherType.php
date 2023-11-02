@@ -18,7 +18,6 @@ class TeacherType extends AbstractType
             ->add('qualification')
             ->add('availability')
             ->add('language')
-            ->add('user', UserType::class)
             ;
     }
 
