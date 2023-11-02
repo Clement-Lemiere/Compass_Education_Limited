@@ -6,6 +6,8 @@ use App\Entity\Assignment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class AssignmentType extends AbstractType
 {
@@ -17,7 +19,6 @@ class AssignmentType extends AbstractType
             ->add('startDate')
             ->add('dueDate')
             ->add('grade')
-            ->add('lesson')
         ;
     }
 
@@ -25,6 +26,7 @@ class AssignmentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Assignment::class,
+
         ]);
     }
 }

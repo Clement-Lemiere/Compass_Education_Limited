@@ -478,7 +478,7 @@ class TestController extends AbstractController
         $newLesson = new Lesson();
         $newLesson->setTitle('Title');
         $newLesson->setContent('Content');
-        $newLesson->setExercice('Exercice');
+        $newLesson->setLevel('Level');
         $newLesson->setLanguage($languageRepository->find(1));
 
         $em->persist($newLesson);
@@ -492,7 +492,7 @@ class TestController extends AbstractController
         if ($updateLesson2) {
             $updateLesson2->setTitle('Title2');
             $updateLesson2->setContent('Content2');
-            $updateLesson2->setExercice('Exercice2');
+            $updateLesson2->setLevel('Level2');
             $updateLesson2->setLanguage($languageRepository->find(1));
 
             $em->persist($updateLesson2);

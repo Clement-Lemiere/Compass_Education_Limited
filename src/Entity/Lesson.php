@@ -22,8 +22,8 @@ class Lesson
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $exercice = null;
+    #[ORM\Column]
+    private ?int $level = null;
 
     #[ORM\ManyToMany(targetEntity: Assignment::class, mappedBy: 'lesson')]
     private Collection $assignments;
@@ -66,14 +66,14 @@ class Lesson
         return $this;
     }
 
-    public function getExercice(): ?string
+    public function getLevel(): ?int
     {
-        return $this->exercice;
+        return $this->level;
     }
 
-    public function setExercice(?string $exercice): static
+    public function setLevel(int $level): static
     {
-        $this->exercice = $exercice;
+        $this->level = $level;
 
         return $this;
     }
@@ -116,4 +116,10 @@ class Lesson
 
         return $this;
     }
+
+    // public function __toString()
+    // {
+    //     return "{$this->assignments} {$this->language}";
+    // }
+
 }
