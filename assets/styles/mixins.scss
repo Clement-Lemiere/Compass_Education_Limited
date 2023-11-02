@@ -11,7 +11,16 @@
 
 @mixin roundedBtn {
     padding: 5px 10px;
+    margin-bottom: 0.3rem;
     border-radius: 10px;
     border: transparent;
+    background-color: $primaryDark;
+    color: white;
     box-shadow: 0 0 2px 0 black;
+    transition: background-color 0.5s;
+    &:hover {
+        background-color: $primaryLight;
+        cursor: pointer;
+        color: $primaryDark;
+    }
 }

@@ -1,0 +1,77 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+
+/* styles.scss */
+
+.loginForm {
+    width: 35vw;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
+
+    .formTitle {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    div {
+        margin-bottom: 25px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 70%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .rememberMe {
+            display: flex;
+
+            input[type="checkbox"] {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .submitBtn, .signUpBtn {
+        @include roundedBtn;
+        background-color: $primaryDark;
+        color: white;
+        cursor: pointer;
+        width: 150px;
+
+        &:hover {
+            background-color: $primaryLight;
+            color: $primaryDark;
+        }
+    }
+
+    p {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .signUpBtn{
+        margin: 0 auto;
+        a{
+            display: block;
+            margin: 0 auto;
+            text-decoration: none;
+            color: white;
+            &:hover{
+                color: $primaryDark;
+            }
+        }
+    }
+}
