@@ -77,12 +77,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles = ['ROLE_USER']; // Tous les utilisateurs ont le rôle de base.
+
+        // Vérifie si le rôle 'student' est présent dans le tableau des rôles.
+        if (in_array('student', $this->roles)) {
+            $roles[] = 'ROLE_STUDENT';
+        }
+        // Vérifie si le rôle 'teacher' est présent dans le tableau des rôles.
+        if (in_array('teacher', $this->roles)) {
+            $roles[] = 'ROLE_TEACHER';
+        }
+        // Vérifie si le rôle 'admin' est présent dans le tableau des rôles.
+        if (in_array('admin', $this->roles)) {
+            $roles[] = 'ROLE_ADMIN';
+        }
 
         return array_unique($roles);
     }
+
+
 
     public function setRoles(array $roles): static
     {
@@ -139,7 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     public function __toString(){
-        return $this->email;
+        return "{$this->email}";
     }
 
 }
