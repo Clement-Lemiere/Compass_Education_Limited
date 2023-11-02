@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Lesson;
+use App\Entity\Language;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class LessonType extends AbstractType
 {
@@ -14,9 +16,11 @@ class LessonType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('exercice')
-            ->add('assignments')
-            ->add('language')
+            ->add('level')
+            ->add('language', EntityType::class, [
+                'class' => Language::class,
+                'choice_label' => 'name', // Utilise le champ 'name' pour l'affichage des choix
+            ])
         ;
     }
 

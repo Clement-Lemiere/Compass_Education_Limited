@@ -489,19 +489,19 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             [
                 'title' => 'Lesson 1',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'level' => 1,
                 'language' => $language1
             ],
             [
                 'title' => 'Lesson 2',
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam!',
+                'level' => 2,
                 'language' => $language2
             ],
             [
                 'title' => 'Lesson 3',
                 'content' => 'Dolores ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'exercice' => 'Pecate ipsum, dolor sit amet consectetur adipisicing elit. Hic, magnam! Lorem ipsum dolor sit.',
+                'level' => 3,
                 'language' => $language3
             ]
         ];
@@ -510,7 +510,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $lesson = new Lesson();
             $lesson->setTitle($data['title']);
             $lesson->setContent($data['content']);
-            $lesson->setExercice($data['exercice']);
+            $lesson->setLevel($data['level']);
             $lesson->setLanguage($data['language']);
 
             $this->manager->persist($lesson);
@@ -523,7 +523,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $lesson = new Lesson();
             $lesson->setTitle($this->faker->sentence());
             $lesson->setContent($this->faker->sentence());
-            $lesson->setExercice($this->faker->sentence());
+            $lesson->setLevel($this->faker->randomNumber(1, 20));
             $lesson->setLanguage($this->faker->randomElement($languages));
 
             $this->manager->persist($lesson);
