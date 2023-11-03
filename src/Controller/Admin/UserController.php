@@ -30,18 +30,27 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $form->getRoles) {
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_teacher_new', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
+        if ($form->isSubmitted() && $form->isValid() && $form->get('student')->isClicked()) {
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_student_new', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+            return $this->render('admin/user/new.html.twig', [
+                'user' => $user,
+                'form' => $form,
+            ]);
+        }
+    
 
     #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]
     public function show(User $user): Response

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormEvents;
@@ -17,7 +18,12 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class,  [
+                'attr' => [
+                    'class' => 'formElement'
+                ],
+            ])
+
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'ROLE_STUDENT' => 'student',
@@ -25,18 +31,23 @@ class UserType extends AbstractType
                     'ROLE_ADMIN' => 'admin',
                 ],
                 'multiple' => true,
-                'expanded' => true,
             ])
-            
+
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'options' => ['attr' => [
-                    'class' => 'password-field',
-                    'autocomplete' => 'new-password'
-                ]],
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat your password'],
-                'required' => true,
+                'options' => [
+                    'attr' => [
+                        'class' => 'formElement',
+                    ],
+                ],
+                'first_options'  => [
+                    'label' => 'Password',
+                    'block_prefix' => 'formElement',
+                ],
+                'second_options' => [
+                    'label' => 'Repeat your password',
+                    'block_prefix' => 'formElement',
+                ],
             ]);
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
