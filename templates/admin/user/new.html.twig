@@ -3,12 +3,11 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <div class="newElementForm">
+        <h1>Create new User</h1>
 
+        {{ include('admin/user/_form.html.twig') }}
 
-    {{ include('admin/user/_form.html.twig') }}
-
-
-
-    <a href="{{ path('app_admin_user_index') }}">back to list</a>
+        <a href="{{ path('app_admin_user_index') }}">back to list</a>
+    </div>
 {% endblock %}

@@ -2,7 +2,7 @@
 @import "../styles/variables.scss";
 
 
-/* styles.scss */
+// _________________||| LOGIN_FORM \\\________________
 
 .loginForm {
     width: 35vw;
@@ -72,6 +72,32 @@
             &:hover{
                 color: $primaryDark;
             }
+        }
+    }
+}
+
+// _________________||| NEW_ELEMENTS_FORM \\\________________
+
+.newElementForm {
+    @include dFlex(column);
+    @include centerXY(center, center);
+    
+    .formStyle {
+        width: 35vw;
+        margin: 50px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
+    
+        .formElement {
+            margin-bottom: 25px;
+        }
+
+        button {
+            display: block;
+            @include roundedBtn;
+            margin: 0 auto;
         }
     }
 }

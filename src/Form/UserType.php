@@ -18,39 +18,38 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class,  [
-                'attr' => [
-                    'class' => 'formElement'
-                ],
+            ->add('email', EmailType::class, [
+                'row_attr' => [
+                            'class' => 'formElement',
+                ],      
             ])
-
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'ROLE_STUDENT' => 'student',
                     'ROLE_TEACHER' => 'teacher',
                     'ROLE_ADMIN' => 'admin',
                 ],
-                'attr' => [
-                    'class' => 'formElement'
+                'row_attr' => [
+                    'class' => 'formElement',
                 ],
                 'multiple' => true,
+                'expanded' => true,
             ])
 
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'options' => [
-                    'attr' => [
-                        'class' => 'formElement',
+                    'row_attr' => [
+                            'class' => 'formElement',
+                        ]
                     ],
-                ],
-                'first_options'  => [
-                    'label' => 'Password',
-                    'block_prefix' => 'formElement',
-                ],
-                'second_options' => [
-                    'label' => 'Repeat your password',
-                    'block_prefix' => 'formElement',
-                ],
+                    'first_options'  => [
+                        'label' => 'Password',
+                    ],
+                    'second_options' => [
+                        'label' => 'Repeat your password',
+                    ],
+                
             ]);
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
