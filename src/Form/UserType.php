@@ -30,6 +30,9 @@ class UserType extends AbstractType
                     'ROLE_TEACHER' => 'teacher',
                     'ROLE_ADMIN' => 'admin',
                 ],
+                'attr' => [
+                    'class' => 'formElement'
+                ],
                 'multiple' => true,
             ])
 
