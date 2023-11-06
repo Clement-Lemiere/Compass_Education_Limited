@@ -3,41 +3,41 @@
 {% block title %}Student index{% endblock %}
 
 {% block body %}
-    <h1 class="text-5xl font-extrabold text-center">Student index</h1>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <h1>Student index</h1>
+<div>
+    <table>
+        <thead>
             <tr>
-                <th scope="col" class="px-6 py-3">Id</th>
-                <th scope="col" class="px-6 py-3">FirstName</th>
-                <th scope="col" class="px-6 py-3">LastName</th>
-                <th scope="col" class="px-6 py-3">Birthdate</th>
-                <th scope="col" class="px-6 py-3">Nationality</th>
-                <th scope="col" class="px-6 py-3">Level</th>
-                <th scope="col" class="px-6 py-3">actions</th>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Birthdate</th>
+                <th>Nationality</th>
+                <th>Level</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for student in students %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="px-6 py-4">{{ student.id }}</td>
-                <td class="px-6 py-4">{{ student.firstName }}</td>
-                <td class="px-6 py-4">{{ student.lastName }}</td>
-                <td class="px-6 py-4">{{ student.birthdate ? student.birthdate|date('Y-m-d') : '' }}</td>
-                <td class="px-6 py-4">{{ student.nationality }}</td>
-                <td class="px-6 py-4">{{ student.level }}</td>
-                <td class="px-6 py-4">
-                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_student_show', {'id': student.id}) }}">show</a>
-                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_student_edit', {'id': student.id}) }}">edit</a>
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
+                <td>{{ student.birthdate ? student.birthdate|date('Y-m-d') : '' }}</td>
+                <td>{{ student.nationality }}</td>
+                <td>{{ student.level }}</td>
+                <td>
+                    <a href="{{ path('app_admin_student_show', {'id': student.id}) }}">show</a>
+                    <a href="{{ path('app_admin_student_edit', {'id': student.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td>no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 px-6 py-4" href="{{ path('app_admin_student_new') }}">Create new</a>
+    <a href="{{ path('app_admin_student_new') }}">Create new</a>
 {% endblock %}
