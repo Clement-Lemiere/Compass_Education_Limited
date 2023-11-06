@@ -1,30 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}User profile{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>User profile</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id : </th>
+                <th>ID : </th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
                 <th>Email : </th>
                 <td>{{ user.email }}</td>
             </tr>
+            
+            {% if user.student is not null %}
             <tr>
                 <th>FullName :</th>
-            {% if user.student is not null %}
                 <td>{{ user.student.firstName }} {{ user.student.lastName }}, is a Student</td>
-            {% elseif user.teacher is not null %}
-                <td>{{ user.teacher.firstName }} {{ user.teacher.lastName }}, is a Teacher</td>
-            {% else %}
-                <td>User has no associated student or teacher</td>
-            {% endif %}
             </tr>
+            <tr>
+                <th>Student ID :</th>
+                <td>{{ user.student.id }}</td>
+            </tr>
+                <th>Birthdate :</th>
+                <td>{{ user.student.birthdate ? user.student.birthdate|date('Y-m-d') : '' }}</td>
+            <tr>
+                <th>Nationality :</th>
+                <td>{{ user.student.nationality }}</td>
+            </tr>
+            <tr>
+                <th>Level :</th>
+                <td>{{ user.student.level }}</td>
+            </tr>
+            {% elseif user.teacher is not null %}
+            <tr>
+                <th>FullName :</th>
+                <td>{{ user.teacher.firstName }} {{ user.teacher.lastName }}, is a Teacher</td>
+            </tr>
+            <tr>
+                <th>Teacher ID :</th>
+                <td>{{ user.teacher.id }}</td>
+            </tr>
+            <tr>
+                <th>Nationality :</th>
+                <td>{{ user.teacher.nationality }}</td>
+            </tr>
+            <tr>
+                <th>Qualification :</th>
+                <td>{{ user.teacher.qualification }}</td>
+            </tr>
+            <tr>
+                <th>Availability :</th>
+                <td>{{ user.teacher.availability }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <th>What's your roles</th>
+                <td>This user has no associated student or teacher</td>
+            </tr>
+            {% endif %}
             <tr>
                 <th>Roles : </th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
