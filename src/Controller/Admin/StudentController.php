@@ -28,8 +28,10 @@ class StudentController extends AbstractController
         $student = new Student();
         $form = $this->createForm(StudentType::class, $student);
         $form->handleRequest($request);
+        $user = $student->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['student']);
             $entityManager->persist($student);
             $entityManager->flush();
 

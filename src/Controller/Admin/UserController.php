@@ -34,22 +34,16 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_user_edit', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-
-        //     return $this->redirectToRoute('app_admin_student_new', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
-        // }
 
             return $this->render('admin/user/new.html.twig', [
                 'user' => $user,
                 'form' => $form,
             ]);
         }
+
+
     
 
     #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]

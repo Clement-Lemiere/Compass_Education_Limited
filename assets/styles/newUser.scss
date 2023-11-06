@@ -1,0 +1,47 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+.intro {
+    .backBtn {
+    @include dFlex(row);
+    @include centerXY(flex-start, center);
+    width: 100%;
+    a{
+        font-size: 2em;
+        color: $primaryDark;    
+    }
+    }
+}
+.mainContainer {
+    @include dFlex(column);
+    @include centerXY(space-evenly, center);
+    width: 60vw;
+    margin: 3em auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
+    
+
+    h2 {
+        margin-bottom: 2em;
+    }
+    .teacherStudentBtn {
+        @include dFlex(row);
+        @include centerXY(space-between, center);
+        width: 80%;
+        margin-bottom: 5em;
+        a{
+            @include roundedBtn;
+            color: white;
+            font-size: 1.5em;
+        }
+    }
+    .adminBtn {
+        @include roundedBtn;
+        
+        a{
+            color: white;
+            font-size: 1.5em;
+        }
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Student;
+use App\Form\UserType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,10 +15,22 @@ class StudentType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('birthdate')
+            ->add('birthdate', null, [
+                'attr' => [
+                    'class' => 'dateChoice',
+                ],
+            ])
             ->add('nationality')
             ->add('level')
-            ->add('language')
+            ->add('language', null, [
+                'attr' => [
+                    'class' => 'checkboxStyle',
+                ],
+                'expanded' => true,
+            ])
+            ->add('user', UserType::class, [
+                'label' => false,
+            ])
         ;
     }
 

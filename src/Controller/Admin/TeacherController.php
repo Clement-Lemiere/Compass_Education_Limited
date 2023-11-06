@@ -28,8 +28,10 @@ class TeacherController extends AbstractController
         $teacher = new Teacher();
         $form = $this->createForm(TeacherType::class, $teacher);
         $form->handleRequest($request);
+        $user = $teacher->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['teacher']);
             $entityManager->persist($teacher);
             $entityManager->flush();
 
