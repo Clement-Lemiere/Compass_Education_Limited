@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,31 +24,30 @@ class UserType extends AbstractType
                             'class' => 'formElement',
                 ],      
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'ROLE_STUDENT' => 'student',
-                    'ROLE_TEACHER' => 'teacher',
-                    'ROLE_ADMIN' => 'admin',
-                ],
-                'row_attr' => [
-                    'class' => 'formElement',
-                ],
-                'multiple' => true,
-                'expanded' => true,
-            ])
-
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'options' => [
-                    'row_attr' => [
-                            'class' => 'formElement',
-                        ]
-                    ],
+                'options' => [],
                     'first_options'  => [
                         'label' => 'Password',
                     ],
                     'second_options' => [
                         'label' => 'Repeat your password',
+                    ],
+                    'invalid_message' => 'The password fields must match.',
+                    'required' => true,
+                    'constraints' => [
+                        new Assert\NotBlank([
+                            'message' => 'Please enter your password',
+                        ]),
+                        new Assert\Length([
+                            'min' => 3,
+                            'max' => 191,
+                            'minMessage' => 'Your password must be at least {{ limit }} caracters long',
+                        ]),
+                        // new Assert\Regex([
+                        //     'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#%&+=_!.$-])[A-Za-z0-9@#%&+=._!$-]{8,}$/',
+                        //     'message' => 'Your password must be at least 8 caracters long and must contain at least 1 uppercase, 1 lowercase, 1 number and 1 of the following caracters : @ # % & + = _ ! . $ -',
+                        // ])
                     ],
                 
             ]);

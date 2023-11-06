@@ -81,19 +81,53 @@
 .newElementForm {
     @include dFlex(column);
     @include centerXY(center, center);
-    
-    .formStyle {
+    form{
         width: 35vw;
         margin: 50px;
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 10px;
         background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
-    
-        .formElement {
-            margin-bottom: 25px;
-        }
 
+        div {
+            @include dFlex(column);
+            margin-bottom: 25px;
+            color: $primaryDark;
+            label {
+                font-size: 1.3em;
+                margin-left: 1.5em;
+            }
+            input {
+                width: 60%;
+                margin-top: 10px;
+            }
+        }
+        .dateChoice {
+            @include dFlex(row);
+
+            select {
+                width: 70px;
+                margin-top: 5px;
+                margin-right: 25px; 
+            }
+        }
+        .checkboxStyle {
+            @include dFlex(row);
+            @include centerXY(center, center);
+            border: 1px solid $primaryDark;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            input {
+                width: 8%;
+                margin-block: 10px;
+            }
+            label{
+                width: 23%;
+                margin-block: 10px;
+                margin-left: 0.5em;
+            }
+        }
         button {
             display: block;
             @include roundedBtn;

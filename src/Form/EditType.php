@@ -14,7 +14,6 @@ class EditType extends AbstractType
         $builder
             ->add('email')
             ->add('password')
-
         ;
     }
 
