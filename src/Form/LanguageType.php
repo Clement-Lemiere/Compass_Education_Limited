@@ -6,6 +6,7 @@ use App\Entity\Language;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LanguageType extends AbstractType
 {
@@ -13,8 +14,16 @@ class LanguageType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add(
+                'imageFile', VichImageType::class,
+                [
+                    'required' => false,
+                    'download_uri' => false,
+                    'label' => 'Flag',
+                    'help' => 'Flag choice',
+                ]
+            )
             ->add('teachers')
-            ->add('students')
         ;
     }
 
