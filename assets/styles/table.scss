@@ -46,8 +46,9 @@ h1{
 }
 
 table {
+    background: linear-gradient(90deg, white 0%,  $lightGrey 55%, white 100%);
     min-width: 80vw;
-    max-width: 99vw;
+    max-width: 95vw;
     margin: 0 auto;
     border-spacing: 0;
     border: solid 1px;

@@ -246,22 +246,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Japanese',
             ],
             [
-                'name' => 'Russian',
-            ],
-            [
                 'name' => 'German',
             ],
             [
                 'name' => 'Italian',
             ],
             [
-                'name' => 'Portuguese',
-            ],
-            [
                 'name' => 'Korean',
-            ],
-            [
-                'name' => 'Arabic',
             ],
         ];
 

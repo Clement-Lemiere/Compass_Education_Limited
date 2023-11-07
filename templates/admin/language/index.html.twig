@@ -3,52 +3,37 @@
 {% block title %}Language index{% endblock %}
 
 {% block body %}
-    <h1>Language index</h1>
-<div>
-    <table>
-        <thead>
-    <h1>Language index</h1>
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">actions</th>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for language in languages %}
-            <tr>
-                <td>{{ language.id }}</td>
-                <td>{{ language.name }}</td>
-                <td>
-                    <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
-                    <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>
-            <tr>
-                <td>{{ language.id }}</td>
-                <td>{{ language.name }}</td>
-                <td>
-                    {% if language.imageName %}
-                        <img loading="lazy" src="{{ vich_uploader_asset(language, 'imageFile') | imagine_filter('my_thumb') }}" alt="photo de {{ language.name }}" >
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
-                    <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-    <a href="{{ path('app_admin_language_new') }}">Create new</a>
-    <a href="{{ path('app_admin_language_new') }}">Create new</a>
+<h1>Language index</h1>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Flag</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for language in languages %}
+        <tr>
+            <td>{{ language.id }}</td>
+            <td>{{ language.name }}</td>
+            <td>
+                {% if language.imageName %}
+                    <img loading="lazy" src="{{ vich_uploader_asset(language, 'imageFile') | imagine_filter('flag_mini') }}" alt="photo de {{ language.name }}" >
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
+                <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ path('app_admin_language_new') }}">Create new</a>
 {% endblock %}

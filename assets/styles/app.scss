@@ -8,6 +8,7 @@
 
 
 
+
 // _________________||| HEADER \\\________________
 
 // _________________||| NAVBARS \\\________________
@@ -28,7 +29,11 @@
         font-size: 22px;
         width: 10vw;
         transition: color 0.3s ease;
-        cursor: pointer;
+        
+        a{
+            cursor: pointer;
+            color: white;
+        }
 
         h2 {
             color: white;
