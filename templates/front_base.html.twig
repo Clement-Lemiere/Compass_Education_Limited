@@ -12,6 +12,9 @@
     {% endblock %}
     {% block body %}
     {% endblock %}
+    {% block footer %}
+        <footer {{ react_component('Footer') }}></footer>
+    {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
     {% endblock %}

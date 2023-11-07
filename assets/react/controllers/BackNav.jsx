@@ -23,7 +23,7 @@ const BackNav = () => {
     return (
         <nav className="backNav">
             <div className="logo">
-                <h2>Logo</h2>
+                <h2><a href="/">Logo</a></h2>
             </div>
             <ul className="navLinks">
                 {navigation.map((item) => (
