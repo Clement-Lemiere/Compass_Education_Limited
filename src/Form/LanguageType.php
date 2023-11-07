@@ -23,6 +23,7 @@ class LanguageType extends AbstractType
                     'help' => 'Flag choice',
                 ]
             )
+            ->add('teachers')
         ;
     }
 

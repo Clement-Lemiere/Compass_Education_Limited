@@ -63,7 +63,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'email' => 'foo.foo@example.com',
                 'password' => '123',
                 'roles' => ['student'],
-
                 'firstName' => 'Mike',
                 'lastName' => 'Doe',
                 'birthDate' => new DateTime(),
@@ -84,7 +83,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'email' => 'baz.baz@example.com',
                 'password' => '123',
                 'roles' => ['student'],
-
                 'firstName' => 'John',
                 'lastName' => 'Doe',
                 'birthDate' => new DateTime(),

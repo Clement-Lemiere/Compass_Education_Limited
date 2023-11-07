@@ -57,12 +57,12 @@ class UserType extends AbstractType
             $form = $event->getForm();
 
             if ($user && in_array('ROLE_STUDENT', $user->getRoles())) {
-                $form->add('student', StudentType::class, [
+                $form->add('student', EditStudentType::class, [
                     'label' => false,
                 ]);
             }
             if ($user && in_array('ROLE_TEACHER', $user->getRoles())) {
-                $form->add('teacher', TeacherType::class, [
+                $form->add('teacher', EditTeacherType::class, [
                     'label' => false,
                 ]);
             }
