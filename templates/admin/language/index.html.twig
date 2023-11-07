@@ -7,7 +7,14 @@
 <div>
     <table>
         <thead>
+    <h1>Language index</h1>
+<div>
+    <table>
+        <thead>
             <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">actions</th>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">actions</th>
@@ -21,6 +28,17 @@
                 <td>
                     <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
                     <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>
+            <tr>
+                <td>{{ language.id }}</td>
+                <td>{{ language.name }}</td>
+                <td>
+                    {% if language.imageName %}
+                        <img loading="lazy" src="{{ vich_uploader_asset(language, 'imageFile') | imagine_filter('my_thumb') }}" alt="photo de {{ language.name }}" >
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
+                    <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +49,6 @@
         </tbody>
     </table>
 </div>
+    <a href="{{ path('app_admin_language_new') }}">Create new</a>
     <a href="{{ path('app_admin_language_new') }}">Create new</a>
 {% endblock %}
