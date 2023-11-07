@@ -2,13 +2,13 @@
 @import "../styles/variables.scss";
 .intro {
     .backBtn {
-    @include dFlex(row);
-    @include centerXY(flex-start, center);
-    width: 100%;
-    a{
-        font-size: 2em;
-        color: $primaryDark;    
-    }
+        @include dFlex(row);
+        @include centerXY(flex-start, center);
+        width: 100%;
+        a{
+            font-size: 2em;
+            color: $primaryDark;    
+        }
     }
 }
 .mainContainer {
