@@ -52,23 +52,23 @@ class StudentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_student_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Student $student, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(StudentType::class, $student);
-        $form->handleRequest($request);
+    // #[Route('/{id}/edit', name: 'app_admin_student_edit', methods: ['GET', 'POST'])]
+    // public function edit(Request $request, Student $student, EntityManagerInterface $entityManager): Response
+    // {
+    //     $form = $this->createForm(StudentType::class, $student);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_student_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_admin_student_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('admin/student/edit.html.twig', [
-            'student' => $student,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('admin/student/edit.html.twig', [
+    //         'student' => $student,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/{id}', name: 'app_admin_student_delete', methods: ['POST'])]
     public function delete(Request $request, Student $student, EntityManagerInterface $entityManager): Response

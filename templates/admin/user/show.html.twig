@@ -35,6 +35,12 @@
                 <th>Level :</th>
                 <td>{{ user.student.level }}</td>
             </tr>
+            <tr>
+                <th>Language :</th>
+                {% for language in user.student.language %}
+                    <td>{{ language.name }}</td>
+                {% endfor %}   
+            </tr>
             {% elseif user.teacher is not null %}
             <tr>
                 <th>FullName :</th>
@@ -55,6 +61,12 @@
             <tr>
                 <th>Availability :</th>
                 <td>{{ user.teacher.availability }}</td>
+            </tr>
+            <tr>
+                <th>Language :</th>
+                {% for language in user.teacher.language %}
+                    <td>{{ language.name }}</td>
+                {% endfor %}   
             </tr>
             {% else %}
             <tr>

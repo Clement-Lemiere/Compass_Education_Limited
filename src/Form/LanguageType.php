@@ -13,8 +13,8 @@ class LanguageType extends AbstractType
     {
         $builder
             ->add('name')
-            // ->add('teachers')
-            // ->add('students')
+            ->add('teachers')
+            ->add('students')
         ;
     }
 
