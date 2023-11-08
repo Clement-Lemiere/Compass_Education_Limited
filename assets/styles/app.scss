@@ -29,8 +29,8 @@
         font-size: 22px;
         width: 10vw;
         transition: color 0.3s ease;
-        
-        a{
+
+        a {
             cursor: pointer;
             color: white;
         }
@@ -159,6 +159,7 @@ header {
 
         a {
             @include roundedBtn;
+            padding: 20px;
         }
     }
 
@@ -196,42 +197,47 @@ header {
     }
 }
 
-.aboutUsCtn {
+.aboutUsMain {
     @include dFlex(column);
-    @include centerXY(space-between, flex-start);
+    @include centerXY(space-between, center);
     padding: 50px;
     background-color: whitesmoke;
-    opacity: 0.8;
-    border-radius: 15px;
+    size: 100vw;
 
-    .mainCtn {
-        @include dFlex(row);
-        @include centerXY(space-evenly, center);
-
+    h2 {
+        font-size: 2rem;
     }
 
-    .aboutUsBlck {
-        @include dFlex(column);
+    .aboutUsBlock {
+        @include dFlex(row);
         @include centerXY(space-evenly, center);
-        width: 50vw;
+        margin-bottom: 10px;
+
+    }
+    
+    .aboutUsImg {
+        width: 30%;
+        margin: 0 auto;
+
+        img{
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: black 0 0 15px;
+        }
     }
 
     .aboutUsPr {
-
         font-size: 1.5rem;
+        text-align: justify;
+        width: 50%;
     }
-
-    .aboutUsImg {
-        @include dFlex(column);
-        @include centerXY(space-evenly, center);
-        width: 35vw;
-    }
-
+    
     .discoverBtn {
         margin: 20px auto;
 
         a {
             @include roundedBtn;
+            padding: 20px;
         }
     }
 }
