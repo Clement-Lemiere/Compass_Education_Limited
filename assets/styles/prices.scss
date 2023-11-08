@@ -1,0 +1,44 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+
+/* Min-height */
+body {
+    min-height: 100vh;
+}
+
+// _________________||| PRICES CONTENT \\\________________\\
+
+.priceMain {
+    @include dFlex(column);
+    @include centerXY(space-between, center);
+    padding: 50px;
+    background-color: whitesmoke;
+    size: 100vw;
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .priceBlock {
+        @include dFlex(row);
+        @include centerXY(space-evenly, center);
+        margin-bottom: 10px;
+    }
+
+    .pricePr {
+        font-size: 1.5rem;
+        text-align: justify;
+        width: 50%;
+    }
+
+    .discoverBtn {
+        margin: 20px auto;
+        margin-top: 50px;
+
+        a {
+            @include roundedBtn;
+            padding: 20px;
+        }
+    }
+}
