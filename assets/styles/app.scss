@@ -6,6 +6,10 @@
     text-decoration: none;
 }
 
+body {
+    background-color: whitesmoke;
+    position: relative
+}
 
 
 
@@ -147,7 +151,6 @@ header {
 .cardContainer {
     @include dFlex(column);
     @include centerXY(space-between, flex-start);
-    background-color: whitesmoke;
 
     h2 {
         font-size: 2rem;
@@ -201,8 +204,8 @@ header {
     @include dFlex(column);
     @include centerXY(space-between, center);
     padding: 50px;
-    background-color: whitesmoke;
     size: 100vw;
+    padding-bottom: 15vh;
 
     h2 {
         font-size: 2rem;
@@ -243,6 +246,10 @@ header {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
     color: $primaryDark;
     font-weight: bold;
