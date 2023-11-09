@@ -35,7 +35,7 @@ const AboutUs = () => {
                 </p>
             </div>
             <div className="discoverBtn">
-                <a href="#">About us</a>
+                <a href="/about">About us</a>
             </div>
         </section>
 

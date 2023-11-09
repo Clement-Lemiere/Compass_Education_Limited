@@ -14,6 +14,7 @@ import './styles/form.scss';
 import './styles/table.scss';
 import './styles/newUser.scss';
 import './styles/prices.scss';
+import './styles/contact.scss';
 
 
 registerReactControllerComponents(require.context('./react/controllers/', true, /\.(j|t)sx?$/));

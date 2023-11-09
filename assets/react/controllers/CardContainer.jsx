@@ -32,7 +32,7 @@ const CardContainer = () => {
                 </div>
             </div>
             <div className="discoverBtn">
-                <a href="#">Try it for free!</a>
+                <a href="/prices">Try it now!</a>
             </div>
         </section>
     );

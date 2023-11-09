@@ -6,7 +6,6 @@ const PriceContainer = () => {
 
         <div className='priceMain'>
             <h2>Pricing courses</h2>
-
             <table>
                 <tbody>
                     <tr>
@@ -42,7 +41,7 @@ const PriceContainer = () => {
                 </tbody>
             </table>
             <div className="discoverBtn">
-                <a href="#">Let's get started</a>
+                <a href="/login">Let's get started</a>
             </div>
         </div>
 

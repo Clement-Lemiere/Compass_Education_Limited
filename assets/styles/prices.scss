@@ -13,8 +13,13 @@ body {
     @include dFlex(column);
     @include centerXY(space-between, center);
     padding: 50px;
-    background-color: whitesmoke;
+    padding-bottom: 15vh;
     size: 100vw;
+
+    table {
+        margin-top: 50px;
+    }
+
 
     h2 {
         font-size: 2rem;
@@ -35,6 +40,7 @@ body {
     .discoverBtn {
         margin: 20px auto;
         margin-top: 50px;
+        margin-bottom: 50px;
 
         a {
             @include roundedBtn;
