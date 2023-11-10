@@ -24,3 +24,9 @@
         color: $primaryDark;
     }
 }
+
+@mixin blockBtn {
+    padding: 10px 15px;
+    border-bottom: solid 1px $whiteSmoke;
+    
+}
