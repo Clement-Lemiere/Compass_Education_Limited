@@ -14,9 +14,10 @@ const FrontNav = () => {
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/faq">FAQ</a></li>
+                <li><a href="/sprofile">Profile</a></li>
             </ul>
             <div className="loginBtn">
-                <a href="/login">Login</a>
+                    <a href="/login">Login</a>
             </div>
         </nav>
     );
