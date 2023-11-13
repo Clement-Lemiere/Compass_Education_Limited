@@ -5,15 +5,15 @@ const Dashboard = () => {
 
         <>
             <nav className="navTop">
-                <div className="dashLogo">
-                    <h2><a href="/">Logo</a></h2>
-                </div>
+                <div className="links">
+                    <div className="logo"><a href="/">Logo</a></div>
                 <ul className="aTop">
                     <li><a href="/">Home</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
+                </div>
                 <div className="backlogBtn">
-                    <a href="/login">Login</a>
+                    <a href="/logout">Logout</a>
                 </div>
             </nav>
             <div className="leftColumn">
@@ -27,6 +27,7 @@ const Dashboard = () => {
                 </ul>
             </div>
         </>
+
     );
 }
 

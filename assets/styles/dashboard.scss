@@ -2,8 +2,8 @@
 @import "../styles/variables.scss";
 
 body {
-    background-color: $whiteSmoke;
     min-height: 100vh;
+    background-color: whitesmoke;
 }
 
 // _________________||| HEADER \\\________________\\
@@ -13,57 +13,71 @@ body {
     @include centerXY(space-between, center);
     background: linear-gradient(100deg, $darkBlue, $basicBlue);
     color: $darkBlue;
-    box-shadow: 0 0 4px 1px $darkBlue;
-
+    height: 8.5vh;
 
     // _________________||| LOGO \\\________________\\
-    .dashLogo {
+    .links {
+        @include dFlex(row);
         @include centerXY(center, center);
-        text-align: center;
-        font-size: 22px;
-        width: 10vw;
-        transition: color 0.3s ease;
+        height: 100%;
+        align-items: center;
+
+        .logo {
+            @include dFlex(row);
+            @include centerXY(center, center);
+            width: 10vw;
+
+            a {
+                cursor: pointer;
+                color: white;
+                text-shadow: 0 0 7px black;
+            }
+
+        }
 
         a {
             cursor: pointer;
             color: white;
         }
-    }
 
-    // _________________||| LINKS \\\________________\\
+        .aTop {
+            @include dFlex(row);
+            @include centerXY(flex-start, center);
+            height: 100%;
+            font-size: 18px;
+            width: 75vw;
+            padding: 0;
+            margin: 0;
 
-    .aTop {
-        @include dFlex(row);
-        @include centerXY(flex-start, center);
-        font-size: 18px;
-        width: 75vw;
-        padding: 0;
-        margin: 0;
 
-        li {
-            width: 7rem;
-            list-style: none;
-            margin-inline: 20px;
+            li {
+                list-style: none;
+                margin: auto 0;
+                border-right: solid 1px $whiteSmoke;
+                height: 100%;
 
-            a {
-                display: block;
-                width: 100%;
-                @include blockBtn;
-                color: white;
-                text-decoration: none;
-                background-color: $darkBlue;
-                opacity: 0.8;
-                text-align: center;
+                a {
+                    display: block;
+                    padding: 0 50px;
+                    color: white;
+                    height: 100%;
+                    transition: color 0.3s ease;
+                    background-color: $darkBlue;
+                    line-height: 75px;
 
-                &:hover {
-                    color: $darkBlue;
-                    cursor: pointer;
-                    box-shadow: 0 0 5px black;
-                    background-color: $lightBlue;
+                    &:hover {
+                        color: $darkBlue;
+                        cursor: pointer;
+                        box-shadow: 0 0 5px black;
+                        background-color: $lightBlue;
+                    }
                 }
             }
         }
     }
+
+    // _________________||| LINKS \\\________________\\
+
 
     .backlogBtn {
         @include dFlex(row);
@@ -95,7 +109,7 @@ body {
 .leftColumn {
     @include dFlex(column);
     @include centerXY(space-between, flex-start);
-    width: 10%;
+    width: 10vw;
     height: 100vh;
     background: linear-gradient(160deg, $darkBlue 0%, $basicBlue 90%);
 
@@ -106,6 +120,7 @@ body {
         font-size: 1rem;
         width: 100%;
         padding: 0;
+        margin: 0;
 
         li {
             list-style: none;
@@ -114,11 +129,10 @@ body {
             a {
                 display: block;
                 @include blockBtn;
+                padding: 30px 15px;
                 color: white;
                 text-decoration: none;
                 background-color: $darkBlue;
-                opacity: 0.8;
-                text-align: flex-start;
 
                 &:hover {
                     color: $darkBlue;
@@ -129,4 +143,111 @@ body {
             }
         }
     }
+}
+
+.mainCtn {
+    @include dFlex(column);
+    @include centerXY(normal, center);
+    position: absolute;
+    right: 0;
+    left: 10%;
+    top: 5rem;
+    bottom: 0;
+
+    h1 {
+        width: 50%;
+        margin: 25px auto;
+        font-size: 2rem;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: black 0 0 15px;
+        background-color: $darkBlue;
+        color: white;
+    }
+
+    h2 {
+        font-size: 2rem;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: black 0 0 15px;
+        background-color: $basicBlue;
+        color: white;
+    }
+
+    .profileContainer {
+        @include dFlex(column);
+        @include centerXY(space-between, center);
+        box-shadow: black 0 0 15px;
+        border-radius: 5px;
+        width: 80%;
+        padding: 2vw;
+
+        .profileInfo {
+            @include dFlex(column);
+            @include centerXY(space-between, center);
+            width: 48%;
+            height: 100%;
+            margin: 0 auto;
+
+
+
+            .infoCtn {
+
+                width: 100%;
+                margin: 0 auto;
+
+                ul {
+                    padding: 0;
+                }
+
+
+                li {
+                    font-weight: bold;
+                    list-style: none;
+                }
+
+                p {
+                    box-shadow: black 0 0 15px;
+                    padding: 15px;
+                    border-radius: 5px;
+                }
+            }
+
+            
+        }
+        .profileBtn {
+            @include backBtn;
+            margin-top: 50px;
+            &:hover {
+                color: $darkBlue;
+                font-weight: bold;
+            }
+        }
+
+        .profilePhoto {
+            @include dFlex(column);
+            @include centerXY(space-between, center);
+            width: 48%;
+            height: 100%;
+
+
+            .photo {
+                @include dFlex(column);
+                @include centerXY(center, center);
+
+                img {
+                    margin: 0;
+                    height: 60%;
+                    border-radius: 15px;
+                    box-shadow: black 0 0 15px;
+                }
+            }
+        }
+
+        .profileDescription {
+            @include dFlex(row);
+            width: 100%;
+        }
+    }
+
 }

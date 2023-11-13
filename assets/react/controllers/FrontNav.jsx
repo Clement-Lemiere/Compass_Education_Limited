@@ -17,7 +17,7 @@ const FrontNav = () => {
                 <li><a href="/sprofile">Profile</a></li>
             </ul>
             <div className="loginBtn">
-                    <li><a href="/login">Login</a></li>
+                    <a href="/login">Login</a>
             </div>
         </nav>
     );
