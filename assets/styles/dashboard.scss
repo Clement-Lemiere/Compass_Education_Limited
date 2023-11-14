@@ -100,7 +100,7 @@ body {
     }
 }
 
-main {
+.profilePage {
     @include dFlex(row);
     @include centerXY(space-between, flex-start);
 

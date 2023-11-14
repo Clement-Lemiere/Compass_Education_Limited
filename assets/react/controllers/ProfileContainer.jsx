@@ -58,7 +58,7 @@ function ProfileContainer() {
 
 
   return (
-    <main>
+    <main className='profilePage'>
       <div className="leftColumn">
         <ul className="aLeft">
           <li><a href="/sprofile">Profile</a></li>

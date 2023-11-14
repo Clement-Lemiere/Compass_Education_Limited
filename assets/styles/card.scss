@@ -41,23 +41,28 @@ main {
         height: 100%;
         border-radius: 25px;
         box-shadow: 0 0 15px $primaryDark;
-        transition: all 0.5s ease-in;
-        color: white;
+        transition: all 0.5s ease-in, box-shadow 0.2s;
         cursor: pointer;
-
+        
         h2 {
             font-size: 2rem;
+            color: white;
             margin: 0;
-
+            
         }
-
+        
         .cardDescription {
+            color: transparent;
             opacity: 0;
             display: none;
+            transition: all 0.5s ease-in-out;
+            font-size: 1.3rem;
+            line-height: 1.7rem;
+            text-align: center;
 
             span {
                 display: inline-block;
-                animation: showWord 0.5s ease-in-out;
+                animation: showWord 0.5s ease-in-out forwards;
             }
             
             .word {
@@ -77,22 +82,27 @@ main {
         }
     }
 
-    .card:hover {
-        background: $primaryLight;
-        color: black;
-        box-shadow: 0 0 15px 5px black;
-    }
-
     .card.expanded {
         width: 23vw;
-        height: 400px;
+        height: 430px;
+        background: $primaryLight;
         img {
-            width: 80%;
+            width: 100%;
+        }
+
+        h2 {
+            color: black;
         }
 
         .cardDescription {
+            color: black;
             display: block;
             opacity: 1;
         }
+    }
+
+    .card:hover {
+        box-shadow: 0 0 15px 5px black;
+
     }
 }
