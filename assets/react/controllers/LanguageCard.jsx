@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Test = require('../../images/chinese_flag.png');
 
 function LanguageCard() {
-    const [languageData, setLanguageData] = useState(null);
+    const [languageData, setLanguageData] = useState([]);
     const [expandedCards, setExpandedCards] = useState(Array.from({ length: 3 }).fill(false));
     const [showWords, setShowWords] = useState(false);
 
@@ -16,13 +16,10 @@ function LanguageCard() {
             .then((data) => setLanguageData(data))
             .catch((error) => console.log(error));
 
-    }, []);
+    },  []);
 
-    // Replace `fetchUserData` with the actual function to fetch user data
     function fetchLanguageData() {
-        // Implement code to fetch user data from the database
         return new Promise((resolve, reject) => {
-            // Replace with the actual API endpoint or database query
             const endpoint = '/admin/language';
             fetch(endpoint)
                 .then((response) => response.json())
@@ -33,7 +30,8 @@ function LanguageCard() {
 
 
 
-    const testCard = languageData ? languageData : {
+
+    const languages = languageData ? languageData : {
         name: "Chinese",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id temporibus optio, repellendus architecto dolores corrupti eveniet debitis minima odit expedita velit consequuntur. Sint, quas a.",
     };
@@ -53,20 +51,24 @@ function LanguageCard() {
     return (
         <section>
             <h1>Choose the language you want to study.</h1>
+            <ul>
+                {languages.map(languageData => <li key={languageData.id}>{languageData.name}</li>)}
+            </ul>
             <div className="cardCtn">
                 {Array.from({ length: 6 }).map((_, index) => (
                     <div className={`card ${expandedCards[index] ? 'expanded' : ''}`} key={index} onClick={() => handleCardClick(index)}>
                         <div className='cardImg'>
-                            <img src={Test} alt={`Language flag for ${testCard.name}`} />
+                            <img src={Test} alt={`Language flag for ${languageData.name}`} />
                         </div>
-                        <h2>{testCard.name}</h2>
-                        <p className={`cardDescription ${expandedCards[index] ? 'expanded' : ''}`}>
-                            {testCard.description.split(' ').map((word, i) => (
+                        <h2>{languageData.name}</h2>
+                        <p className="description">{languageData.description}</p>
+                        {/* <p className={`cardDescription ${expandedCards[index] ? 'expanded' : ''}`}>
+                            {languageData.description.split(' ').map((word, i) => (
                                 <span key={i} className={`word ${showWords ? 'show' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
                                     {word}
                                 </span>
                             ))}
-                        </p>
+                        </p> */}
                     </div>
                 ))}
             </div>
