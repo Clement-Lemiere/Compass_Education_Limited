@@ -3,44 +3,50 @@
 {% block title %}Formation index{% endblock %}
 
 {% block body %}
-    <h1 class="text-5xl font-extrabold text-center">Formation index</h1>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Id</th>
-                    <th scope="col" class="px-6 py-3">Title</th>
-                    <th scope="col" class="px-6 py-3">Objective</th>
-                    <th scope="col" class="px-6 py-3">Duration</th>
-                    <th scope="col" class="px-6 py-3">Cost</th>
-                    <th scope="col" class="px-6 py-3">StartDate</th>
-                    <th scope="col" class="px-6 py-3">Satisfaction</th>
-                    <th scope="col" class="px-6 py-3">actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for formation in formations %}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="px-6 py-4" >{{ formation.id }}</td>
-                    <td class="px-6 py-4" >{{ formation.title }}</td>
-                    <td class="px-6 py-4" >{{ formation.objective }}</td>
-                    <td class="px-6 py-4" >{{ formation.duration }}</td>
-                    <td class="px-6 py-4" >{{ formation.cost }}</td>
-                    <td class="px-6 py-4" >{{ formation.startDate ? formation.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                    <td class="px-6 py-4" >{{ formation.satisfaction }}</td>
-                    <td class="px-6 py-4" >
-                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_formation_show', {'id': formation.id}) }}">show</a>
-                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ path('app_admin_formation_edit', {'id': formation.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="8">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <a class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 px-6 py-4" href="{{ path('app_admin_formation_new') }}">Create new</a>
+<h1 class="tableTitle">Formation index</h1>
+<div class="tableFeatures">
+    <a class="newBtn" href="{{ path('app_admin_formation_new') }}">Create new formation</a>
+    <form class="searchForm">
+        <label for="search">Find</label>
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Objective</th>
+                <th>Duration</th>
+                <th>Cost</th>
+                <th>StartDate</th>
+                <th>Satisfaction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.title }}</td>
+                <td>{{ formation.objective }}</td>
+                <td>{{ formation.duration }}</td>
+                <td>{{ formation.cost }}</td>
+                <td>{{ formation.startDate ? formation.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.satisfaction }}</td>
+                <td>
+                    <a href="{{ path('app_admin_formation_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('app_admin_formation_edit', {'id': formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

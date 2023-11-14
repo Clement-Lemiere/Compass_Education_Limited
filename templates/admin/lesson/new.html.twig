@@ -3,9 +3,12 @@
 {% block title %}New Lesson{% endblock %}
 
 {% block body %}
+<div class="newElementForm">
     <h1>Create new Lesson</h1>
 
     {{ include('admin/lesson/_form.html.twig') }}
-
+    <div class="adminBtn">
     <a href="{{ path('app_admin_lesson_index') }}">back to list</a>
+    </div>
+</div>
 {% endblock %}

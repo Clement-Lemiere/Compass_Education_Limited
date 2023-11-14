@@ -7,7 +7,8 @@
         <h1>Create new Teacher</h1>
 
         {{ include('admin/teacher/_form.html.twig') }}
-
+        <div class="adminBtn">
         <a href="{{ path('app_admin_teacher_index') }}">back to list</a>
+        </div>
     </div>
 {% endblock %}

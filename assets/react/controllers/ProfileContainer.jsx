@@ -38,7 +38,7 @@ function ProfileContainer() {
     // Implement code to fetch student data from the database
     return new Promise((resolve, reject) => {
       // Replace with the actual API endpoint or database query
-      const endpoint = '/admin/student';
+      const endpoint = '/student';
       fetch(endpoint)
         .then((response) => response.json())
         .then((data) => resolve(data))
@@ -61,7 +61,7 @@ function ProfileContainer() {
     <main>
       <div className="leftColumn">
         <ul className="aLeft">
-          <li><a href="/sprofile">Profile</a></li>
+          <li><a href="/student/dashboard">Profile</a></li>
           <li><a>Calendar</a></li>
           <li><a>Progress</a></li>
           <li><a>Mailbox</a></li>

@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class StudentDashboardController extends AbstractController
 {
@@ -16,8 +15,8 @@ class StudentDashboardController extends AbstractController
         return $this->render('front/home.html.twig');
     }
 
-    #[Route('/sprofile', name:'profile')]
-    public function about(): Response
+    #[Route('/sprofile', name:'app_student_dashboard')]
+    public function studentProfile(): Response
     {
         return $this->render('studentDashboard/student_profile.html.twig');
     }

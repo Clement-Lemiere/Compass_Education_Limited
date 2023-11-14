@@ -3,9 +3,12 @@
 {% block title %}New Session{% endblock %}
 
 {% block body %}
+<div class="newElementForm">
     <h1>Create new Session</h1>
 
     {{ include('admin/session/_form.html.twig') }}
-
+    <div class="adminBtn">
     <a href="{{ path('app_admin_session_index') }}">back to list</a>
+    </div>
+</div>
 {% endblock %}

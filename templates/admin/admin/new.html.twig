@@ -7,7 +7,8 @@
         <h1>Create new Admin</h1>
 
         {{ include('admin/admin/_form.html.twig') }}
-
+        <div class="adminBtn">
         <a href="{{ path('app_admin_user_index') }}">back to list</a>
+        </div>
     </div>
 {% endblock %}

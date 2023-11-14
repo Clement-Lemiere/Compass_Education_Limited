@@ -3,26 +3,34 @@
 {% block title %}Payment index{% endblock %}
 
 {% block body %}
-    <h1 class="text-5xl font-extrabold text-center">Payment index</h1>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<h1 class="tableTitle">Payment index</h1>
+<div class="tableFeatures">
+    <a class="newBtn" href="{{ path('app_admin_payment_new') }}">Create new payment</a>
+    <form class="searchForm">
+        <label for="search">Find</label>
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <table>
+        <thead>
             <tr>
-                <th scope="col" class="px-6 py-3">Id</th>
-                <th scope="col" class="px-6 py-3">Date</th>
-                <th scope="col" class="px-6 py-3">Type</th>
-                <th scope="col" class="px-6 py-3">actions</th>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for payment in payments %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="px-6 py-4">{{ payment.id }}</td>
-                <td class="px-6 py-4">{{ payment.date ? payment.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td class="px-6 py-4">{{ payment.type }}</td>
-                <td class="px-6 py-4">
-                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"  href="{{ path('app_admin_payment_show', {'id': payment.id}) }}">show</a>
-                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"  href="{{ path('app_admin_payment_edit', {'id': payment.id}) }}">edit</a>
+            <tr>
+                <td>{{ payment.id }}</td>
+                <td>{{ payment.date ? payment.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ payment.type }}</td>
+                <td>
+                    <a  href="{{ path('app_admin_payment_show', {'id': payment.id}) }}">show</a>
+                    <a  href="{{ path('app_admin_payment_edit', {'id': payment.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +41,4 @@
         </tbody>
     </table>
 </div>
-    <a class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 px-6 py-4" href="{{ path('app_admin_payment_new') }}">Create new</a>
 {% endblock %}
