@@ -5,6 +5,9 @@
 * {
     text-decoration: none;
 }
+li {
+    list-style: none;
+}
 
 body {
     background-color: whitesmoke;
@@ -216,7 +219,6 @@ header {
         @include dFlex(row);
         @include centerXY(space-evenly, center);
         margin-bottom: 10px;
-
     }
     
     .aboutUsImg {
@@ -247,13 +249,13 @@ header {
 }
 
 footer {
-    position: absolute;
+    // position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
     color: $primaryDark;
     font-weight: bold;
-    padding: 20px;
+    padding: 10px 20px;
     text-align: center;
 }

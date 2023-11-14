@@ -16,6 +16,7 @@ import './styles/newUser.scss';
 import './styles/prices.scss';
 import './styles/contact.scss';
 import './styles/dashboard.scss';
+import './styles/card.scss';
 
 
 registerReactControllerComponents(require.context('./react/controllers/', true, /\.(j|t)sx?$/));
