@@ -16,16 +16,6 @@ const Dashboard = () => {
                     <a href="/logout">Logout</a>
                 </div>
             </nav>
-            <div className="leftColumn">
-                <ul className="aLeft">
-                    <li><a href="/sprofile">Profile</a></li>
-                    <li><a>Calendar</a></li>
-                    <li><a>Progress</a></li>
-                    <li><a>Mailbox</a></li>
-                    <li><a>Payment</a></li>
-                    <li><a>Edit Profile</a></li>
-                </ul>
-            </div>
         </>
 
     );

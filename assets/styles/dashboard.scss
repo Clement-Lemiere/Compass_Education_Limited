@@ -32,7 +32,6 @@ body {
                 color: white;
                 text-shadow: 0 0 7px black;
             }
-
         }
 
         a {
@@ -48,7 +47,6 @@ body {
             width: 75vw;
             padding: 0;
             margin: 0;
-
 
             li {
                 margin: auto 0;
@@ -77,7 +75,6 @@ body {
 
     // _________________||| LINKS \\\________________\\
 
-
     .backlogBtn {
         @include dFlex(row);
         @include centerXY(center, center);
@@ -103,150 +100,157 @@ body {
     }
 }
 
-// _________________||| LEFT COLUMN NAV \\\________________\\
-
-.leftColumn {
-    @include dFlex(column);
+main {
+    @include dFlex(row);
     @include centerXY(space-between, flex-start);
-    width: 10vw;
-    height: 100vh;
-    background: linear-gradient(160deg, $darkBlue 0%, $basicBlue 90%);
 
 
-    .aLeft {
+    // _________________||| LEFT COLUMN NAV \\\________________\\
+
+    .leftColumn {
         @include dFlex(column);
-        @include centerXY(center, center);
-        font-size: 1rem;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+        @include centerXY(space-between, flex-start);
+        width: 10vw;
+        height: 100vh;
+        background: linear-gradient(160deg, $darkBlue 0%, $basicBlue 90%);
 
-        li {
-            list-style: none;
+
+        .aLeft {
+            @include dFlex(column);
+            @include centerXY(center, center);
+            font-size: 1rem;
             width: 100%;
+            padding: 0;
+            margin: 0;
 
-            a {
-                display: block;
-                @include blockBtn;
-                padding: 30px 15px;
-                color: white;
-                text-decoration: none;
-                background-color: $darkBlue;
+            li {
+                list-style: none;
+                width: 100%;
+
+                a {
+                    display: block;
+                    @include blockBtn;
+                    padding: 30px 15px;
+                    color: white;
+                    text-decoration: none;
+                    background-color: $darkBlue;
+
+                    &:hover {
+                        color: $darkBlue;
+                        cursor: pointer;
+                        box-shadow: 0 0 5px black;
+                        background-color: $lightBlue;
+                    }
+                }
+            }
+        }
+    }
+
+    // _________________||| MAIN CONTENT \\\________________\\
+
+    .mainCtn {
+        @include dFlex(column);
+        @include centerXY(normal, center);
+        width: 88vw;
+
+        h1 {
+            width: 50%;
+            margin: 25px auto;
+            font-size: 2rem;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: black 0 0 15px;
+            background-color: $darkBlue;
+            color: white;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: black 0 0 15px;
+            background-color: $basicBlue;
+            color: white;
+        }
+
+        // _________________||| PROFILE CONTENT \\\________________\\
+
+        .profileContainer {
+            @include dFlex(column);
+            @include centerXY(space-between, center);
+            box-shadow: black 0 0 15px;
+            border-radius: 5px;
+            width: 80%;
+            padding: 2vw;
+
+            // _________________||| PROFILE INFO \\\\________________\\
+
+            .profileInfo {
+                @include dFlex(column);
+                @include centerXY(space-between, center);
+                width: 48%;
+                height: 100%;
+                margin: 0 auto;
+
+                .infoCtn {
+
+                    width: 100%;
+                    margin: 0 auto;
+
+                    ul {
+                        padding: 0;
+                    }
+
+
+                    li {
+                        font-weight: bold;
+                        list-style: none;
+                    }
+
+                    p {
+                        box-shadow: black 0 0 15px;
+                        padding: 15px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+
+            // _________________||| PROFILE PHOTO \\\\________________\\
+
+            .profilePhoto {
+                @include dFlex(column);
+                @include centerXY(space-between, center);
+                width: 48%;
+                height: 100%;
+
+
+                .photo {
+                    @include dFlex(column);
+                    @include centerXY(center, center);
+
+                    img {
+                        margin: 0;
+                        height: 60%;
+                        border-radius: 15px;
+                        box-shadow: black 0 0 15px;
+                    }
+                }
+            }
+
+            .profileDescription {
+                @include dFlex(row);
+                width: 100%;
+            }
+
+            .profileBtn {
+                @include backBtn;
+                margin-top: 50px;
 
                 &:hover {
                     color: $darkBlue;
-                    cursor: pointer;
-                    box-shadow: 0 0 5px black;
-                    background-color: $lightBlue;
-                }
-            }
-        }
-    }
-}
-
-.mainCtn {
-    @include dFlex(column);
-    @include centerXY(normal, center);
-    position: absolute;
-    right: 0;
-    left: 10%;
-    top: 5rem;
-    bottom: 0;
-
-    h1 {
-        width: 50%;
-        margin: 25px auto;
-        font-size: 2rem;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: black 0 0 15px;
-        background-color: $darkBlue;
-        color: white;
-    }
-
-    h2 {
-        font-size: 2rem;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: black 0 0 15px;
-        background-color: $basicBlue;
-        color: white;
-    }
-
-    .profileContainer {
-        @include dFlex(column);
-        @include centerXY(space-between, center);
-        box-shadow: black 0 0 15px;
-        border-radius: 5px;
-        width: 80%;
-        padding: 2vw;
-
-        .profileInfo {
-            @include dFlex(column);
-            @include centerXY(space-between, center);
-            width: 48%;
-            height: 100%;
-            margin: 0 auto;
-
-
-
-            .infoCtn {
-
-                width: 100%;
-                margin: 0 auto;
-
-                ul {
-                    padding: 0;
-                }
-
-
-                li {
                     font-weight: bold;
-                    list-style: none;
-                }
-
-                p {
-                    box-shadow: black 0 0 15px;
-                    padding: 15px;
-                    border-radius: 5px;
                 }
             }
-
-            
-        }
-        .profileBtn {
-            @include backBtn;
-            margin-top: 50px;
-            &:hover {
-                color: $darkBlue;
-                font-weight: bold;
-            }
-        }
-
-        .profilePhoto {
-            @include dFlex(column);
-            @include centerXY(space-between, center);
-            width: 48%;
-            height: 100%;
-
-
-            .photo {
-                @include dFlex(column);
-                @include centerXY(center, center);
-
-                img {
-                    margin: 0;
-                    height: 60%;
-                    border-radius: 15px;
-                    box-shadow: black 0 0 15px;
-                }
-            }
-        }
-
-        .profileDescription {
-            @include dFlex(row);
-            width: 100%;
         }
     }
-
 }
