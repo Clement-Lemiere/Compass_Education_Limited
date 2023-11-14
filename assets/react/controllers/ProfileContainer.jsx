@@ -58,38 +58,82 @@ function ProfileContainer() {
 
 
   return (
-    <div className="mainCtn">
-      <h1>PROFILE</h1>
-      <div className='profileContainer'>
-        <div className="profileDescription">
-          <div className="profileInfo">
-            <h2>Information</h2>
-            <div className="infoCtn">
-              <ul>
-                <li><p>Firstname : {userInformation.firstname}</p></li>
-                <li><p>Last : {userInformation.lastname}</p></li>
-                <li><p>Age : {userInformation.age}</p></li>
-                <li><p>Nationality : {userInformation.nationality}</p></li>
-                <li><p>Email : {userInformation.email}</p></li>
-                <li><p>Language : {userInformation.language}</p></li>
-              </ul>
+    <main>
+      <div className="leftColumn">
+        <ul className="aLeft">
+          <li><a href="/sprofile">Profile</a></li>
+          <li><a>Calendar</a></li>
+          <li><a>Progress</a></li>
+          <li><a>Mailbox</a></li>
+          <li><a>Payment</a></li>
+          <li><a>Edit Profile</a></li>
+        </ul>
+      </div>
+      <div className="mainCtn">
+        <h1>PROFILE</h1>
+        <div className='profileContainer'>
+          <div className="profileDescription">
+            <div className="profileInfo">
+              <h2>Information</h2>
+              <div className="infoCtn">
+                <ul>
+                  <li><p>Firstname : {userInformation.firstname}</p></li>
+                  <li><p>Last : {userInformation.lastname}</p></li>
+                  <li><p>Age : {userInformation.age}</p></li>
+                  <li><p>Nationality : {userInformation.nationality}</p></li>
+                  <li><p>Email : {userInformation.email}</p></li>
+                  <li><p>Language : {userInformation.language}</p></li>
+                </ul>
+              </div>
+            </div>
+            <div className="profilePhoto">
+              <h2>Photo</h2>
+              <div className='photo'>
+                <img
+                  src={Test}
+                  alt="About us"
+                />
+              </div>
             </div>
           </div>
-          <div className="profilePhoto">
-            <h2>Photo</h2>
-            <div className='photo'>
-              <img
-                src={Test}
-                alt="About us"
-              />
-            </div>
+          <div>
+            <button className='profileBtn'>Edit Profile</button>
           </div>
-        </div>
-        <div>
-          <button className='profileBtn'>Edit Profile</button>
         </div>
       </div>
-    </div>
+      <div className="mainCtn">
+        <h1>PROFILE</h1>
+        <div className='profileContainer'>
+          <div className="profileDescription">
+            <div className="profileInfo">
+              <h2>Information</h2>
+              <div className="infoCtn">
+                <ul>
+                  <li><p>Firstname : {userInformation.firstname}</p></li>
+                  <li><p>Last : {userInformation.lastname}</p></li>
+                  <li><p>Age : {userInformation.age}</p></li>
+                  <li><p>Nationality : {userInformation.nationality}</p></li>
+                  <li><p>Email : {userInformation.email}</p></li>
+                  <li><p>Language : {userInformation.language}</p></li>
+                </ul>
+              </div>
+            </div>
+            <div className="profilePhoto">
+              <h2>Photo</h2>
+              <div className='photo'>
+                <img
+                  src={Test}
+                  alt="About us"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <button className='profileBtn'>Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
 
