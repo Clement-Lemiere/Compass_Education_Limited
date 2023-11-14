@@ -63,7 +63,7 @@ function LanguageCard() {
                         <p className={`cardDescription ${expandedCards[index] ? 'expanded' : ''}`}>
                             {testCard.description.split(' ').map((word, i) => (
                                 <span key={i} className={`word ${showWords ? 'show' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                                    {word} 
+                                    {word}
                                 </span>
                             ))}
                         </p>
