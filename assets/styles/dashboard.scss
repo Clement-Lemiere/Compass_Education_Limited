@@ -2,8 +2,11 @@
 @import "../styles/variables.scss";
 
 body {
-    min-height: 100vh;
     background-color: whitesmoke;
+}
+
+main {
+    min-height: 90vh;
 }
 
 // _________________||| HEADER \\\________________\\
@@ -13,7 +16,7 @@ body {
     @include centerXY(space-between, center);
     background: linear-gradient(100deg, $darkBlue, $basicBlue);
     color: $darkBlue;
-    height: 8.5vh;
+    height: 10vh;
 
     // _________________||| LOGO \\\________________\\
     .links {
@@ -39,12 +42,12 @@ body {
             color: white;
         }
 
+        // _________________||| LINKS \\\________________\\
+
         .aTop {
             @include dFlex(row);
             @include centerXY(flex-start, center);
             height: 100%;
-            font-size: 18px;
-            width: 75vw;
             padding: 0;
             margin: 0;
 
@@ -54,16 +57,17 @@ body {
                 height: 100%;
 
                 a {
-                    display: block;
+                    display: flex;
+                    align-items: center;
                     padding: 0 50px;
                     color: white;
                     height: 100%;
                     transition: color 0.3s ease;
                     background-color: $darkBlue;
-                    line-height: 75px;
 
                     &:hover {
                         color: $darkBlue;
+                        font-weight: bold;
                         cursor: pointer;
                         box-shadow: 0 0 5px black;
                         background-color: $lightBlue;
@@ -73,15 +77,14 @@ body {
         }
     }
 
-    // _________________||| LINKS \\\________________\\
-
     .backlogBtn {
-        @include dFlex(row);
-        @include centerXY(center, center);
+        display: flex;
+        align-items: center;
         font-size: 20px;
         border-left: solid 1px white;
-        width: 10vw;
+        padding: 0 50px;
         height: 100%;
+        transition: color 0.3s ease;
 
         a {
             text-decoration: none;
@@ -93,8 +96,8 @@ body {
             cursor: pointer;
 
             a {
-                display: block;
-                color: $darkBlue;
+                font-weight: bold;
+                font-style: italic
             }
         }
     }
@@ -102,33 +105,26 @@ body {
 
 .profilePage {
     @include dFlex(row);
-    @include centerXY(space-between, flex-start);
-
+    width: 100%;
 
     // _________________||| LEFT COLUMN NAV \\\________________\\
 
     .leftColumn {
-        @include dFlex(column);
-        @include centerXY(space-between, flex-start);
         width: 10vw;
-        height: 100vh;
         background: linear-gradient(160deg, $darkBlue 0%, $basicBlue 90%);
 
 
         .aLeft {
-            @include dFlex(column);
-            @include centerXY(center, center);
+            text-align: center;
             font-size: 1rem;
-            width: 100%;
             padding: 0;
             margin: 0;
 
             li {
                 list-style: none;
-                width: 100%;
 
                 a {
-                    display: block;
+                    @include dFlex(column);
                     @include blockBtn;
                     padding: 30px 15px;
                     color: white;
@@ -137,6 +133,7 @@ body {
 
                     &:hover {
                         color: $darkBlue;
+                        font-weight: bold;
                         cursor: pointer;
                         box-shadow: 0 0 5px black;
                         background-color: $lightBlue;
@@ -151,12 +148,12 @@ body {
     .mainCtn {
         @include dFlex(column);
         @include centerXY(normal, center);
-        width: 88vw;
+        width: 90vw;
+        max-width: 90vw;
 
         h1 {
             width: 50%;
             margin: 25px auto;
-            font-size: 2rem;
             padding: 15px;
             border-radius: 5px;
             box-shadow: black 0 0 15px;
@@ -165,12 +162,13 @@ body {
         }
 
         h2 {
-            font-size: 2rem;
+            margin: 20px auto;
             padding: 15px;
-            border-radius: 5px;
             box-shadow: black 0 0 15px;
-            background-color: $basicBlue;
+            border-radius: 5px;
             color: white;
+            background-color: $basicBlue;
+            font-size: 2rem;
         }
 
         // _________________||| PROFILE CONTENT \\\________________\\
@@ -178,10 +176,16 @@ body {
         .profileContainer {
             @include dFlex(column);
             @include centerXY(space-between, center);
+            width: 80vw;
             box-shadow: black 0 0 15px;
             border-radius: 5px;
-            width: 80%;
-            padding: 2vw;
+            margin-bottom: 25px;
+
+            .profileDescription {
+                @include dFlex(row);
+                @include centerXY(space-evenly, center);
+                width: 100%;
+            }
 
             // _________________||| PROFILE INFO \\\\________________\\
 
@@ -189,28 +193,28 @@ body {
                 @include dFlex(column);
                 @include centerXY(space-between, center);
                 width: 48%;
-                height: 100%;
-                margin: 0 auto;
 
                 .infoCtn {
-
                     width: 100%;
-                    margin: 0 auto;
+                    color: black;
 
                     ul {
                         padding: 0;
                     }
 
-
+                    
                     li {
                         font-weight: bold;
-                        list-style: none;
+                        list-style: none; 
                     }
 
+
                     p {
+                        background-color: $whiteSmoke;
                         box-shadow: black 0 0 15px;
                         padding: 15px;
                         border-radius: 5px;
+                        text-align: center
                     }
                 }
             }
@@ -219,32 +223,24 @@ body {
 
             .profilePhoto {
                 @include dFlex(column);
-                @include centerXY(space-between, center);
+                @include centerXY(center, center);
                 width: 48%;
-                height: 100%;
-
 
                 .photo {
                     @include dFlex(column);
-                    @include centerXY(center, center);
+                    @include centerXY(space-between, center);
 
                     img {
-                        margin: 0;
-                        height: 60%;
                         border-radius: 15px;
                         box-shadow: black 0 0 15px;
+                        width: 70%;
                     }
                 }
             }
 
-            .profileDescription {
-                @include dFlex(row);
-                width: 100%;
-            }
-
             .profileBtn {
                 @include backBtn;
-                margin-top: 50px;
+                margin: 50px auto;
 
                 &:hover {
                     color: $darkBlue;
