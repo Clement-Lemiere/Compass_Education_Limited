@@ -104,7 +104,7 @@ main {
 }
 
 .profilePage {
-    @include dFlex(row);
+    display: flex;
     width: 100%;
 
     // _________________||| LEFT COLUMN NAV \\\________________\\
@@ -198,14 +198,23 @@ main {
                     width: 100%;
                     color: black;
 
+                    input {
+                        width: 100%;
+                        margin: 10px 0;
+                        padding: 5px;
+                        border-radius: 5px;
+                        box-shadow: $darkBlue 0 0 15px;
+                        border: none;
+                    }
+
                     ul {
                         padding: 0;
                     }
 
-                    
+
                     li {
                         font-weight: bold;
-                        list-style: none; 
+                        list-style: none;
                     }
 
 

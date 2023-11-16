@@ -19,7 +19,7 @@ function StudentDashboard() {
     { name: 'Progress', href: '/' },
     { name: 'Mailbox', href: '/' },
     { name: 'Payment', href: '/' },
-    { name: 'Edit Profile', href: '/' },
+    { name: 'Edit Profile', href: '/editSprofile' },
 
   ]
 
