@@ -85,9 +85,9 @@ main {
                 }
             }
             .cardBtn {
+                display: none;
                 @include roundedBtn;
                 margin-block: 20px;
-                opacity: 0;
                 transition: all 0.5s ease-in-out;
             }
         }
