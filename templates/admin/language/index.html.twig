@@ -18,6 +18,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Flag</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -31,6 +32,7 @@
                     <img loading="lazy" src="{{ vich_uploader_asset(language, 'imageFile') | imagine_filter('flag_mini') }}" alt="photo de {{ language.name }}" >
                 {% endif %}
             </td>
+            <td>{{ language.description }}</td>
             <td>
                 <a href="{{ path('app_admin_language_show', {'id': language.id}) }}">show</a>
                 <a href="{{ path('app_admin_language_edit', {'id': language.id}) }}">edit</a>

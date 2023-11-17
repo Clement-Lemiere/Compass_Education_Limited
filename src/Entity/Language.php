@@ -2,21 +2,56 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model;
+
+use App\Controller\FrontController;
 use App\Repository\LanguageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
-
-
+use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: LanguageRepository::class)]
-
 #[Vich\Uploadable]
-
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'language: item']),
+        new GetCollection(normalizationContext: ['groups' => ['language: list']]),
+        // new Post(
+        //     normalizationContext: ['groups' => ['language: item']],
+        //     controller: FrontController::class,
+        //     deserialize: false,
+        //     validationContext: ['groups' => [['Default', 'language_create']]],
+        //     openapi: new Model\Operation(
+        //         requestBody: new Model\RequestBody(
+        //             content: new \ArrayObject([
+        //                 'multipart/form-data' => [
+        //                     'schema' => [
+        //                         'type' => 'object',
+        //                         'properties' => [
+        //                             'file' => [
+        //                                 'type' => 'string',
+        //                                 'format' => 'binary'
+        //                             ]
+        //                         ]
+        //                     ]
+        //                 ]
+        //             ])
+        //         )
+        //     )
+            
+        // )
+    ],
+)]
 class Language
 {
     use TimestampableEntity;
@@ -24,10 +59,16 @@ class Language
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['language: item', 'language: list'])]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 191)]
+    #[Groups(['language: item', 'language: list'])]
     private ?string $name = null;
+    
+    #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['language: item', 'language: list'])]
+    private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Flag::class)]
     private Collection $flags;
@@ -51,14 +92,20 @@ class Language
     private Collection $students;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
-    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'flag_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Groups(['language: item', 'language: list'])]
     private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Groups(['language: item', 'language: list'])]
+    private ?string $imageUrl = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
+
 
     public function __construct()
     {
@@ -338,5 +385,17 @@ class Language
     public function __toString()
     {
         return $this->getName(); 
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

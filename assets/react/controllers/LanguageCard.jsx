@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import Test from '../../images/chinese_flag.png';
 
-const Test = require('../../images/chinese_flag.png');
-
-function LanguageCard() {
-    const [languageData, setLanguageData] = useState([]);
+const LanguageCard = (props) => {
+    const [language, setLanguage] = useState([]);
     const [expandedCards, setExpandedCards] = useState(Array.from({ length: 3 }).fill(false));
     const [showWords, setShowWords] = useState(false);
 
-
-
     useEffect(() => {
-        // Fetch user data from the database
-        // Replace `fetchUserData` with the actual function to fetch user data
-        fetchLanguageData()
-            .then((data) => setLanguageData(data))
-            .catch((error) => console.log(error));
+        // Fetch language data from the API
+        fetch('https://localhost:8000/api/languages')
+            .then((response) => {
+                return response.json();
+            })
+            .then((language) => {
+                setLanguage(language['hydra:member']);
+            })
+    }, [])
 
-    },  []);
+    // async function fetchLanguageData() {
+    //     try {
+    //         const endpoint = '/admin/language';
+    //         const response = await fetch(endpoint);
+    //         const data = await response.json();
+    //         setLanguageData(data);
+    //     } catch (error) {
+    //         console.error('Error fetching language data:', error);
+    //     }
+    // }
 
-    function fetchLanguageData() {
-        return new Promise((resolve, reject) => {
-            const endpoint = '/admin/language';
-            fetch(endpoint)
-                .then((response) => response.json())
-                .then((data) => resolve(data))
-                .catch((error) => reject(error));
-        });
-    }
-
-
-
-
-    const languages = languageData ? languageData : {
-        name: "Chinese",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id temporibus optio, repellendus architecto dolores corrupti eveniet debitis minima odit expedita velit consequuntur. Sint, quas a.",
-    };
 
     const handleCardClick = (index) => {
         setExpandedCards((prev) => {
@@ -46,36 +39,32 @@ function LanguageCard() {
 
         setTimeout(() => {
             setShowWords(true);
-        }, 100);    };
+        }, 100);
+    };
 
     return (
         <section>
             <h1>Choose the language you want to study.</h1>
-            <ul>
-                {languages.map(languageData => <li key={languageData.id}>{languageData.name}</li>)}
-            </ul>
-            <div className="cardCtn">
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <div className={`card ${expandedCards[index] ? 'expanded' : ''}`} key={index} onClick={() => handleCardClick(index)}>
-                        <div className='cardImg'>
-                            <img src={Test} alt={`Language flag for ${languageData.name}`} />
+            <div className="cardContainer">
+                {language.map((language, index) => (
+                    <div
+                        className={`card ${expandedCards[index] ? 'expanded' : ''}`}
+                        key={index}
+                        onClick={() => handleCardClick(index)}
+                    >
+                        <div className="cardImg">
+                            <img src={language.imageName} alt={language.name} />
                         </div>
-                        <h2>{languageData.name}</h2>
-                        <p className="description">{languageData.description}</p>
-                        {/* <p className={`cardDescription ${expandedCards[index] ? 'expanded' : ''}`}>
-                            {languageData.description.split(' ').map((word, i) => (
-                                <span key={i} className={`word ${showWords ? 'show' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                                    {word}
-                                </span>
-                            ))}
-                        </p> */}
+                        <h2>{language.name}</h2>
+                        <div className="cardDescription">
+                            <p>{language.description}</p>
+                            <a className="cardBtn" href="/login">Choose {language.name}</a>
+                        </div>
                     </div>
                 ))}
             </div>
         </section>
     );
 }
-
-
 
 export default LanguageCard;
