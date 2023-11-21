@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../../images/logo.png';
 
 const Links = [
 
@@ -7,16 +8,14 @@ const Links = [
     { name: 'Tips', href: '/tips' },
     { name: 'Contact', href: '/contact' },
     { name: 'About', href: '/about' },
-    { name: 'Faq', href: '/faq' },
+    { name: 'FAQ', href: '/faq' },
 ]
     
-
-
 const FrontNav = () => {
     return (
         <nav className="frontNav">
             <div className="logo">
-                <h2><a href="/">Logo</a></h2>
+                <h2><a href="/"><img src={ Logo } alt="logo" /></a></h2>
             </div>
             <ul className="navLinks">
                 {Links.map((item) => (

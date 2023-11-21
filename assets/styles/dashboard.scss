@@ -34,6 +34,11 @@ main {
                 cursor: pointer;
                 color: white;
                 text-shadow: 0 0 7px black;
+
+                img {
+                    padding: 5px;
+                    width: 3vw;
+                }
             }
         }
 
@@ -243,7 +248,7 @@ main {
                 .inputChangePhoto {
                     padding: 20px;
                 }
-                
+
                 .photo {
                     @include dFlex(column);
                     @include centerXY(space-between, center);
@@ -254,8 +259,8 @@ main {
                         box-shadow: black 0 0 15px;
                         width: 70%;
 
-                        
-                        &:hover {         
+
+                        &:hover {
                             background-position: center center;
                             background-repeat: no-repeat;
                             background-size: 24px 24px;

@@ -1,0 +1,16 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+
+.mainCtn {
+    
+    .progressBar {
+        @include dFlex(row);
+        @include centerXY(space-between, center);
+        background: linear-gradient(100deg, $primaryLight, $primaryDark);
+        color: $primaryDark;
+        padding-left: 20px;
+        box-shadow: 0 0 4px 1px $primaryDark;
+        height: 10vh;   
+    }
+}
