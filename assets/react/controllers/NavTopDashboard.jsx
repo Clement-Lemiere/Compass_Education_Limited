@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dashboard = () => {
+const NavTopDashboard = () => {
     return (
 
         <>
@@ -21,4 +21,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard
+export default NavTopDashboard

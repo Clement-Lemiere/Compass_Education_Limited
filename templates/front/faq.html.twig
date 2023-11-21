@@ -5,12 +5,26 @@
 {% block body %}
     <header>
         <section>
-            <h1>Welcome to Compass Education limited, the perfect place to learn a new language!</h1>
-            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias, reiciendis incidunt. Laborum asperiores, eveniet, quas deleniti delectus nisi aliquid cum architecto molestias laudantium corporis quos.</p>
+            <h1>FAQ</h1>
         </section>
     </header>
     <main>
-        <section></section>
+        <section class="priceMain">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                </tr>
+                <tr>
+        {% for faq in faqs %}
+                    <td>{{ faq.question }}</td>
+                    <td>{{ faq.answer }}</td>
+        {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        </section>
         <section></section>
     </main>
     <footer>

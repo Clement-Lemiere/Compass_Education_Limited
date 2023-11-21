@@ -4,14 +4,41 @@ const Test = require('../../images/test.png');
 
 function StudentDashboard() {
 
+  useEffect(() => {
+    fetchUserData()
+      .then((data) => {
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setBirthdate(data.birthdate);
+        setNationality(data.nationality);
+        setEmail(data.email);
+        setLanguage(data.language);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  async function fetchUserData() {
+    try {
+      const response = await fetch("/api/user");
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   const userInformation = {
-    firstname: "John",
-    lastname: "Doe",
-    age: 25,
-    nationality: "USA",
-    email: "johndoe@example.com",
-    language: "English"
+    firstname: "",
+    lastname: "",
+    age: "",
+    nationality: "",
+    email: "",
+    language: ""
   };
+
+
 
   const navigation = [
     { name: 'Profile', href: '/sprofile' },
@@ -76,7 +103,7 @@ function StudentDashboard() {
             </div>
           </div>
           <div>
-            <button className='profileBtn'>Edit Profile</button>
+            <button className='profileBtn'><a href="/editSprofile">Edit Profile</a></button>
           </div>
         </div>
       </div>

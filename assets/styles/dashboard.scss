@@ -205,6 +205,11 @@ main {
                         border-radius: 5px;
                         box-shadow: $darkBlue 0 0 15px;
                         border: none;
+
+                    }
+
+                    .inputBirth {
+                        text-align: center;
                     }
 
                     ul {
@@ -235,15 +240,32 @@ main {
                 @include centerXY(center, center);
                 width: 48%;
 
+                .inputChangePhoto {
+                    padding: 20px;
+                }
+                
                 .photo {
                     @include dFlex(column);
                     @include centerXY(space-between, center);
+
 
                     img {
                         border-radius: 15px;
                         box-shadow: black 0 0 15px;
                         width: 70%;
+
+                        
+                        &:hover {         
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 24px 24px;
+                            height: 100%;
+                            opacity: 0.8;
+                            outline: rgb(66, 153, 225) solid 1px !important
+                        }
                     }
+
+
                 }
             }
 
@@ -251,9 +273,15 @@ main {
                 @include backBtn;
                 margin: 50px auto;
 
+                a {
+                    color: white;
+                }
+
                 &:hover {
-                    color: $darkBlue;
-                    font-weight: bold;
+                    a {
+                        color: $darkBlue;
+                        font-weight: bold;
+                    }
                 }
             }
         }

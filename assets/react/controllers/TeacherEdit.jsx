@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 const Test = require('../../images/test.png');
 
-function StudentDashboard({ onSubmit }) {
+function TeacherDashboard({ onSubmit }) {
+
+
 
     const navigation = [
-        { name: 'Profile', href: '/sprofile' },
+        { name: 'Profile', href: '/tprofile' },
         { name: 'Calendar', href: '/' },
         { name: 'Progress', href: '/' },
         { name: 'Mailbox', href: '/' },
         { name: 'Payment', href: '/' },
-        { name: 'Edit Profile', href: '/editSprofile' },
+        { name: 'Edit Profile', href: '/editTprofile' },
 
     ]
 
@@ -136,14 +138,12 @@ function StudentDashboard({ onSubmit }) {
                         </div>
                         <div className="profilePhoto">
                             <div className='photo'>
-                                <form id='myForm' action="traitement.php" method="post" enctype="multipart/form-data">
-                                    <img
-                                        src={Test}
-                                        alt="My Profile Picture"
-                                    />
-                                    <input type="file" id="photo" name="photo" accept="image/*" />
-                                </form>
+                                <img
+                                    src={Test}
+                                    alt="My Profile Picture"
+                                />
                             </div>
+                            <input className='inputChangePhoto' type="file" id="photo" name="photo" accept="image/*" />
                         </div>
                     </div>
                     <div>
@@ -155,4 +155,4 @@ function StudentDashboard({ onSubmit }) {
     );
 }
 
-export default StudentDashboard;
+export default TeacherDashboard;

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const navigation = [
+const Links = [
   { name: 'User', href: '/admin/user' },
   { name: 'Resource', href: '/admin/resource'},
   { name: 'Quiz', href: '/admin/quiz'},
@@ -21,7 +21,7 @@ const BackNav = () => {
                 <h2><a href="/">Logo</a></h2>
             </div>
             <ul className="navLinks">
-                {navigation.map((item) => (
+                {Links.map((item) => (
                     <li>
                         <a
                             key={item.name}
