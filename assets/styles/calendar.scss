@@ -1,0 +1,62 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+
+.calendar {
+
+    h1 {
+        width: 50%;
+        margin: 25px auto;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: black 0 0 15px;
+        background-color: $darkBlue;
+        color: white;
+    }
+
+    .fc .fc-toolbar {
+        padding: 10px;
+        background-color: $basicBlue;
+        border: solid 1px;
+        border-color: white;
+        border-radius: 15px;
+
+        .fc-toolbar-title {
+            color: whitesmoke;
+            text-align: center;
+        }
+    }
+
+    .fc-direction-ltr {
+        width: 90vw;
+        height: 700px;
+
+
+        table {
+            background: linear-gradient(180deg, white 0%, $lightGrey 100%);
+            color: black;
+            margin: 0 auto;
+            border-spacing: 0;
+            border-radius: 15px;
+
+            thead {
+                background-color: $darkBlue;
+                color: white;
+            }
+
+
+            th,
+            td {
+                text-align: center;
+                padding: 3px 5px;
+                border-color: $lightGrey;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    .fc .fc-daygrid-day.fc-day-today {
+        background-color: $basicBlue;
+    }
+}

@@ -1,12 +1,13 @@
 import React from "react";
+import Logo from '../../images/logo.png';
 
-const Dashboard = () => {
+const NavTopDashboard = () => {
     return (
 
         <>
             <nav className="navTop">
                 <div className="links">
-                    <div className="logo"><a href="/">Logo</a></div>
+                    <div className="logo"><a href="/sprofile"><img src={Logo} alt="logo" /></a></div>
                 <ul className="aTop">
                     <li><a href="/">Home</a></li>
                     <li><a href="/contact">Contact</a></li>
@@ -21,4 +22,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard
+export default NavTopDashboard
