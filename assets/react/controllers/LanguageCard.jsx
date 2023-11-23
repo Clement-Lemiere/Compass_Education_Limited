@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Test from '../../images/chinese_flag.png';
 
 const LanguageCard = (props) => {
     const [language, setLanguage] = useState([]);
@@ -15,19 +14,12 @@ const LanguageCard = (props) => {
             .then((language) => {
                 setLanguage(language['hydra:member']);
             })
-    }, [])
-
-    // async function fetchLanguageData() {
-    //     try {
-    //         const endpoint = '/admin/language';
-    //         const response = await fetch(endpoint);
-    //         const data = await response.json();
-    //         setLanguageData(data);
-    //     } catch (error) {
-    //         console.error('Error fetching language data:', error);
-    //     }
-    // }
-
+        }, [])
+        
+        console.log(language);
+        
+        
+    const image = language.imageName ? language.imageName.getUrl() : null;
 
     const handleCardClick = (index) => {
         setExpandedCards((prev) => {
@@ -53,7 +45,7 @@ const LanguageCard = (props) => {
                         onClick={() => handleCardClick(index)}
                     >
                         <div className="cardImg">
-                            <img src={language.imageName} alt={language.name} />
+                            <img src={image} alt={language.name} />
                         </div>
                         <h2>{language.name}</h2>
                         <div className="cardDescription">
