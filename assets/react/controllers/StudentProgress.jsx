@@ -83,6 +83,7 @@ function StudentDashboard() {
                     <progress value={30} max={100} />
                     <progress value={55} max={100} />
                     <progress value={75} max={100} />
+                    <progress value={90} max={100} />
                 </div>
             </div>
         </main>
