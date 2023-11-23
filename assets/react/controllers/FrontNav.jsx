@@ -1,20 +1,34 @@
 import React from 'react';
+import Logo from '../../images/logo.png';
 
+const Links = [
 
+    { name:'Languages', href: '/languages' },
+    { name: 'Prices', href: '/prices' },
+    { name: 'Tips', href: '/tips' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'About', href: '/about' },
+    { name: 'FAQ', href: '/faq' },
+]
+    
 const FrontNav = () => {
     return (
         <nav className="frontNav">
             <div className="logo">
-                <h2><a href="/">Logo</a></h2>
+                <a href="/"><img src={ Logo } alt="logo" /></a>
             </div>
             <ul className="navLinks">
-                <li><a href="/languages">Languages</a></li>
-                <li><a href="/prices">Prices</a></li>
-                <li><a href="/tips">Tips</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/sprofile">Profile</a></li>
+                {Links.map((item) => (
+                    <li>
+                        <a
+                            key={item.name}
+                            href={item.href}
+                            aria-current={item.current ? 'page' : undefined}
+                        >
+                            {item.name}
+                        </a>
+                    </li>
+                ))}
             </ul>
             <div className="loginBtn">
                     <a href="/login">Login</a>
