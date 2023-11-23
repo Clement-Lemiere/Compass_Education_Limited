@@ -3,7 +3,7 @@ import React from 'react';
 const CardContainer = () => {
     return (
 
-        <section className="cardContainer" id="why_us">
+        <section className="cardHomeContainer" id="why_us">
             <h2>Pourquoi nous choisir?</h2>
             <div className="cards">
                 <div className="block">

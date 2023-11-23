@@ -157,7 +157,7 @@ header {
 
 // _________________||| CONTENT \\\________________\\
 
-.cardContainer {
+.cardHomeContainer {
     @include dFlex(column);
     @include centerXY(space-between, flex-start);
 

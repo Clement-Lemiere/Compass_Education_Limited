@@ -27,7 +27,7 @@
 }
 
 @mixin blockBtn {
-    border-bottom: solid 1px whiteSmoke;
+    border-bottom: solid 1px $whiteSmoke;
 }
 
 @mixin backBtn {
@@ -35,13 +35,13 @@
     margin-bottom: 0.3rem;
     border-radius: 10px;
     border: transparent;
-    background-color: $secondaryBasic;
+    background-color: $darkBlue;
     color: white;
     box-shadow: 0 0 2px 0 black;
     transition: background-color 0.5s;
 
     &:hover {
-        background-color: $secondaryLight;
+        background-color: $lightBlue;
         cursor: pointer;
     }
 }
