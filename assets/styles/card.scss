@@ -18,7 +18,7 @@
 //     min-height: 80vh;
 // }
 
-.cardCtn {
+.cardContainer {
     position: relative;
     @include dFlex(row);
     @include centerXY(space-evenly, flex-start);
@@ -44,6 +44,13 @@
         transition: all 0.5s ease-in, box-shadow 0.2s;
         cursor: pointer;
         
+        .cardImg {
+            width: 50%;
+            img {
+                width: 100%;
+            }
+        }
+        
         h2 {
             font-size: 2rem;
             color: white;
@@ -52,34 +59,39 @@
         }
         
         .cardDescription {
-            color: transparent;
-            opacity: 0;
-            display: none;
-            transition: all 0.5s ease-in-out;
-            font-size: 1.3rem;
-            line-height: 1.7rem;
-            text-align: center;
-
-            span {
-                display: inline-block;
-                animation: showWord 0.5s ease-in-out forwards;
-            }
+            @include dFlex(column);
+            @include centerXY(space-between, center);
             
-            .word {
+            p {
+                color: transparent;
                 opacity: 0;
-                animation: opacity 0.5s ease-in-out;
+                display: none;
+                transition: all 0.5s ease-in-out;
+                font-size: 1.3rem;
+                line-height: 1.7rem;
+                text-align: center;
+    
+                span {
+                    display: inline-block;
+                    animation: showWord 0.5s ease-in-out forwards;
+                }
+                
+                .word {
+                    opacity: 0;
+                    animation: opacity 0.5s ease-in-out;
+                }
+                .show {
+                    opacity: 1;
+                }
             }
-            .show {
-                opacity: 1;
+            .cardBtn {
+                display: none;
+                @include roundedBtn;
+                margin-block: 20px;
+                transition: all 0.5s ease-in-out;
             }
         }
 
-        .cardImg {
-            width: 50%;
-            img {
-                width: 100%;
-            }
-        }
     }
 
     .card.expanded {
@@ -95,14 +107,21 @@
         }
 
         .cardDescription {
-            color: black;
-            display: block;
-            opacity: 1;
+            p{
+                color: black;
+                display: block;
+                opacity: 1;
+            }
+
+            .cardBtn {
+                background-color: $primaryDark;
+                color: white;
+                display: inline;
+            }
         }
     }
 
     .card:hover {
-        box-shadow: 0 0 15px 5px black;
-
+        box-shadow: 0 0 15px 2px black;
     }
 }

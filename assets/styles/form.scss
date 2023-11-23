@@ -78,7 +78,7 @@
 
 // _________________||| NEW_ELEMENTS_FORM \\\________________
 
-.newElementForm {
+.formStructure {
     @include dFlex(column);
     @include centerXY(center, center);
     form{

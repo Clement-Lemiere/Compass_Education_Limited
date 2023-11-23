@@ -3,12 +3,12 @@
 {% block title %}New Student{% endblock %}
 
 {% block body %}
-    <div class="newElementForm">
+    <div class="formStructure">
         <h1>Create new Student</h1>
 
         {{ include('admin/student/_form.html.twig') }}
         <div class="adminBtn">
-        <a href="{{ path('app_admin_student_index') }}">back to list</a>
+            <a href="{{ path('app_admin_student_index') }}">back to list</a>
         </div>
     </div>
 {% endblock %}

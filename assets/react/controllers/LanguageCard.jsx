@@ -1,42 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-const Test = require('../../images/chinese_flag.png');
-
-function LanguageCard() {
-    const [languageData, setLanguageData] = useState(null);
+const LanguageCard = (props) => {
+    const [language, setLanguage] = useState([]);
     const [expandedCards, setExpandedCards] = useState(Array.from({ length: 3 }).fill(false));
     const [showWords, setShowWords] = useState(false);
 
-
-
     useEffect(() => {
-        // Fetch user data from the database
-        // Replace `fetchUserData` with the actual function to fetch user data
-        fetchLanguageData()
-            .then((data) => setLanguageData(data))
-            .catch((error) => console.log(error));
-
-    }, []);
-
-    // Replace `fetchUserData` with the actual function to fetch user data
-    function fetchLanguageData() {
-        // Implement code to fetch user data from the database
-        return new Promise((resolve, reject) => {
-            // Replace with the actual API endpoint or database query
-            const endpoint = '/admin/language';
-            fetch(endpoint)
-                .then((response) => response.json())
-                .then((data) => resolve(data))
-                .catch((error) => reject(error));
-        });
-    }
-
-
-
-    const testCard = languageData ? languageData : {
-        name: "Chinese",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id temporibus optio, repellendus architecto dolores corrupti eveniet debitis minima odit expedita velit consequuntur. Sint, quas a.",
-    };
+        // Fetch language data from the API
+        fetch('https://localhost:8000/api/languages')
+            .then((response) => {
+                return response.json();
+            })
+            .then((language) => {
+                setLanguage(language['hydra:member']);
+            })
+        }, [])
+        
+        console.log(language);
+        
+        
+    const image = language.imageName ? language.imageName.getUrl() : null;
 
     const handleCardClick = (index) => {
         setExpandedCards((prev) => {
@@ -48,32 +31,32 @@ function LanguageCard() {
 
         setTimeout(() => {
             setShowWords(true);
-        }, 100);    };
+        }, 100);
+    };
 
     return (
         <section>
             <h1>Choose the language you want to study.</h1>
-            <div className="cardCtn">
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <div className={`card ${expandedCards[index] ? 'expanded' : ''}`} key={index} onClick={() => handleCardClick(index)}>
-                        <div className='cardImg'>
-                            <img src={Test} alt={`Language flag for ${testCard.name}`} />
+            <div className="cardContainer">
+                {language.map((language, index) => (
+                    <div
+                        className={`card ${expandedCards[index] ? 'expanded' : ''}`}
+                        key={index}
+                        onClick={() => handleCardClick(index)}
+                    >
+                        <div className="cardImg">
+                            <img src={image} alt={language.name} />
                         </div>
-                        <h2>{testCard.name}</h2>
-                        <p className={`cardDescription ${expandedCards[index] ? 'expanded' : ''}`}>
-                            {testCard.description.split(' ').map((word, i) => (
-                                <span key={i} className={`word ${showWords ? 'show' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                                    {word}
-                                </span>
-                            ))}
-                        </p>
+                        <h2>{language.name}</h2>
+                        <div className="cardDescription">
+                            <p>{language.description}</p>
+                            <a className="cardBtn" href="/login">Choose {language.name}</a>
+                        </div>
                     </div>
                 ))}
             </div>
         </section>
     );
 }
-
-
 
 export default LanguageCard;

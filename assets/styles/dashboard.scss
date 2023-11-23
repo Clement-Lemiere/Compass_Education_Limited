@@ -18,6 +18,7 @@ main {
     color: $darkBlue;
     height: 10vh;
 
+
     // _________________||| LOGO \\\________________\\
     .links {
         @include dFlex(row);
@@ -28,23 +29,28 @@ main {
         .logo {
             @include dFlex(row);
             @include centerXY(center, center);
+            height: 100%;
             width: 10vw;
+            background-color: $secondaryDark;
+            box-shadow:  0 0 5px 1px whitesmoke;
+            z-index: 999;
+            cursor: pointer;
 
             a {
-                cursor: pointer;
-                color: white;
+                color: whitesmoke;
                 text-shadow: 0 0 7px black;
 
                 img {
                     padding: 5px;
                     width: 3vw;
                 }
+
             }
         }
 
         a {
             cursor: pointer;
-            color: white;
+            color: whitesmoke;
         }
 
         // _________________||| LINKS \\\________________\\
@@ -58,16 +64,20 @@ main {
 
             li {
                 margin: auto 0;
-                border-right: solid 1px $whiteSmoke;
+                border-right: solid 1px whiteSmoke;
                 height: 100%;
+                background-color: transparent;
 
                 a {
                     display: flex;
                     align-items: center;
                     padding: 0 50px;
-                    color: white;
+                    color: whitesmoke;
                     height: 100%;
                     transition: color 0.3s ease;
+
+                    &:hover {
+                        color: $secondaryDark;
                     background-color: $darkBlue;
 
                     &:hover {
@@ -75,7 +85,7 @@ main {
                         font-weight: bold;
                         cursor: pointer;
                         box-shadow: 0 0 5px black;
-                        background-color: $lightBlue;
+                        background-color: $secondaryLight;
                     }
                 }
             }
@@ -97,8 +107,9 @@ main {
         }
 
         &:hover {
-            background-color: $lightBlue;
+            background-color: rgb(31, 15, 15);
             cursor: pointer;
+            color: whitesmoke;
 
             a {
                 font-weight: bold;
@@ -132,16 +143,16 @@ main {
                     @include dFlex(column);
                     @include blockBtn;
                     padding: 30px 15px;
-                    color: white;
+                    color: whitesmoke;
                     text-decoration: none;
-                    background-color: $darkBlue;
+                    background-color: transparent;
 
                     &:hover {
                         color: $darkBlue;
                         font-weight: bold;
                         cursor: pointer;
                         box-shadow: 0 0 5px black;
-                        background-color: $lightBlue;
+                        background-color: $secondaryLight;
                     }
                 }
             }
@@ -162,8 +173,8 @@ main {
             padding: 15px;
             border-radius: 5px;
             box-shadow: black 0 0 15px;
-            background-color: $darkBlue;
-            color: white;
+            background-color: $secondaryBasic;
+            color: whitesmoke;
         }
 
         h2 {
