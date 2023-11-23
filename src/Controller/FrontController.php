@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use App\Entity\Language;
+
 
 #[Route('/')]
 class FrontController extends AbstractController
@@ -19,7 +22,6 @@ class FrontController extends AbstractController
     #[Route('/languages', name: 'languages')]
     public function languages(): Response
     {
-
         return $this->render('front/languages.html.twig');
     }
 

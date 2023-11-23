@@ -232,33 +232,42 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $datas = [
             [
                 'name' => 'French',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'English',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'Chinese',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'Spanish',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'Japanese',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'German',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'Italian',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
             [
                 'name' => 'Korean',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
             ],
         ];
 
         foreach ($datas as $data) {
             $language = new Language();
             $language->setName($data['name']);
+            $language->setDescription($data['description']);
 
             $this->manager->persist($language);
         }
