@@ -43,8 +43,8 @@ function StudentDashboard() {
         { name: 'Profile', href: '/sprofile' },
         { name: 'Calendar', href: '/scalendar' },
         { name: 'Progress', href: '/sprogress' },
-        { name: 'Mailbox', href: '/' },
-        { name: 'Payment', href: '/' },
+        // { name: 'Mailbox', href: '/' },
+        // { name: 'Payment', href: '/' },
         { name: 'Edit Profile', href: '/editSprofile' },
 
     ]
@@ -78,12 +78,11 @@ function StudentDashboard() {
             <div className="mainCtn">
                 <h1>PROGRESS</h1>
                 <div className='progressBar'>
-                    <progress value={0} />
-                    <progress value={0.5} />
-                    <progress value={0.7} />
+                    <progress value={0} max={100} />
+                    <progress value={10} max ={100} />
+                    <progress value={30} max={100} />
+                    <progress value={55} max={100} />
                     <progress value={75} max={100} />
-                    <progress value={1} />
-                    <progress value={null} />
                 </div>
             </div>
         </main>

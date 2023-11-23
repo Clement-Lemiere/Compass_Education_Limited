@@ -44,8 +44,8 @@ function StudentDashboard() {
     { name: 'Profile', href: '/sprofile' },
     { name: 'Calendar', href: '/scalendar' },
     { name: 'Progress', href: '/sprogress' },
-    { name: 'Mailbox', href: '/' },
-    { name: 'Payment', href: '/' },
+    // { name: 'Mailbox', href: '/' },
+    // { name: 'Payment', href: '/' },
     { name: 'Edit Profile', href: '/editSprofile' },
 
   ]

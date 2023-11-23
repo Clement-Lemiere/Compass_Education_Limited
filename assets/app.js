@@ -18,6 +18,7 @@ import './styles/contact.scss';
 import './styles/dashboard.scss';
 import './styles/card.scss';
 import './styles/calendar.scss';
+import './styles/progress.scss';
 
 
 registerReactControllerComponents(require.context('./react/controllers/', true, /\.(j|t)sx?$/));

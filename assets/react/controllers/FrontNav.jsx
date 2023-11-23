@@ -15,7 +15,7 @@ const FrontNav = () => {
     return (
         <nav className="frontNav">
             <div className="logo">
-                <h2><a href="/"><img src={ Logo } alt="logo" /></a></h2>
+                <a href="/"><img src={ Logo } alt="logo" /></a>
             </div>
             <ul className="navLinks">
                 {Links.map((item) => (
