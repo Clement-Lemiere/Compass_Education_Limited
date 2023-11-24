@@ -1,5 +1,6 @@
-{% extends 'front_base.html.twig' %}
+ {% extends 'front_base.html.twig' %} 
 
+ 
 {% block title %}FAQ{% endblock %}
 
 {% block body %}
@@ -16,12 +17,12 @@
                     <th>Question</th>
                     <th>Answer</th>
                 </tr>
-                <tr>
         {% for faq in faqs %}
+                <tr>
                     <td>{{ faq.question }}</td>
                     <td>{{ faq.answer }}</td>
-        {% endfor %}
                 </tr>
+        {% endfor %}
             </tbody>
         </table>
         </section>
@@ -31,3 +32,4 @@
     </footer>
     
 {% endblock %}
+

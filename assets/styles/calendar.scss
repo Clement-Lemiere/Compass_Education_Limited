@@ -1,62 +1,104 @@
 @import "../styles/mixins.scss";
 @import "../styles/variables.scss";
 
+.profilePage {
 
-.calendar {
-
-    h1 {
-        width: 50%;
-        margin: 25px auto;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: black 0 0 15px;
-        background-color: $darkBlue;
-        color: white;
-    }
-
-    .fc .fc-toolbar {
-        padding: 10px;
-        background-color: $basicBlue;
-        border: solid 1px;
-        border-color: white;
-        border-radius: 15px;
-
-        .fc-toolbar-title {
-            color: whitesmoke;
-            text-align: center;
-        }
-    }
-
-    .fc-direction-ltr {
+    .calendar {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: center;
         width: 90vw;
-        height: 700px;
+        max-width: 90vw;
 
+        h1 {
+            width: 50%;
+            margin: 25px auto;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: black 0 0 15px;
+            background-color: $darkBlue;
+            color: white;
+        }
 
-        table {
-            background: linear-gradient(180deg, white 0%, $lightGrey 100%);
-            color: black;
-            margin: 0 auto;
-            border-spacing: 0;
+        .fc .fc-toolbar {
+            padding: 10px;
+            background-color: $basicBlue;
+            border: solid 1px;
+            border-color: white;
             border-radius: 15px;
 
-            thead {
-                background-color: $darkBlue;
-                color: white;
-            }
-
-
-            th,
-            td {
+            .fc-toolbar-title {
+                color: whitesmoke;
                 text-align: center;
-                padding: 3px 5px;
-                border-color: $lightGrey;
-                font-weight: bold;
             }
         }
 
-    }
+        .fc-direction-ltr {
+            width: 85vw;
+            height: 700px;
 
-    .fc .fc-daygrid-day.fc-day-today {
-        background-color: $basicBlue;
+
+            table {
+                color: black;
+                margin: 0 auto;
+                border-spacing: 0;
+                border-radius: 0;
+
+                thead {
+                    padding: 15px;
+                }
+
+                tr:nth-child(odd) {
+                    background-color: whitesmoke;
+
+                    a {
+                        background-color: $darkBlue;
+
+                        &:hover {
+                            color: $darkBlue;
+                            background-color: $lightBlue;
+                        }
+                    }
+                }
+
+
+                td:last-child,
+                th:last-child {
+                    width: auto;
+                }
+
+                th {
+                    background-color: $darkBlue;
+                }
+
+                th:first-child,
+                td:first-child {
+                    border-radius: 0;
+                    border-left: none;
+                }
+
+                th:last-child,
+                td:last-child {
+                    border-radius: 0;
+                    border-right: 1px solid var(--fc-border-color);
+                }
+
+                a {
+                    background-color: $basicBlue;
+
+                    &:hover {
+                        color: $basicBlue;
+                        background-color: $lightBlue;
+                    }
+                }
+            }
+        }
+
+        .fc .fc-daygrid-day.fc-day-today {
+            background-color: $darkBlue;
+        }
+
     }
 }
