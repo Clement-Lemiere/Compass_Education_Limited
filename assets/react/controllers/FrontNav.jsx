@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../images/logo.png';
 
 const Links = [
@@ -12,27 +12,40 @@ const Links = [
 ]
     
 const FrontNav = () => {
-    // const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-    // const toggleDropdown = () => {
-    //     setDropdownOpen(!isDropdownOpen);
-    // };
+    const toggleDropdown = () => {
+        setDropdownOpen((prevIsDropdownOpen) => {
+            const mobileNav = document.querySelector('.frontNav');
+            const closeButton = document.querySelector('.dropdownBtn');
+
+            if (!prevIsDropdownOpen) {
+                mobileNav.classList.add('mobileNav');
+                closeButton.classList.add('closeBtn');
+            } else {
+                mobileNav.classList.remove('mobileNav');
+                closeButton.classList.remove('closeBtn');
+            }
+
+            return !prevIsDropdownOpen;
+        });
+    };
+    
 
     return (
         <nav className="frontNav">
             <div className="logo">
                 <a href="/"><img src={ Logo } alt="logo" /></a>
             </div>
-            <div className='dropdownBtn'>
+            <div className='dropdownBtn' onClick={toggleDropdown}>
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul className="navLinks">
-                {Links.map((item) => (
-                    <li>
+                {Links.map((item, index) => (
+                    <li key={index}>
                         <a
-                            key={item.name}
                             href={item.href}
                             aria-current={item.current ? 'page' : undefined}
                         >

@@ -271,27 +271,31 @@ footer {
 
 
 
+
 @media (max-width: 768px) {
+
     .frontNav{
         flex-direction: column;
         @include centerXY(flex-start, center);
         padding: 0;
         background: black;
-        height: 10vh;
+        z-index: 99;
+
         .loginBtn{
             display: none;
         }
+
         .logo{
             display: none;
         }
+
         .dropdownBtn{
             display: block;
             width: 50px;
             height: 50px;
             border-radius: 15px;
             box-shadow: 0 0 5px $primaryLight;
-            margin-top: 25px;
-            transition: all 0.3s ease-in-out;
+            margin-block: 15px;
 
             span{
                 display: block;
@@ -303,21 +307,22 @@ footer {
 
         .dropdownBtn:hover{
             cursor: pointer;
-            box-shadow: 0 0 15px 2px $primaryLight;
+            box-shadow: 0 0 10px 2px $primaryLight;
         }
     
         .navLinks{
-            display: none;
+            display: none !important;
             @include dFlex(column);
             @include centerXY(space-evenly, center);
-            height: 80vh;
-
+            height: auto;
+            
             li{
                 width: 70%;
                 text-align: center;
                 a {
                     width: 100%;
                     padding: 25px 0;
+                    transition: all 0.5s ease-in-out;
                 }
                 a:hover{
                     box-shadow: 0 0 10px $primaryLight;
@@ -325,11 +330,17 @@ footer {
             }
         }
     }
-    .frontNav.dropdownOpen{
+    .frontNav.mobileNav{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         .navLinks{
-            display: flex;
+            display: flex !important;
         }
-        .dropDownBtn.closeBtn{
+        .dropdownBtn.closeBtn{
+
             span :nth-child(1){
                 transform: rotate(45deg);
             }
