@@ -277,7 +277,8 @@ footer {
         @include centerXY(flex-start, center);
         padding: 0;
         background: black;
-        height: 10vh;
+        height: 100vh;
+        z-index: 99;
         .loginBtn{
             display: none;
         }
