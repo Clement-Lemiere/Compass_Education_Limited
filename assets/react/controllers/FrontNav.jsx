@@ -12,10 +12,21 @@ const Links = [
 ]
     
 const FrontNav = () => {
+    // const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    // const toggleDropdown = () => {
+    //     setDropdownOpen(!isDropdownOpen);
+    // };
+
     return (
         <nav className="frontNav">
             <div className="logo">
                 <a href="/"><img src={ Logo } alt="logo" /></a>
+            </div>
+            <div className='dropdownBtn'>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
             <ul className="navLinks">
                 {Links.map((item) => (
