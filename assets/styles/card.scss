@@ -96,7 +96,7 @@
 
     .card.expanded {
         width: 23vw;
-        height: 430px;
+        height: 450px;
         background: $primaryLight;
         img {
             width: 100%;
@@ -124,4 +124,29 @@
     .card:hover {
         box-shadow: 0 0 15px 2px black;
     }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    main{
+        margin-top: 15vh;
+    }
+    
+    .cardContainer {
+
+        margin-block: 20px;
+        width: 80vw;
+        background: none;
+
+        .card {
+            width: 50%;
+            object-fit: contain;
+        }
+
+        .card.expanded {
+            width: 70%;
+        }
+    }
+
 }
