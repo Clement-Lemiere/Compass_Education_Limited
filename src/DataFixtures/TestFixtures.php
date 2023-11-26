@@ -13,6 +13,7 @@ use App\Entity\Quiz;
 use App\Entity\Assignment;
 use App\Entity\Lesson;
 use App\Entity\Flag;
+use App\Entity\FAQ;
 use App\Entity\Resource;
 use App\Entity\Payment;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -53,6 +54,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadFlags();
         $this->loadResources();
         $this->loadPayments();
+        $this->loadFAQs();
     }
 
     public function loadStudents(): void
@@ -195,7 +197,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $this->manager->persist($teacher);
         }
         $this->manager->flush();
-        
+
         // dynamic datas
 
         for ($i = 0; $i < 20; $i++) {
@@ -227,7 +229,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
     public function loadLanguages(): void
     {
-        
+
         // static datas
         $datas = [
             [
@@ -275,7 +277,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         // Dynamic datas
 
-        
+
     }
 
     public function loadSessions(): void
@@ -288,7 +290,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $teacher1 = $teacherRepository->find(1);
         $teacher2 = $teacherRepository->find(2);
         $teacher3 = $teacherRepository->find(3);
-        
+
         $datas = [
             [
                 'type' => 'Online course',
@@ -345,7 +347,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $language1 = $languageRepository->find(1);
         $language2 = $languageRepository->find(2);
         $language3 = $languageRepository->find(3);
-        
+
         $datas = [
             [
                 'title' => 'Formation 1',
@@ -453,7 +455,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $quiz->setLevel($data['level']);
             $quiz->setTitle($data['title']);
             $quiz->setLanguage($data['language']);
-            
+
             $this->manager->persist($quiz);
         }
         $this->manager->flush();
@@ -558,7 +560,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $assignment->setGrade($data['grade']);
 
             $this->manager->persist($assignment);
-
         }
         $this->manager->flush();
 
@@ -583,7 +584,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $languageRepository = $this->manager->getRepository(Language::class);
         $languages = $languageRepository->findAll();
-        
+
         $language1 = $languageRepository->find(1);
         $language2 = $languageRepository->find(2);
         $language3 = $languageRepository->find(3);
@@ -752,6 +753,48 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $payment->setStudent($this->faker->randomElement($students));
 
             $this->manager->persist($payment);
+        }
+        $this->manager->flush();
+    }
+
+    public function loadFAQs(): void
+    {
+
+        $faqRepository = $this->manager->getRepository(FAQ::class);
+        $faqs = $faqRepository->findAll();
+
+        //static datas
+
+        $datas = [
+            [
+                'question' => 'Question 1',
+                'answer' => 'Answer 1',
+            ],
+            [
+                'question' => 'Question 2',
+                'answer' => 'Answer 2',
+            ],
+
+        ];
+
+        foreach ($datas as $data) {
+            $faq = new FAQ();
+            $faq->setQuestion($data['question']);
+            $faq->setAnswer($data['answer']);
+
+            $this->manager->persist($faq);
+        }
+
+        $this->manager->flush();
+
+        //dynamic datas
+
+        for ($i = 0; $i < 20; $i++) {
+            $faq = new FAQ();
+            $faq->setQuestion($this->faker->sentence());
+            $faq->setAnswer($this->faker->paragraph());
+
+            $this->manager->persist($faq);
         }
         $this->manager->flush();
     }

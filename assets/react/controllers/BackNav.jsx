@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../../images/logo.png'
 
 
 const Links = [
@@ -18,7 +19,7 @@ const BackNav = () => {
     return (
         <nav className="backNav">
             <div className="logo">
-                <h2><a href="/">Logo</a></h2>
+                <a href="/admin/user"><img src={Logo} alt="logo" /></a>
             </div>
             <ul className="navLinks">
                 {Links.map((item) => (

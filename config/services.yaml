@@ -9,6 +9,9 @@ services:
     App\Entity\Language:
         class: App\Entity\Language
         public: true
+    App\Serializer\FlagNormalizer:
+        class: App\Serializer\FlagNormalizer
+        public: true
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

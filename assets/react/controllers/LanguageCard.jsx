@@ -9,17 +9,20 @@ const LanguageCard = (props) => {
         // Fetch language data from the API
         fetch('https://localhost:8000/api/languages')
             .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
                 return response.json();
             })
             .then((language) => {
                 setLanguage(language['hydra:member']);
             })
-        }, [])
-        
-        console.log(language);
-        
-        
-    const image = language.imageName ? language.imageName.getUrl() : null;
+            .catch((error) => {
+                console.error('Error fetching language data:', error);
+            });
+    }, []);
+
+    const imagePath = (lang) => `/images/flags/${lang.imageName}`;
 
     const handleCardClick = (index) => {
         setExpandedCards((prev) => {
@@ -35,22 +38,23 @@ const LanguageCard = (props) => {
     };
 
     return (
+        
         <section>
             <h1>Choose the language you want to study.</h1>
             <div className="cardContainer">
-                {language.map((language, index) => (
+                {language.map((lang, index) => (
                     <div
                         className={`card ${expandedCards[index] ? 'expanded' : ''}`}
                         key={index}
                         onClick={() => handleCardClick(index)}
                     >
                         <div className="cardImg">
-                            <img src={image} alt={language.name} />
+                            <img src={imagePath(lang)} alt={lang.name} />
                         </div>
-                        <h2>{language.name}</h2>
+                        <h2>{lang.name}</h2>
                         <div className="cardDescription">
-                            <p>{language.description}</p>
-                            <a className="cardBtn" href="/login">Choose {language.name}</a>
+                            <p>{lang.description}</p>
+                            <a className="cardBtn" href="/login">Choose {lang.name}</a>
                         </div>
                     </div>
                 ))}

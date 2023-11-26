@@ -38,7 +38,7 @@
                     {% endif %}
                 </td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td classname="actionBtn">
+                <td>
                     <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
 
