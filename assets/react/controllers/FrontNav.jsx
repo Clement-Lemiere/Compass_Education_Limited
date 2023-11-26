@@ -37,10 +37,12 @@ const FrontNav = () => {
             <div className="logo">
                 <a href="/"><img src={ Logo } alt="logo" /></a>
             </div>
-            <div className='dropdownBtn' onClick={toggleDropdown}>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div className='dropdownBtnContainer'>
+                <div className='dropdownBtn' onClick={toggleDropdown}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
             <ul className="navLinks">
                 {Links.map((item, index) => (
