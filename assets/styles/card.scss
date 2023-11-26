@@ -12,19 +12,21 @@
         display: inline;
     }
 }
+main {
 
-
-// main {
-//     min-height: 80vh;
-// }
+    section {
+        width: 75vw;
+        margin: 0 auto;
+        
+    }
+}
 
 .cardContainer {
     position: relative;
     @include dFlex(row);
     @include centerXY(space-evenly, flex-start);
     margin: 0 auto;
-    width: 75vw;
-    padding: 30px;
+    padding-block: 30px;
     box-shadow: inset 0 0 15px 3px $primaryDark;
     border-radius: 25px;
     background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 30%, $primaryLight 60%, $lightGrey 90%);
@@ -51,7 +53,7 @@
             }
         }
         
-        h2 {
+        h3 {
             font-size: 2rem;
             color: white;
             margin: 0;
@@ -96,7 +98,7 @@
 
     .card.expanded {
         width: 23vw;
-        height: 430px;
+        height: 450px;
         background: $primaryLight;
         img {
             width: 100%;
@@ -123,5 +125,32 @@
 
     .card:hover {
         box-shadow: 0 0 15px 2px black;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    main{
+        margin-top: 5vh;
+        
+        h2 {
+            text-align: center;
+        }
+    }
+    
+    .cardContainer {
+
+        margin-block: 20px;
+        background: none;
+
+        .card {
+            width: 50%;
+            object-fit: contain;
+        }
+
+        .card.expanded {
+            width: 70%;
+        }
     }
 }
