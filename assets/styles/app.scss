@@ -271,54 +271,82 @@ footer {
 
 
 
+
 @media (max-width: 768px) {
+
     .frontNav{
+        
         flex-direction: column;
         @include centerXY(flex-start, center);
         padding: 0;
-        background: black;
-        height: 100vh;
-        z-index: 99;
+        transition: all 0.5s ease-in-out;
+        background: none;
+
         .loginBtn{
             display: none;
         }
+
         .logo{
             display: none;
         }
-        .dropdownBtn{
-            display: block;
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            box-shadow: 0 0 5px $primaryLight;
-            margin-top: 25px;
-            transition: all 0.3s ease-in-out;
-
-            span{
+        
+        .dropdownBtnContainer{
+            @include dFlex(column);
+            @include centerXY(center, center);
+            position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+            background: linear-gradient(90deg, $primaryDark,black 15% 85%, $primaryDark);
+            width: 100%;
+            height: 13vh;
+            z-index: 100;
+            
+            .dropdownBtn{
                 display: block;
-                border-top: solid 2px rgb(188, 247, 222);
-                width: 70%;
-                margin: 11px auto 0;
+                margin: 0 auto;
+                width: 50px;
+                height: 50px;
+                border-radius: 15px;
+                box-shadow: 0 0 5px $primaryLight;
+                margin-block: 15px;
+                padding-top: 1px;
+    
+                span{
+                    display: block;
+                    border-top: solid 2px rgb(188, 247, 222);
+                    width: 70%;
+                    margin: 20% auto 0;
+                    transition: all 0.5s ease-in-out;
+                }
             }
-        }
-
-        .dropdownBtn:hover{
-            cursor: pointer;
-            box-shadow: 0 0 15px 2px $primaryLight;
+    
+            .dropdownBtn:hover{
+                cursor: pointer;
+                box-shadow: 0 0 10px 2px $primaryLight;
+            }
         }
     
         .navLinks{
-            display: none;
-            @include dFlex(column);
+            position: absolute;
+                top: -100vh;
+                left: 0;
+                right: 0;
             @include centerXY(space-evenly, center);
-            height: 80vh;
-
+            @include dFlex(column);
+            background-color: black;
+            width: 100%;
+            height: 0;
+            margin: 0;
+            z-index: 99;
+            transition :all 0.7s ease-in-out;
+            
             li{
                 width: 70%;
                 text-align: center;
                 a {
                     width: 100%;
-                    padding: 25px 0;
+                    padding: 15px 0;
                 }
                 a:hover{
                     box-shadow: 0 0 10px $primaryLight;
@@ -326,20 +354,39 @@ footer {
             }
         }
     }
-    .frontNav.dropdownOpen{
+    .frontNav.mobileNav{
+
         .navLinks{
-            display: flex;
+            position: fixed !important;
+                top: 13vh;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 87vh;
         }
-        .dropDownBtn.closeBtn{
-            span :nth-child(1){
-                transform: rotate(45deg);
-            }
-            span :nth-child(3){
-                transform: rotate(-45deg);
-            }
-            span :nth-child(2){
-                display: none;
+
+        .dropdownBtnContainer{
+            box-shadow: 0 0 5px $primaryLight;
+            
+            .dropdownBtn.closeBtn{
+    
+                span:nth-child(1){
+                    transform: rotate(45deg);
+                    translate: 0 13px;
+                    transition: all 0.5s ease-in-out;
+                }
+                span:nth-child(3){
+                    transform: rotate(-45deg);
+                    transition: all 0.5s ease-in-out;
+                }
+                span:nth-child(2){
+                    display: none;
+                }
             }
         }
+    }
+
+    header {
+        padding-top: 81px;
     }
 }
