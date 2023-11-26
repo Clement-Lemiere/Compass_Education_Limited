@@ -138,6 +138,7 @@ header {
 // _________________||| TITLE & DESCRIPTION \\\________________
 
 .homeHeader {
+    width: 100%;
     background-image: url("../images/library.jpg");
     background-size: cover;
     @include dFlex(column);
@@ -273,10 +274,6 @@ footer {
     padding: 10px 20px;
     text-align: center;
 }
-
-
-
-
 
 
 @media (max-width: 768px) {
