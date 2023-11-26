@@ -39,8 +39,8 @@ const LanguageCard = (props) => {
 
     return (
         
-        <section>
-            <h1>Choose the language you want to study.</h1>
+        <>
+            <h2>Click on the following language cards to get more details on the language.</h2>
             <div className="cardContainer">
                 {language.map((lang, index) => (
                     <div
@@ -51,7 +51,7 @@ const LanguageCard = (props) => {
                         <div className="cardImg">
                             <img src={imagePath(lang)} alt={lang.name} />
                         </div>
-                        <h2>{lang.name}</h2>
+                        <h3>{lang.name}</h3>
                         <div className="cardDescription">
                             <p>{lang.description}</p>
                             <a className="cardBtn" href="/login">Choose {lang.name}</a>
@@ -59,7 +59,7 @@ const LanguageCard = (props) => {
                     </div>
                 ))}
             </div>
-        </section>
+        </>
     );
 }
 
