@@ -16,11 +16,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource(
-    operations: [
-        new GetCollection(normalizationContext: ['groups' => ['student']]),
-    ]
-)]
 class Student
 {
     use TimestampableEntity;
@@ -28,62 +23,58 @@ class Student
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?string $lastName = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?string $nationality = null;
 
     #[ORM\Column]
-    #[Groups(['student'])]
+    #[Groups(['user'])]
     private ?int $level = null;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Payment::class)]
     private Collection $payments;
 
     #[ORM\OneToOne(mappedBy: 'student', cascade: ['persist', 'remove'])]
-    #[Groups(['student'])]
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'students')]
-    #[Groups(['student'])]
     private Collection $language;
 
     #[ORM\ManyToMany(targetEntity: Assignment::class, inversedBy: 'students')]
-    #[Groups(['student'])]
     private Collection $assignments;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Session::class)]
-    #[Groups(['student'])]
     private Collection $sessions;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
-    #[Vich\UploadableField(mapping: 'profile_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Groups(['student'])]
-    private ?File $imageFile = null;
+    // #[Vich\UploadableField(mapping: 'profile_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    // #[Groups(['user'])]
+    // private ?File $imageFile = null;
 
-    #[Groups(['student'])]
-    public ?string $imageUrl = null;
+    // #[Groups(['user'])]
+    // public ?string $imageUrl = null;
 
-    #[ORM\Column(nullable: true)]
-    #[Groups(['student'])]
-    private ?string $imageName = null;
+    // #[ORM\Column(nullable: true)]
+    // #[Groups(['user'])]
+    // private ?string $imageName = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $imageSize = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?int $imageSize = null;
 
     public function __construct()
     {
