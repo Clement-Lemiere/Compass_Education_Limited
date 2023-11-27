@@ -43,11 +43,7 @@ const LanguageCard = (props) => {
             <h2>Click on the following language cards to get more details on the language.</h2>
             <div className="cardContainer">
                 {language.map((lang, index) => (
-                    <div
-                        className={`card ${expandedCards[index] ? 'expanded' : ''}`}
-                        key={index}
-                        onClick={() => handleCardClick(index)}
-                    >
+                    <div className={`card ${expandedCards[index] ? 'expanded' : ''}`} key={index} onClick={() => handleCardClick(index)}>
                         <div className="cardImg">
                             <img src={imagePath(lang)} alt={lang.name} />
                         </div>
