@@ -179,6 +179,10 @@ header {
         font-size: 2rem;
     }
 
+    h3 {
+        font-size: 1.5rem;
+    }
+
     .whoAreWeProfile {
         @include dFlex(row);
         @include centerXY(space-between, center);
@@ -218,14 +222,12 @@ header {
 }
 
 footer {
-    bottom: 0;
-    left: 0;
-    right: 0;
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
     color: $primaryDark;
     font-weight: bold;
     padding: 10px 20px;
     text-align: center;
+    margin-top: 50px;
 }
 
 
@@ -363,10 +365,6 @@ footer {
     // _________________||| Who Are We \\\________________\\
 
     .whoAreWeSection{
-        
-        h3{
-            font-size: 1.5rem;
-        }
 
         .whoAreWeProfile{
             @include dFlex(column);

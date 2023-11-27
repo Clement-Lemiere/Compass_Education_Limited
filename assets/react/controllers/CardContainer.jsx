@@ -4,37 +4,38 @@ const CardContainer = () => {
     return (
 
         <section className="cardSection" id="why_us">
-            <h2>Pourquoi nous choisir?</h2>
+            <h2>WHY CHOOSE US ?</h2>
             <div className="cardContainer">
                 <div className="card">
-                    <h3>Locuteurs natifs</h3>
-                    <p>Des professeurs qualifiés et locuteurs natifs, possédant une expérience de travail</p>
+                    <h3>Native Speakers</h3>
+                    <p>Qualified teachers and native speakers with work experience</p>
                 </div>
                 <div className="card">
                     <h3>Communication</h3>
-                    <p>Tous les professeurs parlent au moins une autre langue étrangère</p>
+                    <p>All teachers speak at least one language and can use words</p>
                 </div>
                 <div className="card">
-                    <h3>Large éventail de cours</h3>
-                    <p>Nous offrons divers programmes d'études</p>
+                    <h3>Wide Range of Courses</h3>
+                    <p>We offer various study programs, including knitting and riding Dragons </p>
                 </div>
                 <div className="card">
-                    <h3>Approche individuelle</h3>
-                    <p>Plans personnalisés ou combinaisons de divers cours</p>
+                    <h3>Individual Approach</h3>
+                    <p>Customized plans or combinations of various courses</p>
                 </div>
                 <div className="card">
-                    <h3>Première leçon gratuite !</h3>
-                    <p>Leçon d'essai gratuite de 30 minutes</p>
+                    <h3>First Free Lesson!</h3>
+                    <p>Just kidding, you are not getting anything for free.</p>
                 </div>
                 <div className="card">
-                    <h3>Payez après!</h3>
-                    <p>Le paiement a lieu après la leçon.</p>
+                    <h3>Pay After!</h3>
+                    <p>Payment can take place after the lesson but cost 13 times the standard lesson.</p>
                 </div>
             </div>
             <div className="discoverBtn">
                 <a href="/languages">Try it now!</a>
             </div>
         </section>
+
     );
 }
 
