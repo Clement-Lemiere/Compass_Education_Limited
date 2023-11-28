@@ -23,27 +23,27 @@ class Student
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?string $lastName = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column(length: 191)]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?string $nationality = null;
 
     #[ORM\Column]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?int $level = null;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Payment::class)]
@@ -63,7 +63,7 @@ class Student
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     // #[Vich\UploadableField(mapping: 'profile_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    // #[Groups(['user'])]
+    // #[Groups(['user:list','user:item'])]
     // private ?File $imageFile = null;
 
     // #[Groups(['user'])]

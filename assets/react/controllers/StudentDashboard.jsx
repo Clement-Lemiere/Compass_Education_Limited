@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
-const Test = require('../../images/test.png');
+import Test from '../../images/test.png';
 
 function StudentDashboard() {
-
-  const [users, setUsers] = useState([]);
+  const [user, setCurrentUser] = useState({});
 
   useEffect(() => {
-    const apiUrl = 'https://localhost:8000/api/users/';
+    const apiUrl = 'https://localhost:8000/api/me';
     fetchUserData(apiUrl);
   }, []);
 
@@ -18,45 +16,61 @@ function StudentDashboard() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const userData = await response.json();
-      setUsers(userData['hydra:member']);
-
+      setCurrentUser(userData);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
+  };
+  
+  const formatBirthdate = (birthdateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const birthdate = new Date(birthdateString);
+    return birthdate.toLocaleDateString('en-UK', options);
   };
 
   const navigation = [
     { name: 'Profile', href: '/sprofile' },
     { name: 'Calendar', href: '/scalendar' },
     { name: 'Progress', href: '/sprogress' },
-    // { name: 'Mailbox', href: '/' },
-    // { name: 'Payment', href: '/' },
     { name: 'Edit Profile', href: '/editSprofile' },
   ];
 
-  const formatBirthdate = (birthdateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const birthdate = new Date(birthdateString);
-    return birthdate.toLocaleDateString('en-US', options);
+  const renderNavigation = () => (
+    <ul className="aLeft">
+      {navigation.map((item) => (
+        <li key={item.name}>
+          <a
+            href={item.href}
+            aria-current={item.current ? 'page' : undefined}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const renderProfileInfo = () => {
+    if (user.student) {
+      return (
+        <>
+          <li><label>Firstname :</label><p>{user.student.firstName}</p></li>
+          <li><label>Lastname :</label><p> {user.student.lastName}</p></li>
+          <li><label>Birthdate : </label><p>{formatBirthdate(user.student?.birthdate)}</p></li>
+          <li><label>Nationality :</label><p> {user.student.nationality}</p></li>
+          <li><label>Level : </label><p>{user.student.level}</p></li>
+          {/* Add more information as needed */}
+        </>
+      );
+    }
+    return null;
   };
 
   return (
     <main className='profilePage'>
       {/* LEFT COLUMN */}
       <div className="leftColumn">
-        <ul className="aLeft">
-          {navigation.map((item) => (
-            <li>
-              <a
-                key={item.name}
-                href={item.href}
-                aria-current={item.current ? 'page' : undefined}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {renderNavigation()}
       </div>
       {/* MAIN CONTENT */}
       <div className="mainCtn">
@@ -65,23 +79,12 @@ function StudentDashboard() {
           <h2>Information</h2>
           <div className="profileDescription">
             <div className="profileInfo">
-              {users.map((user) => (
-                <div className="infoCtn">
-                  <ul>
-                    <li><label>Email : </label><p>{user.email}</p></li>
-                    {user.student && (
-                      <div>
-                        <li><label>Firstname :</label><p>{user.student.firstName}</p></li>
-                        <li><label>Lastname :</label><p> {user.student.lastName}</p></li>
-                        <li><label>Birthdate : </label><p>{formatBirthdate(user.student?.birthdate)}</p></li>
-                        <li><label>Nationality :</label><p> {user.student.nationality}</p></li>
-                        <li><label>Level : </label><p>{user.student.level}</p></li>
-                        {/* Ajoute d'autres détails d'étudiant si nécessaire */}
-                      </div>
-                    )}
-                  </ul>
-                </div>
-              ))}
+              <div className="infoCtn">
+                <ul>
+                  {renderProfileInfo()}
+                  <li><label>Email : </label><p>{user.email}</p></li>
+                </ul>
+              </div>
             </div>
             <div className="profilePhoto">
               <div className='photo'>
@@ -102,4 +105,3 @@ function StudentDashboard() {
 }
 
 export default StudentDashboard;
-
