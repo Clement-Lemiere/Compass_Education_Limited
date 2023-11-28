@@ -16,6 +16,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use ApiPlatform\Metadata\Get;
 /**
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
@@ -24,7 +25,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new GetCollection(normalizationContext: ['groups' => ['user']]),
+        new Get(normalizationContext: ['groups' => 'user:item']),
+        new GetCollection(normalizationContext: ['groups' => ['user:list']]),
     ]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -36,30 +38,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user'])]
+    #[Groups(['user:list','user:item'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Groups(['user'])]
+    #[Groups(['user:list', 'user:item'])]
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Groups(['user'])]
+    #[Groups(['user:list', 'user:item'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Groups(['user'])]
+    #[Groups(['user:list', 'user:item'])]
     private ?string $password = null;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[Groups(['user'])]
+    #[Groups(['user:list', 'user:item'])]
     private ?Student $student = null;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[Groups(['user'])]
+    #[Groups(['user:list', 'user:item'])]
     private ?Teacher $teacher = null;
 
     public function getId(): ?int

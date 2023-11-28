@@ -2,8 +2,6 @@
 // api/src/Serializer/LanguageObjectNormalizer.php
 namespace App\Serializer;
 
-
-
 use App\Entity\Language;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
