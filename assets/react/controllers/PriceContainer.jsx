@@ -4,46 +4,100 @@ const PriceContainer = () => {
     return (
 
 
-        <div className='priceMain'>
+        <section className='priceSection'>
             <h2>Pricing courses</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Lesson duration</th>
-                        <th>1 lesson</th>
-                        <th>10 lessons</th>
-                        <th>20 lessons</th>
-                    </tr>
-                    <tr>
-                        <td> 30-minute lessons</td>
-                        <td class=""> 10 € </td>
-                        <td class=""> 95 €</td>
-                        <td class=""> 170 €</td>
-                    </tr>
-                    <tr>
-                        <td> 45-minute lessons</td>
-                        <td class=""> 14 € </td>
-                        <td class=""> 135 €</td>
-                        <td class=""> 250 €</td>
-                    </tr>
-                    <tr>
-                        <td> 60-minute lessons</td>
-                        <td class=""> 18 € </td>
-                        <td class=""> 175 €</td>
-                        <td class=""> 330 €</td>
-                    </tr>
-                    <tr>
-                        <td> 90-minute lessons</td>
-                        <td class=""> 25 € </td>
-                        <td class=""> 245 €</td>
-                        <td class=""> 470 €</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p className='priceDescription'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, facere libero. Quam corporis iste sapiente? Officiis harum velit iste quae exercitationem tempore minus nostrum sit.</p>
+            <div className="perLessons">
+                <div className='priceCard'>   
+                    <h3>Discovery</h3>
+                    <p>1 lesson</p>
+                    <div>
+                        <div>30 min</div>
+                        <div>45 min</div>
+                        <div>60 min</div>
+                    </div>
+                    <div>
+                        <div className="price">10 €</div>
+                        <div className="price">14 €</div>
+                        <div className="price">18 €</div>
+                    </div>
+                </div>
+                <div className='priceCard'>
+                    <h3>Standard</h3>
+                    <p>5 lessons</p>
+                    <div>
+                        <div>30 min</div>
+                        <div>45 min</div>
+                        <div>60 min</div>
+                    </div>
+                    <div>
+                        <div className="price">45 €</div>
+                        <div className="price">63 €</div>
+                        <div className="price">81 €</div>
+                    </div>
+                </div>
+                <div className='priceCard'>
+                    <h3>Confirmed</h3>
+                    <p>10 lessons</p>
+                    <div>
+                        <div>30 min</div>
+                        <div>45 min</div>
+                        <div>60 min</div>
+                    </div>
+                    <div>
+                        <div className="price">90 €</div>
+                        <div className="price">125 €</div>
+                        <div className="price">160 €</div>
+                    </div>
+                </div>
+                <div className='priceCard'>
+                    <h3>Discovery</h3>
+                    <p>20 lessons</p>
+                    <div>
+                        <div>30 min</div>
+                        <div>45 min</div>
+                        <div>60 min</div>
+                    </div>
+                    <div>
+                        <div className="price">170 €</div>
+                        <div className="price">235 €</div>
+                        <div className="price">300 €</div>
+                    </div>
+                </div>    
+            </div>
+            <div className='perMonth'>
+                <h3>Specialized</h3>
+                <p>Monthly Subscription</p>
+                <p>Minimum commitment of 6 months, with a frequency of 1 to 2 lessons per week.</p>
+                <div className="perWeekFormulas">
+                    <div className='perWeek'>
+                        <p>1 lesson per week</p>
+                        <div>
+                            <div>45 min</div>
+                            <div>60 min</div>
+                        </div>
+                        <div>
+                            <div className="price">235 €</div>
+                            <div className="price">300 €</div>
+                        </div>
+                    </div>
+                    <div className='perWeek'>
+                        <p>2 lessons per week</p>
+                        <div>
+                            <div>45 min</div>
+                            <div>60 min</div>
+                        </div>
+                        <div>
+                            <div className="price">235 €</div>
+                            <div className="price">300 €</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="discoverBtn">
                 <a href="/login">Let's get started</a>
             </div>
-        </div>
+        </section>
 
     );
 }

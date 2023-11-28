@@ -223,11 +223,12 @@ header {
 
 footer {
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
-    color: $primaryDark;
+    color: black;
     font-weight: bold;
     padding: 10px 20px;
     text-align: center;
     margin-top: 50px;
+    box-shadow: 0 0 5px $primaryDark;
 }
 
 
