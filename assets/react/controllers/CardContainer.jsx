@@ -3,38 +3,39 @@ import React from 'react';
 const CardContainer = () => {
     return (
 
-        <section className="cardHomeContainer" id="why_us">
-            <h2>Pourquoi nous choisir?</h2>
-            <div className="cards">
-                <div className="block">
-                    <p className="blockTitle">Locuteurs natifs</p>
-                    <p className="blockContent">Des professeurs qualifiés et locuteurs natifs, possédant une expérience de travail</p>
+        <section className="cardSection" id="why_us">
+            <h2>WHY CHOOSE US ?</h2>
+            <div className="cardContainer">
+                <div className="card">
+                    <h3>Native Speakers</h3>
+                    <p>Qualified teachers and native speakers with work experience</p>
                 </div>
-                <div className="block">
-                    <p className="blockTitle">Communication</p>
-                    <p className="blockContent">Tous les professeurs parlent au moins une autre langue étrangère</p>
+                <div className="card">
+                    <h3>Communication</h3>
+                    <p>All teachers speak at least one language and can use words</p>
                 </div>
-                <div className="block">
-                    <p className="blockTitle">Large éventail de cours</p>
-                    <p className="blockContent">Nous offrons divers programmes d'études</p>
+                <div className="card">
+                    <h3>Wide Range of Courses</h3>
+                    <p>We offer various study programs, including knitting and riding Dragons </p>
                 </div>
-                <div className="block">
-                    <p className="blockTitle">Approche individuelle</p>
-                    <p className="blockContent">Plans personnalisés ou combinaisons de divers cours</p>
+                <div className="card">
+                    <h3>Individual Approach</h3>
+                    <p>Customized plans or combinations of various courses</p>
                 </div>
-                <div className="block">
-                    <p className="blockTitle">Première leçon gratuite !</p>
-                    <p className="blockContent">Leçon d’essai gratuite de 30 minutes</p>
+                <div className="card">
+                    <h3>First Free Lesson!</h3>
+                    <p>Just kidding, you are not getting anything for free.</p>
                 </div>
-                <div className="block">
-                    <p className="blockTitle">Payez après!</p>
-                    <p className="blockContent">Le paiement a lieu après la leçon.</p>
+                <div className="card">
+                    <h3>Pay After!</h3>
+                    <p>Payment can take place after the lesson but cost 13 times the standard lesson.</p>
                 </div>
             </div>
             <div className="discoverBtn">
-                <a href="/prices">Try it now!</a>
+                <a href="/languages">Try it now!</a>
             </div>
         </section>
+
     );
 }
 

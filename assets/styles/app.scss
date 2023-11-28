@@ -166,117 +166,76 @@ header {
     }
 }
 
-// _________________||| CONTENT \\\________________\\
 
-.cardHomeContainer {
-    @include dFlex(column);
-    @include centerXY(space-between, flex-start);
 
-    h2 {
-        font-size: 2rem;
-        margin: 20px auto;
-    }
 
-    .discoverBtn {
-        margin: 20px auto;
-
-        a {
-            @include roundedBtn;
-            padding: 20px;
-        }
-    }
-
-    .cards {
-        @include dFlex(row);
-        @include centerXY(space-evenly, center);
-
-        .block {
-            @include dFlex(column);
-            @include centerXY(space-evenly, center);
-            box-shadow: black 0 0 15px;
-            height: 30vh;
-            width: 30%;
-            margin-block: 50px;
-            background-color: $primaryDark;
-            opacity: 0.8;
-            border-radius: 15px;
-            padding: 20px;
-            color: white;
-
-            &:hover {
-                background-color: $primaryLight;
-                color: $primaryDark;
-                cursor: default;
-            }
-
-            .blockTitle {
-                font-size: 1.5rem;
-            }
-
-            .blockContent {
-                font-size: 1.2rem;
-            }
-        }
-    }
-}
-
-.aboutUsMain {
+// _________________||| ABOUT US \\\________________\\
+.whoAreWeSection {
+    margin-top: 40px;
     @include dFlex(column);
     @include centerXY(space-between, center);
-    padding: 50px;
-    size: 100vw;
-    padding-bottom: 15vh;
 
     h2 {
         font-size: 2rem;
     }
 
-    .aboutUsBlock {
-        @include dFlex(row);
-        @include centerXY(space-evenly, center);
-        margin-bottom: 10px;
+    h3 {
+        font-size: 1.5rem;
     }
-    
-    .aboutUsImg {
-        width: 30%;
-        margin: 0 auto;
 
-        img{
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: black 0 0 15px;
+    .whoAreWeProfile {
+        @include dFlex(row);
+        @include centerXY(space-between, center);
+        margin-bottom: 10px;
+
+        .imgContainer {
+            width: 30%;
+            margin: 0 auto;
+    
+            img{
+                width: 100%;
+                border-radius: 15px;
+                box-shadow: black 0 0 15px;
+            }
+        }
+
+        p{
+            width: 50%;
+            font-size: 1.5rem;
+            text-align: justify;
         }
     }
 
-    .aboutUsPr {
-        font-size: 1.5rem;
-        text-align: justify;
-        width: 50%;
+    .reverseProfile {
+        flex-direction: row-reverse;
     }
     
-    .discoverBtn {
-        margin: 20px auto;
+    
+    .whoAreWeBtn {
+        margin: 40px auto;
 
         a {
             @include roundedBtn;
-            padding: 20px;
+            padding: 10px;
         }
     }
 }
 
 footer {
-    bottom: 0;
-    left: 0;
-    right: 0;
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
-    color: $primaryDark;
+    color: black;
     font-weight: bold;
     padding: 10px 20px;
     text-align: center;
+    margin-top: 50px;
+    box-shadow: 0 0 5px $primaryDark;
 }
 
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+
+
+    // _________________||| NAVIGATION \\\________________\\
 
     .frontNav{
         
@@ -386,6 +345,10 @@ footer {
         }
     }
 
+
+
+    // _________________||| HEADER \\\________________\\
+
     header {
         padding-top: 15vh;
         width: 80vw;
@@ -397,6 +360,24 @@ footer {
         p {
             text-align: center;
             font-size: 1.2rem;
+        }
+    }
+
+    // _________________||| Who Are We \\\________________\\
+
+    .whoAreWeSection{
+
+        .whoAreWeProfile{
+            @include dFlex(column);
+            @include centerXY(space-evenly, center);
+
+            .imgContainer{
+                width: 55vw;
+            }
+
+            p {
+                width: 60vw;
+            }
         }
     }
 }

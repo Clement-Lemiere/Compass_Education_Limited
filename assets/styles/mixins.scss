@@ -22,7 +22,11 @@
     &:hover {
         background-color: $primaryLight;
         cursor: pointer;
-        color: $primaryDark;
+        color: black;
+
+        a{
+            color: black;
+        }
     }
 }
 

@@ -2,49 +2,150 @@
 @import "../styles/variables.scss";
 
 
-/* Min-height */
-body {
-    min-height: 100vh;
+//________________GENERAL________________\\
+
+*{
+    box-sizing: border-box;
 }
 
-// _________________||| PRICES CONTENT \\\________________\\
+.price{
+    font-weight: bold;
+}
 
-.priceMain {
-    @include dFlex(column);
-    @include centerXY(space-between, center);
-    padding: 50px;
-    padding-bottom: 15vh;
-    size: 100vw;
 
-    table {
-        margin-top: 50px;
+.priceSection {
+
+    h2{
+        text-align: center;
     }
 
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .priceBlock {
-        @include dFlex(row);
-        @include centerXY(space-evenly, center);
-        margin-bottom: 10px;
-    }
-
-    .pricePr {
-        font-size: 1.5rem;
-        text-align: justify;
-        width: 50%;
-    }
-
-    .discoverBtn {
+    .priceDescription{
+        text-align: center;
+        width: 60%;
         margin: 20px auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
+    }
+    
+    .perLessons{
+        @include dFlex(row);
+        flex-wrap: nowrap;
+        @include centerXY(space-evenly, center);
+        margin-block: 40px;
 
-        a {
-            @include roundedBtn;
-            padding: 20px;
+        .priceCard{
+            @include dFlex(column);
+            @include centerXY(space-evenly, center);
+            width: 20%;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            background: linear-gradient(rgb(0, 54, 22), rgb(192, 255, 214) 80%);
+
+            h3{
+                color: whitesmoke;
+            }
+
+            >div{
+                @include dFlex(row);
+                @include centerXY(space-evenly, space-evenly);
+                border-top: solid 1px black;
+                width: 100%;
+
+                div{
+                    width: 30%;
+                    text-align: center;
+                    padding-block: 5px;
+                }
+
+                >div:nth-child(1){
+                    border-right: 1px solid black;
+                }
+                >div:nth-child(3){
+                    border-left: 1px solid black;
+                }
+            }
+        }
+    }
+
+    .perMonth{
+        @include dFlex(column);
+        @include centerXY(space-evenly, center);
+        width: 50vw;
+        border: solid 1px black;
+        border-radius: 10px;
+        margin: 0 auto;
+        background: linear-gradient(rgb(0, 54, 22), rgb(192, 255, 214) 80%);
+
+        h3 {
+            color: whitesmoke;
+        }
+
+        p{
+            width: 80%;
+            text-align: center;
+        }
+        
+        .perWeekFormulas{
+            @include dFlex(row);
+            @include centerXY(space-evenly, center);
+            border-top: 1px solid black;
+            width: 100%;
+            
+            >div:nth-child(2){
+                border-left: 1px solid black;
+            }
+
+            .perWeek{
+                @include dFlex(column);
+                @include centerXY(space-evenly, center);
+                width: 50%;
+
+                >div {
+                    @include dFlex(row);
+                    @include centerXY(space-evenly, center);
+                    width: 100%;
+                    border-top: solid 1px black;
+
+                    >div {
+                        width: 50%;
+                        text-align: center;
+                        padding-block: 5px;
+                    }
+
+                    >div:nth-child(2){
+                        border-left: 1px solid black;
+                    }
+                }
+            }
+
+        }
+    }
+
+    .discoverBtn{
+        @include roundedBtn;
+        width: 150px;
+        padding: 10px;
+        text-align: center;
+        margin: 25px auto;
+
+        a{
+            color: whitesmoke;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .priceSection{
+
+        .perLessons{
+            flex-direction: column;
+            
+            .priceCard{
+                width: 60%;
+            }
+        }
+
+        .perMonth{
+            width: 70vw;
         }
     }
 }
