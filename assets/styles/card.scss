@@ -38,8 +38,8 @@ main {
         background: linear-gradient(45deg, $primaryDark, black);
         padding: 20px 40px;
         margin-block: 20px;
-        opacity: 0.8;
-        width: 20%;
+        opacity: 0.9;
+        width: 30%;
         height: 100%;
         border-radius: 25px;
         box-shadow: 0 0 15px $primaryDark;
@@ -47,9 +47,9 @@ main {
         cursor: pointer;
         
         .cardImg {
-            width: 50%;
+            height: 100px;
             img {
-                width: 100%;
+                height: 100%;
             }
         }
         
@@ -102,28 +102,51 @@ main {
     }
 
     .card.expanded {
-        width: 23vw;
-        height: 450px;
-        background: $primaryLight;
-        img {
-            width: 100%;
+        position: fixed;
+        top: 5%;
+        left: 25%;
+        right: 25%;
+        height: 90%;
+        width: 50%;
+        margin: 0;
+        background: linear-gradient($primaryLight, $primaryDark);
+        z-index: 99;
+        transition: all 0.5s ease-in-out;
+        box-shadow: 0 0 15px $primaryDark;
+        justify-content: space-evenly;
+        opacity: 1;
+        backdrop-filter: blur(8px);
+
+        .cardImg {
+            height: 150px;
+
+            img {
+                width: 100%;
+            }
         }
 
-        h2 {
+        h2, h3, p {
             color: black;
         }
 
         .cardDescription {
             p{
-                color: black;
                 display: block;
                 opacity: 1;
             }
 
             .cardBtn {
-                background-color: $primaryDark;
+                background-color: linear-gradient(45deg, $primaryDark, black);
                 color: white;
                 display: inline;
+                font-size: 1.3rem;
+                padding: 10px;
+                box-shadow: 0 0 1px $primaryLight;
+
+                &:hover {
+                    color: black;
+                    box-shadow: 0 0 10px $primaryDark;
+                }
             }
         }
     }
@@ -138,7 +161,7 @@ main {
     .cardContainer {
 
         .card {
-            height: 225px;
+            height: 270px;
             justify-content: flex-start;
             border-radius: 5px;
             background: linear-gradient(45deg, $primaryDark, whitesmoke);
@@ -152,7 +175,7 @@ main {
             }
 
             p {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 color: black;
             }
         }
@@ -163,7 +186,8 @@ main {
         
         a {
             @include roundedBtn;
-            padding: 10px;
+            padding: 10px 20px;
+            font-size: 1.3rem;
         }
     }
 
@@ -187,12 +211,20 @@ main {
         background: none;
 
         .card {
-            width: 50%;
+            width: 60%;
             object-fit: contain;
         }
 
         .card.expanded {
             width: 70%;
+            top: 20%;
+            left: 15%;
+            right: 15%;
+            height: 70%;
+
+            .cardImg {
+                height: 120px;
+            }
         }
     }
 
@@ -203,7 +235,7 @@ main {
 
             .card {
                 width: 60%;
-                height: 180px;
+                height: 100%;
             }
         }
     }

@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Vich\UploaderBundle\Storage\StorageInterface;
 
 
-final class LanguageNormalizer implements NormalizerInterface, NormalizerAwareInterface
+final class FlagNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
     private const ALREADY_CALLED = 'LANGUAGE_NORMALIZER_ALREADY_CALLED';
