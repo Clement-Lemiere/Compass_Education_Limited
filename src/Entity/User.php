@@ -11,12 +11,16 @@ use App\Entity\Student;
 use App\Entity\Teacher;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
@@ -25,8 +29,10 @@ use ApiPlatform\Metadata\Get;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new Get(normalizationContext: ['groups' => 'user:item']),
         new GetCollection(normalizationContext: ['groups' => ['user:list']]),
+        new Get(normalizationContext: ['groups' => 'user:item']),
+        new Post(denormalizationContext: ['groups' => 'user:update']),
+
     ]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -38,32 +44,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:list','user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 180, unique: true)]
-    #[Groups(['user:list', 'user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Groups(['user:list', 'user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Groups(['user:list', 'user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $password = null;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[Groups(['user:list', 'user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?Student $student = null;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[Groups(['user:list', 'user:item'])]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?Teacher $teacher = null;
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -133,11 +141,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function setPassword(string $password): static
-    {
-        $this->password = $password;
+{
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+    $this->password = $hashedPassword;
 
-        return $this;
-    }
+    return $this;
+}
 
     /**
      * @see UserInterface

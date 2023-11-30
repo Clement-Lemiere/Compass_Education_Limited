@@ -13,60 +13,82 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class UserType extends AbstractType
 {
+    private $hasher;
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $hasher = $this->hasher;
+
         $builder
             ->add('email', EmailType::class, [
                 'row_attr' => [
-                            'class' => 'formElement',
-                ],      
+                    'class' => 'formElement',
+                ],
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'options' => [],
-                    'first_options'  => [
-                        'label' => 'Password',
-                    ],
-                    'second_options' => [
-                        'label' => 'Repeat your password',
-                    ],
-                    'invalid_message' => 'The password fields must match.',
-                    'required' => true,
-                    'constraints' => [
-                        new Assert\NotBlank([
-                            'message' => 'Please enter your password',
-                        ]),
-                        new Assert\Length([
-                            'min' => 3,
-                            'max' => 191,
-                            'minMessage' => 'Your password must be at least {{ limit }} caracters long',
-                        ]),
-                        // new Assert\Regex([
-                        //     'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#%&+=_!.$-])[A-Za-z0-9@#%&+=._!$-]{8,}$/',
-                        //     'message' => 'Your password must be at least 8 caracters long and must contain at least 1 uppercase, 1 lowercase, 1 number and 1 of the following caracters : @ # % & + = _ ! . $ -',
-                        // ])
-                    ],
-                
-            ]);
+                'first_options'  => [
+                    'label' => 'Password',
+                ],
+                'second_options' => [
+                    'label' => 'Repeat your password',
+                ],
+                'invalid_message' => 'The password fields must match.',
+                'required' => true,
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Please enter your password',
+                    ]),
+                    new Assert\Length([
+                        'min' => 3,
+                        'max' => 191,
+                        'minMessage' => 'Your password must be at least {{ limit }} caracters long',
+                    ]),
+                    // new Assert\Regex([
+                    //     'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#%&+=_!.$-])[A-Za-z0-9@#%&+=._!$-]{8,}$/',
+                    //     'message' => 'Your password must be at least 8 caracters long and must contain at least 1 uppercase, 1 lowercase, 1 number and 1 of the following caracters : @ # % & + = _ ! . $ -',
+                    // ])
+                ],
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $user = $event->getData();
-            $form = $event->getForm();
+            ])
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($hasher) {
+                $user = $event->getData();
+                if (!$user) {
+                    return;
+                }
 
-            if ($user && in_array('ROLE_STUDENT', $user->getRoles())) {
-                $form->add('student', EditStudentType::class, [
-                    'label' => false,
-                ]);
-            }
-            if ($user && in_array('ROLE_TEACHER', $user->getRoles())) {
-                $form->add('teacher', EditTeacherType::class, [
-                    'label' => false,
-                ]);
-            }
-        });
+                // hashage du password
+                $password = $user->getPassword();
+                $password = $hasher->hashPassword($user, $password);
+                $user->setPassword($password);
+
+                $event->setData($user);
+            })
+
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                $user = $event->getData();
+                $form = $event->getForm();
+
+                if ($user && in_array('ROLE_STUDENT', $user->getRoles())) {
+                    $form->add('student', EditStudentType::class, [
+                        'label' => false,
+                    ]);
+                }
+                if ($user && in_array('ROLE_TEACHER', $user->getRoles())) {
+                    $form->add('teacher', EditTeacherType::class, [
+                        'label' => false,
+                    ]);
+                }
+            });
     }
 
 

@@ -6,6 +6,7 @@ use App\Repository\TeacherRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TeacherRepository::class)]
 class Teacher
@@ -13,21 +14,27 @@ class Teacher
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $nationality = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $qualification = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private ?string $availability = null;
 
     #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Session::class)]
