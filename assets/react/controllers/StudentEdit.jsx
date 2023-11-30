@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Test from '../../images/test.png';
 
-function EditStudent({ onSubmit }) {
+function EditStudent() {
 
     const [user, setUser] = useState({});
-
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -45,36 +44,7 @@ function EditStudent({ onSubmit }) {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
 
-        // Pré-remplir le formulaire avec les données actuelles
     }
-
-    const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        if (!selectedFile) {
-            return;
-        }
-
-        // Check file size and type
-        if (selectedFile.size > 1024 * 1024) {
-            alert('File size exceeds the limit of 1MB');
-            return;
-        }
-
-        if (!['image/jpeg', 'image/png'].includes(selectedFile.type)) {
-            alert('Only JPEG and PNG images are allowed');
-            return;
-        }
-
-        // Upload the selected file
-        // ...
-
-        // Update the profile image preview
-        const fileReader = new FileReader();
-        fileReader.onload = (event) => {
-            setProfileImage(event.target.result);
-        };
-        fileReader.readAsDataURL(selectedFile);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -93,7 +63,7 @@ function EditStudent({ onSubmit }) {
             }
 
             // Le backend a traité la requête avec succès
-            console.log('Profile updated successfully!');
+            alert('Profile updated successfully!');
 
             // Assuming the backend responds with the updated user data
             const updatedUserData = await response.json();
@@ -109,9 +79,38 @@ function EditStudent({ onSubmit }) {
                 password: '',
             });
         } catch (error) {
-            console.error('Error updating profile:', error);
+            alert('Error updating profile:', error);
         }
+
     };
+
+    // const handleFileChange = (e) => {
+    //     const selectedFile = e.target.files[0];
+    //     if (!selectedFile) {
+    //         return;
+    //     }
+
+    //     // Check file size and type
+    //     if (selectedFile.size > 1024 * 1024) {
+    //         alert('File size exceeds the limit of 1MB');
+    //         return;
+    //     }
+
+    //     if (!['image/jpeg', 'image/png'].includes(selectedFile.type)) {
+    //         alert('Only JPEG and PNG images are allowed');
+    //         return;
+    //     }
+
+    //     // Upload the selected file
+    //     // ...
+
+    //     // Update the profile image preview
+    //     const fileReader = new FileReader();
+    //     fileReader.onload = (event) => {
+    //         setProfileImage(event.target.result);
+    //     };
+    //     fileReader.readAsDataURL(selectedFile);
+    // };
 
     const navigation = [
         { name: 'Profile', href: '/sprofile' },
@@ -132,12 +131,6 @@ function EditStudent({ onSubmit }) {
         </ul>
     );
 
-    const formatBirthdate = (birthdateString) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const birthdate = new Date(birthdateString);
-        return birthdate.toLocaleDateString('en-UK', options);
-    };
-
     return (
         <main className='profilePage'>
             <div className="leftColumn">
@@ -151,9 +144,8 @@ function EditStudent({ onSubmit }) {
                         <div className="profileInfo">
                             <div className="infoCtn">
                                 {user.student && (
-                                    <form onSubmit={handleSubmit}> {/* Move the form opening tag here */}
+                                    <form onSubmit={handleSubmit}> 
                                         <ul>
-                                            {/* ... Other Form Fields ... */}
                                             <li>
                                                 <label htmlFor="firstname">Firstname :</label>
                                                 <input
@@ -205,15 +197,16 @@ function EditStudent({ onSubmit }) {
                                                 />
                                             </li>
                                             <li>
-                                                <label htmlFor="password">Change Password :</label>
+                                                <label htmlFor="password">New Password:</label>
                                                 <input
                                                     type="password"
+                                                    id="password"
                                                     name="password"
+                                                    placeholder="New Password"
                                                     value={formData.password}
                                                     onChange={handleInputChange}
                                                 />
                                             </li>
-
                                             {/* ... Other Form Fields ... */}
                                         </ul>
                                         <div>
@@ -226,12 +219,12 @@ function EditStudent({ onSubmit }) {
                             </div>
                         </div>
                         <div className="profilePhoto">
-                             <div className='photo'>                
-                                <form action="traitement.php" method="post" encType="multipart/form-data">
+                            <div className='photo'>
                                     <img
                                         src={Test}
                                         alt="My Profile Picture"
                                     />
+                                {/* <form action="traitement.php" method="post" encType="multipart/form-data">
                                     <input
                                         type="file"
                                         id="photo"
@@ -239,7 +232,7 @@ function EditStudent({ onSubmit }) {
                                         accept="image/*"
                                         onChange={handleFileChange}
                                     />
-                                </form>
+                                </form> */}
                             </div>
                         </div>
                     </div>

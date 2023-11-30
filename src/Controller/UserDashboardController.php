@@ -58,8 +58,8 @@ class UserDashboardController extends AbstractController
     private function updateUser(User $user, array $data): void
     {
         foreach ($data as $key => $value) {
-            if ($key !== 'password') {
-                $setterMethod = 'set' . ucfirst($key);
+            $setterMethod = 'set' . ucfirst($key);
+            if ($key === 'password') {
                 if (method_exists($user, $setterMethod)) {
                     $user->$setterMethod($value);
                 }
