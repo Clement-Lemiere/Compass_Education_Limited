@@ -1,5 +1,5 @@
 <?php
-// api/src/Serializer/LanguageObjectNormalizer.php
+
 namespace App\Serializer;
 
 use App\Entity\Language;

@@ -5,9 +5,7 @@ body {
     background-color: whitesmoke;
 }
 
-main {
-    min-height: 90vh;
-}
+
 
 // _________________||| HEADER \\\________________\\
 
@@ -28,7 +26,7 @@ main {
         .logo {
             @include dFlex(row);
             @include centerXY(center, center);
-            width: 10vw;
+            width: 130px;
 
             a {
                 cursor: pointer;
@@ -36,8 +34,11 @@ main {
                 text-shadow: 0 0 7px black;
 
                 img {
+                    display: block;
                     padding: 5px;
-                    width: 3vw;
+                    width: 50%;
+                    height: 50%;
+                    margin: 0 auto;
                 }
             }
         }
@@ -62,11 +63,11 @@ main {
                 height: 100%;
 
                 a {
-                    display: flex;
-                    align-items: center;
-                    padding: 0 50px;
+                    @include dFlex(row);
+                    @include centerXY(center, center);
                     color: white;
                     height: 100%;
+                    width: 150px;
                     transition: color 0.3s ease;
                     background-color: $darkBlue;
 
@@ -82,18 +83,23 @@ main {
         }
     }
 
-    .backlogBtn {
-        display: flex;
-        align-items: center;
+    .profileLogoutBtn {
         font-size: 20px;
         border-left: solid 1px white;
         padding: 0 50px;
         height: 100%;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease-in;
+        @include dFlex(row);
+        @include centerXY(center, center);
 
         a {
+            vertical-align: middle;
             text-decoration: none;
             color: white;
+
+            i {
+                vertical-align: middle;
+            }
         }
 
         &:hover {
@@ -102,7 +108,7 @@ main {
 
             a {
                 font-weight: bold;
-                font-style: italic
+                // font-style: italic;
             }
         }
     }
@@ -111,42 +117,41 @@ main {
 .profilePage {
     display: flex;
     width: 100%;
+    margin-top: 0;
 
     // _________________||| LEFT COLUMN NAV \\\________________\\
 
-    .leftColumn {
-        width: 10vw;
+    
+    .aLeft {
+        width: 130px;
         background: linear-gradient(160deg, $darkBlue 0%, $basicBlue 90%);
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
 
+        li {
+            list-style: none;
+            
+            a {
+                display: block;
+                @include blockBtn;
+                padding: 30px 10px;
+                color: white;
+                text-decoration: none;
+                background-color: $darkBlue;
+                width: 130px;
 
-        .aLeft {
-            text-align: center;
-            font-size: 1rem;
-            padding: 0;
-            margin: 0;
-
-            li {
-                list-style: none;
-
-                a {
-                    @include dFlex(column);
-                    @include blockBtn;
-                    padding: 30px 15px;
-                    color: white;
-                    text-decoration: none;
-                    background-color: $darkBlue;
-
-                    &:hover {
-                        color: $darkBlue;
-                        font-weight: bold;
-                        cursor: pointer;
-                        box-shadow: 0 0 5px black;
-                        background-color: $lightBlue;
-                    }
+                &:hover {
+                    color: $darkBlue;
+                    font-weight: bold;
+                    cursor: pointer;
+                    box-shadow: 0 0 5px black;
+                    background-color: $lightBlue;
                 }
             }
         }
     }
+
 
     // _________________||| MAIN CONTENT \\\________________\\
 
@@ -154,7 +159,6 @@ main {
         @include dFlex(column);
         @include centerXY(normal, center);
         width: 90vw;
-        max-width: 90vw;
 
         h1 {
             width: 50%;
@@ -197,45 +201,31 @@ main {
             .profileInfo {
                 @include dFlex(column);
                 @include centerXY(space-between, center);
-                width: 48%;
-
-                .infoCtn {
-                    width: 100%;
-                    color: black;
-
-                    input {
-                        width: 100%;
-                        margin: 10px 0;
-                        padding: 5px;
-                        border-radius: 5px;
-                        box-shadow: $darkBlue 0 0 15px;
-                        border: none;
-
-                    }
-
-                    .inputBirth {
-                        text-align: center;
-                    }
-
-                    ul {
-                        padding: 0;
-                    }
+                width: 50%;
 
 
-                    li {
-                        font-weight: bold;
-                        list-style: none;
-                    }
-
-
-                    p {
-                        background-color: $whiteSmoke;
-                        box-shadow: black 0 0 15px;
-                        padding: 15px;
-                        border-radius: 5px;
-                        text-align: center
-                    }
+                .inputBirth {
+                    text-align: center;
                 }
+
+                ul {
+                    padding: 0;
+                    width: 80%;
+                }
+
+
+                li {
+                    font-weight: bold;
+                }
+
+
+                p {
+                    box-shadow: black 0 0 15px;
+                    padding: 15px;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+            
             }
 
             // _________________||| PROFILE PHOTO \\\\________________\\
@@ -243,40 +233,35 @@ main {
             .profilePhoto {
                 @include dFlex(column);
                 @include centerXY(center, center);
-                width: 48%;
+                width: 50%;
 
                 .inputChangePhoto {
                     padding: 20px;
                 }
 
-                .photo {
-                    @include dFlex(column);
-                    @include centerXY(space-between, center);
+                img {
+                    border-radius: 15px;
+                    box-shadow: black 0 0 15px;
+                    width: 70%;
 
 
-                    img {
-                        border-radius: 15px;
-                        box-shadow: black 0 0 15px;
-                        width: 70%;
-
-
-                        &:hover {
-                            background-position: center center;
-                            background-repeat: no-repeat;
-                            background-size: 24px 24px;
-                            height: 100%;
-                            opacity: 0.8;
-                            outline: rgb(66, 153, 225) solid 1px !important
-                        }
+                    &:hover {
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: 24px 24px;
+                        height: 100%;
+                        opacity: 0.8;
+                        outline: rgb(66, 153, 225) solid 1px !important
                     }
-
-
                 }
+
+
+            
             }
 
             .profileBtn {
                 @include backBtn;
-                margin: 50px auto;
+                margin: 50px auto 80px;
 
                 a {
                     color: white;
@@ -289,6 +274,103 @@ main {
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+    .linkWord {
+        display: none;
+    }
+
+    i{
+        margin-right: 0;
+    }
+
+    .navTop{
+        justify-content: center;
+
+        >.links{
+            display: block;
+            >.aTop{
+
+                >li{
+                    border-right: none;
+                
+                    >a {
+                        width: 100px;
+                        background-color: transparent;
+
+                        &:hover {
+                            box-shadow: none;
+                        }
+                    }
+                }
+                li:nth-child(2){
+                    border-inline: white 1px solid;
+                }
+            }
+        }
+
+        .profileLogoutBtn {
+            border: none;
+            width: 100px;
+        }
+    }
+    
+    .logo>a {
+        display: none;
+    }
+
+    .profilePage {
+
+        .aLeft {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 10%;
+            @include dFlex(row);
+            @include centerXY(space-evenly, center);
+            width: 100%;
+            
+            li{
+                 
+                a{
+                    @include dFlex(row);
+                    @include centerXY(center, center);
+                    width: 80px;
+                    background-color: transparent!important;
+
+                    i{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .mainCtn{
+            width: 100vw;
+
+            .profileContainer{
+                flex-direction: column;
+                box-shadow: none;
+                width: 100%;
+
+                .profileDescription{
+                    flex-direction: column-reverse;
+                    
+                    .profilePhoto{
+                        width: 75%;
+                    }
+
+                    .profileInfo{
+                        width: 90%;
+                    }
+
+                }
+            }
+
         }
     }
 }
