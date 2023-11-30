@@ -10,9 +10,18 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class UserDashboardController extends AbstractController
 {
+    private $hasher;
+
+
+    public function  __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
     #[Route("/api/me", name: "get_current_user", methods: ["GET"])]
     public function getCurrentUser(Security $security, Request $request): JsonResponse
     {
@@ -61,7 +70,8 @@ class UserDashboardController extends AbstractController
             $setterMethod = 'set' . ucfirst($key);
             if ($key === 'password') {
                 if (method_exists($user, $setterMethod)) {
-                    $user->$setterMethod($value);
+                    $password = $this->hasher->hashPassword($user, $value);
+                    $user->$setterMethod($password);
                 }
             }
         }
