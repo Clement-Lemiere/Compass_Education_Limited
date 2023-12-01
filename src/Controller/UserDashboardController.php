@@ -76,6 +76,16 @@ class UserDashboardController extends AbstractController
             }
         }
 
+        $teacher = $user->getTeacher();
+        if ($teacher) {
+            foreach ($data as $key => $value) {
+                $setterMethod = 'set' . ucfirst($key);
+                if (method_exists($teacher, $setterMethod)) {
+                    $teacher->$setterMethod($value);
+                }
+            }
+        }
+
 
         $student = $user->getStudent();
         if ($student) {
