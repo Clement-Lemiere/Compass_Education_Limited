@@ -1,42 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-function StudentDashboard() {
-
-    useEffect(() => {
-        fetchUserData()
-            .then((data) => {
-                setFirstname(data.firstname);
-                setLastname(data.lastname);
-                setBirthdate(data.birthdate);
-                setNationality(data.nationality);
-                setEmail(data.email);
-                setLanguage(data.language);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
-
-    async function fetchUserData() {
-        try {
-            const response = await fetch("/api/user");
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    const userInformation = {
-        firstname: "",
-        lastname: "",
-        age: "",
-        nationality: "",
-        email: "",
-        language: ""
-    };
-
+function StudentProgress() {
 
 
     const navigation = [
@@ -88,4 +53,4 @@ function StudentDashboard() {
     );
 }
 
-export default StudentDashboard;
+export default StudentProgress;

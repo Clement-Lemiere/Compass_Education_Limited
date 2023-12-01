@@ -69,12 +69,16 @@ class UserDashboardController extends AbstractController
         foreach ($data as $key => $value) {
             $setterMethod = 'set' . ucfirst($key);
             if ($key === 'password') {
+                $hashedPassword = $this->hasher->hashPassword($user, $value);
                 if (method_exists($user, $setterMethod)) {
-                    $password = $this->hasher->hashPassword($user, $value);
-                    $user->$setterMethod($password);
+                    $user->$setterMethod($hashedPassword);
                 }
+            } elseif (method_exists($user, $setterMethod)) {
+                $user->$setterMethod($value);
             }
         }
+
+
 
         $teacher = $user->getTeacher();
         if ($teacher) {
@@ -101,4 +105,3 @@ class UserDashboardController extends AbstractController
         }
     }
 }
-
