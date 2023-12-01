@@ -65,6 +65,7 @@ const FrontNav = () => {
     const renderUserLogin = () => {
         // Check if the user is a student or teacher and get their first name
         const firstName = user.student?.firstName || user.teacher?.firstName;
+        const isAdmin = user.email === 'admin@example.com';
 
         // Check if the user is a student or teacher
         if (user.student || user.teacher) {
@@ -72,6 +73,12 @@ const FrontNav = () => {
             return (
                 <>
                     <a href={user.student ? "/sprofile" : "/tprofile"}>Hello, {firstName}!</a>
+                </>
+            );
+        } else if (isAdmin) {
+            return (
+                <>
+                    <a href="/admin/user">Hello, Admin!</a>
                 </>
             );
         } else {

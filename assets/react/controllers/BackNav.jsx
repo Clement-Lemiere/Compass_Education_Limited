@@ -19,7 +19,7 @@ const BackNav = () => {
     return (
         <nav className="backNav">
             <div className="logo">
-                <a href="/admin/user"><img src={Logo} alt="logo" /></a>
+                <a href="/"><img src={Logo} alt="logo" /></a>
             </div>
             <ul className="navLinks">
                 {Links.map((item) => (
