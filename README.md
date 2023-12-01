@@ -18,8 +18,6 @@ Afin de pouvoir utiliser ce projet, vous devez avoir :
 - Symfony UX React
 - MariaDB 10.6.12
 
-
-
 ## Fonctionnalités
 
 - Une partie admin pour la gestion des utilisateurs et du traitement de la base de données.
