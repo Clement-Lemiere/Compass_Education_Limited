@@ -31,7 +31,7 @@ const ContactForm = ({ onSubmit }) => {
             >Name
             </label>
             <input
-                className="formGroup formControl"
+                className="formControl"
                 type="text"
                 placeholder="Name"
                 value={name}
@@ -43,7 +43,7 @@ const ContactForm = ({ onSubmit }) => {
             >Email
             </label>
             <input
-                className="formGroup formControl"
+                className="formControl"
                 type="email"
                 placeholder="E-mail"
                 value={email}
@@ -55,7 +55,7 @@ const ContactForm = ({ onSubmit }) => {
             Message
             </label>
             <textarea
-                className="formGroup formControl"
+                className="formControl"
                 placeholder="Message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)} />

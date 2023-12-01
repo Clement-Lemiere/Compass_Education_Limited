@@ -108,10 +108,12 @@ header {
         @include centerXY(center, center);
         font-size: 20px;
         border-left: solid 1px white;
-        width: 10vw;
-        height: 70px;
-
+        
         a {
+            width: 10vw;
+            height: 70px;
+            @include dFlex(row);
+            @include centerXY(center, center);
             text-decoration: none;
             color: white;
         }
@@ -121,7 +123,6 @@ header {
             cursor: pointer;
 
             a {
-                display: block;
                 color: $primaryDark;
             }
         }

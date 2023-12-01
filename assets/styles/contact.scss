@@ -4,48 +4,48 @@
 // _______________||| CONTACT_FORM \\\________________\\
 
 .formContent {
+    @include dFlex(column);
+    @include centerXY(flex-start, center);
     width: 55vw;
     padding: 20px;
     margin: 0 auto;
-    background-color: whitesmoke;
+    box-shadow: 0 0 8px black;
+    border-radius: 10px;
 
     h2 {
         text-align: center;
     }
 
-    .formGroup {
-        text-align: start;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
+    
     .formLabel {
         text-align: start;
         font-size: 16px;
         font-weight: bold;
         margin-bottom: 5px;
+        width: 90%;
     }
 
     .formControl {
-        width: 100%;
+        width: 90%;
         padding: 8px 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        box-sizing: border-box;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 
     .formControl:focus {
         outline: none;
-        box-shadow: 0px 0px 7px $primaryDark;
+        box-shadow: 0px 0px 5px black;
         transition: box-shadow 0.4s ease-in;
     }
 
     .sendBtn {
         @include roundedBtn;
-        padding-block: 10px;;
+        padding-block: 10px;
         outline: none;
-        width: 100%;
-        margin-top: 0.6rem;
+        width: 50%;
+        margin-top: 20px;
     }
 
     textarea {

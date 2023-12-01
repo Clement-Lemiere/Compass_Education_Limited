@@ -12,6 +12,7 @@
         display: inline;
     }
 }
+
 main {
 
     section {
@@ -21,8 +22,21 @@ main {
     }
 }
 
+.blurred.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(7px);
+    /* ou toute autre valeur que tu veux utiliser */
+    pointer-events: none;
+    /* permet aux événements de passer à travers */
+    z-index: 50;
+    /* assure que cet élément est au-dessus des cartes */
+}
+
 .cardContainer {
-    position: relative;
     @include dFlex(row);
     @include centerXY(space-evenly, flex-start);
     margin: 0 auto;
@@ -103,19 +117,19 @@ main {
 
     .card.expanded {
         position: fixed;
-        top: 5%;
+        top: 10%;
         left: 25%;
         right: 25%;
-        height: 90%;
+        bottom: 10%;
+        height: 80vh;
         width: 50%;
         margin: 0;
-        background: linear-gradient($primaryLight, $primaryDark);
+        background: linear-gradient($primaryLight, whitesmoke);
         z-index: 99;
         transition: all 0.5s ease-in-out;
-        box-shadow: 0 0 15px $primaryDark;
+        box-shadow: 0 0 15px 1px black;
         justify-content: space-evenly;
         opacity: 1;
-        backdrop-filter: blur(8px);
 
         .cardImg {
             height: 150px;
@@ -209,6 +223,7 @@ main {
 
         margin-block: 20px;
         background: none;
+        width: 70%;
 
         .card {
             width: 60%;
@@ -216,11 +231,11 @@ main {
         }
 
         .card.expanded {
+            position: fixed;
             width: 70%;
-            top: 20%;
+            top: 17%;
             left: 15%;
             right: 15%;
-            height: 70%;
 
             .cardImg {
                 height: 120px;
