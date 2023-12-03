@@ -18,6 +18,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
 
+
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
@@ -27,47 +28,65 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-public function __construct(UrlGeneratorInterface $urlGenerator, AuthorizationCheckerInterface $authorizationChecker)
-{
-    $this->urlGenerator = $urlGenerator;
-    $this->authorizationChecker = $authorizationChecker;
-}
-
-public function authenticate(Request $request): Passport
-{
-    $email = $request->request->get('email', '');
-    $password = $request->request->get('password', '');
-    $csrfToken = $request->request->get('_csrf_token');
-
-    $request->getSession()->set(Security::LAST_USERNAME, $email);
-
-    $userBadge = new UserBadge($email);
-    $passwordCredentials = new PasswordCredentials($password);
-    $csrfTokenBadge = new CsrfTokenBadge('authenticate', $csrfToken);
-    $rememberMeBadge = new RememberMeBadge();
-
-    return new Passport(
-        $userBadge,
-        $passwordCredentials,
-        [$csrfTokenBadge, $rememberMeBadge]
-    );
-}
-
-public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
-{
-    $roles = ['ROLE_STUDENT' => 'app_student_dashboard', 'ROLE_TEACHER' => 'app_teacher_dashboard', 'ROLE_ADMIN' => 'app_admin_user_index'];
-
-    foreach ($roles as $role => $route) {
-        if ($this->authorizationChecker->isGranted($role)) {
-            return new RedirectResponse($this->urlGenerator->generate($route));
-        }
+    public function __construct(UrlGeneratorInterface $urlGenerator, AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->urlGenerator = $urlGenerator;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
-    return new RedirectResponse($this->urlGenerator->generate('home'));
-}
+    public function authenticate(Request $request): Passport
+    {
+        $email = $request->request->get('email', '');
+        $password = $request->request->get('password', '');
+        $csrfToken = $request->request->get('_csrf_token');
+
+        $request->getSession()->set(Security::LAST_USERNAME, $email);
+
+        $userBadge = new UserBadge($email);
+        $passwordCredentials = new PasswordCredentials($password);
+        $csrfTokenBadge = new CsrfTokenBadge('authenticate', $csrfToken);
+        $rememberMeBadge = new RememberMeBadge();
+
+        return new Passport(
+            $userBadge,
+            $passwordCredentials,
+            [$csrfTokenBadge, $rememberMeBadge]
+        );
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        $roles = ['ROLE_STUDENT' => 'app_student_dashboard', 'ROLE_TEACHER' => 'app_teacher_dashboard', 'ROLE_ADMIN' => 'app_admin_user_index'];
+
+        foreach ($roles as $role => $route) {
+            if ($this->authorizationChecker->isGranted($role)) {
+                return new RedirectResponse($this->urlGenerator->generate($route));
+            }
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('home'));
+    }
 
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
+
+
+    /**
+     * Clear the remember me badge cookie.
+     */
+    const COOKIE_NAME = 'remember_me';
+    public function clearRememberMeCookie(): void
+    {
+        if (!$this->isUserConnected()) {
+            $response = new Response();
+            $response->headers->clearCookie(self::COOKIE_NAME);
+        }
+    }
+
+    private function isUserConnected(): bool
+    {
+        return $this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED');
     }
 }
