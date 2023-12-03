@@ -52,7 +52,7 @@ class UserDashboardController extends AbstractController
         }
 
         // Retrieve the JSON data from the request body
-        $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true);      
 
         // Update the user data based on the received data
         $this->updateUser($user, $data);

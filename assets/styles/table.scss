@@ -53,18 +53,38 @@ table {
     margin: 50px auto;
     border-spacing: 0;
     border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
     object-fit: contain;
+    box-sizing: initial;
+    border: solid 1px $primaryDark;
+    
+    a {
 
+        box-shadow: 0 0 5px $primaryDark;
+        border-radius: 10px;
+        color: $primaryDark;
+        padding: 10px 50px;
+        transition: color 0.3s ease;
+        margin-inline: 5px;
+        box-sizing: initial;
 
+        &:hover {
+            color: whitesmoke;
+            background-color: $primaryDark;
+            cursor: pointer;
+        }
+    }
+    
     tr:nth-child(odd) {
         background-color: $primaryBasic;
         color: white;
         font-weight: 500;
 
         a {
-            color: white;
+            color: whitesmoke;
             transition: color 0.3s ease;
-            background-color: $primaryDark;
+            box-shadow: 0 0 5px whitesmoke;
 
             &:hover {
                 color: $primaryDark;
@@ -74,11 +94,8 @@ table {
         }
     }
 
-
-    td:last-child,
-    th:last-child {
+    td:last-child, th:last-child {
         width: 400px;
-
     }
 
     th {
@@ -86,43 +103,11 @@ table {
         color: whitesmoke;
     }
 
-    th,
-    td {
+    th, td {
         min-width: 20px;
         text-align: center;
-        padding: 10px 10px;
+        padding: 20px 10px;
         border-bottom: solid 1px $primaryBasic;
     }
 
-    th:first-child {
-        border-radius: 10px 0 0 10px;
-    }
-
-    td:first-child {
-        border-radius: 10px 0 0 10px;
-        border-left: solid 1px $primaryBasic;
-    }
-
-    th:last-child,
-    td:last-child {
-        border-radius: 0 10px 10px 0;
-        border-right: solid 1px $primaryBasic;
-    }
-
-    a {
-
-        background-color: $primaryBasic;
-        border-radius: 10px;
-        color: white;
-        padding: 5px 50px;
-        transition: color 0.3s ease;
-        margin-inline: 5px;
-
-
-        &:hover {
-            color: $primaryBasic;
-            background-color: $primaryLight;
-            cursor: pointer;
-        }
-    }
 }

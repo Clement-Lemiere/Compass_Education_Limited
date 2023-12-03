@@ -53,6 +53,7 @@ class Student
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'students')]
+    #[Groups(['user:list', 'user:item', 'user:update'])]
     private Collection $language;
 
     #[ORM\ManyToMany(targetEntity: Assignment::class, inversedBy: 'students')]
