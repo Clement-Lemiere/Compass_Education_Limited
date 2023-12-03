@@ -40,6 +40,7 @@ function StudentDashboard() {
     { name: 'Calendar', href: '/scalendar', icon: calendarIcon },
     { name: 'Progress', href: '/sprogress', icon: progressIcon },
     { name: 'Edit Profile', href: '/editSprofile', icon: pencilIcon },
+    { name: 'lesson', href: '/studentLesson', icon: pencilIcon },
   ];
 
 
@@ -62,7 +63,7 @@ function StudentDashboard() {
   );
 
   const renderProfileInfo = () => {
-    if (user.student) {
+    if (user.student && user.student.language) {
       return (
         <>
           <li><label>Firstname :</label><p>{user.student.firstName}</p></li>
@@ -70,6 +71,7 @@ function StudentDashboard() {
           <li><label>Birthdate : </label><p>{formatBirthdate(user.student?.birthdate)}</p></li>
           <li><label>Nationality :</label><p> {user.student.nationality}</p></li>
           <li><label>Level : </label><p>{user.student.level}</p></li>
+          <li><label>Language : </label><p>{user.student.language.id}</p></li>
           {/* Add more information as needed */}
         </>
       );

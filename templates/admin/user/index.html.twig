@@ -8,9 +8,9 @@
     <div class="tableFeatures">
         <a class="newBtn" href="{{ path('app_admin_user_new') }}">Create new user</a>
     <form class="searchForm" action="{{ path('app_admin_user_search') }}" method="GET">
-        <label for="search">Find</label>
+        <label for="search">Search</label>
         <input type="text" name="search" value="{{ app.request.query.get('search') }}">
-        <button type="submit">Search</button>
+        <button type="submit">Find</button>
     </form>
     </div>
     <table>

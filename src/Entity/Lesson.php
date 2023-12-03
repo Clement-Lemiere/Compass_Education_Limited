@@ -2,27 +2,44 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\LessonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LessonRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(normalizationContext: ['groups' => ['lesson:list']]),
+        new Get(normalizationContext: ['groups' => 'lesson:item']),
+
+    ]
+)]
 class Lesson
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['lesson:read', 'lesson:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 191)]
+    #[Groups(['lesson:read', 'lesson:write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['lesson:read', 'lesson:write'])]
+
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Groups(['lesson:read', 'lesson:write'])]
+
     private ?int $level = null;
 
     #[ORM\ManyToMany(targetEntity: Assignment::class, mappedBy: 'lesson')]
@@ -30,6 +47,7 @@ class Lesson
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['lesson:read', 'lesson:write'])]
     private ?Language $language = null;
 
     public function __construct()
