@@ -51,7 +51,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadQuizzes();
         $this->loadAssignments();
         $this->loadLessons();
-        $this->loadFlags();
         $this->loadResources();
         $this->loadPayments();
         $this->loadFAQs();
@@ -147,39 +146,87 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         // static datas
         $datas = [
             [
-                'email' => 'doe.mi@example.com',
+                'email' => 'camille.leclerc@email.com',
                 'password' => '123',
                 'roles' => ['teacher'],
-
-                'firstName' => 'Micheal',
-                'lastName' => 'Donokey',
-                'nationality' => 'USA',
-                'availability' => 'Available',
-                'qualification' => 'English(US)',
-            ],
-            [
-                'email' => 'ge.la@example.com',
-                'password' => '123',
-                'roles' => ['teacher'],
-
-                'firstName' => 'Gérard',
-                'lastName' => 'Lambert',
-                'nationality' => 'France',
+                'firstName' => 'Camille',
+                'lastName' => 'Leclerc',
+                'nationality' => 'French',
                 'availability' => 'Available',
                 'qualification' => 'French',
             ],
             [
-                'email' => 'ta.li@example.com',
+                'email' => 'emily.anderson@email.com',
                 'password' => '123',
                 'roles' => ['teacher'],
-
-                'firstName' => 'Tangzhi',
-                'lastName' => 'li',
-                'nationality' => 'China',
+                'firstName' => 'Emily',
+                'lastName' => 'Anderson',
+                'nationality' => 'British',
+                'availability' => 'Available',
+                'qualification' => 'English',
+            ],
+            [
+                'email' => 'markus.wagner@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Markus',
+                'lastName' => 'Wagner',
+                'nationality' => 'German',
+                'availability' => 'Available',
+                'qualification' => 'German',
+            ],
+            [
+                'email' => 'isabella.rossi@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Isabella',
+                'lastName' => 'Rossi',
+                'nationality' => 'Italian',
+                'availability' => 'Available',
+                'qualification' => 'Italian',
+            ],
+            [
+                'email' => 'javier.rodriguez@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Javier',
+                'lastName' => 'Rodriguez',
+                'nationality' => 'Spanish',
+                'availability' => 'Available',
+                'qualification' => 'Spanish',
+            ],
+            [
+                'email' => 'wei.chen@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Wei',
+                'lastName' => 'Chen',
+                'nationality' => 'Chinese',
                 'availability' => 'Available',
                 'qualification' => 'Chinese',
             ],
+            [
+                'email' => 'yuki.tanaka@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Yuki',
+                'lastName' => 'Tanaka',
+                'nationality' => 'Japanese',
+                'availability' => 'Available',
+                'qualification' => 'Japanese',
+            ],
+            [
+                'email' => 'minho.kim@email.com',
+                'password' => '123',
+                'roles' => ['teacher'],
+                'firstName' => 'Min-Ho',
+                'lastName' => 'Kim',
+                'nationality' => 'South Korean',
+                'availability' => 'Available',
+                'qualification' => 'Korean',
+            ],
         ];
+
         foreach ($datas as $data) {
             $user = new User();
             $user->setEmail($data['email']);
@@ -233,36 +280,36 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         // static datas
         $datas = [
             [
-                'name' => 'French',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'name' => 'Chinese',
+                'description' => 'Exploring Chinese connects you to a millennia-old history. Mandarin, with its fascinating characters, offers economic, cultural opportunities and a profound understanding of Chinese civilization.'
             ],
             [
                 'name' => 'English',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'description' => 'Mastering English broadens horizons. Become a global citizen, access a wealth of knowledge, communicate worldwide, and discover contemporary literature and technology.'
             ],
             [
-                'name' => 'Chinese',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
-            ],
-            [
-                'name' => 'Spanish',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
-            ],
-            [
-                'name' => 'Japanese',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'name' => 'French',
+                'description' => 'Learning French opens doors to refined culture, exquisite gastronomy, and timeless artistry. It\'s the language of love, diplomacy, and enduring elegance.'
             ],
             [
                 'name' => 'German',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'description' => 'Mastering German provides access to efficiency, innovation, and unmatched precision. Explore a culture rich in history, classical music, and entrepreneurial spirit.'
             ],
             [
                 'name' => 'Italian',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'description' => 'Italian, the language of art, fashion, and delicious cuisine, transports speakers into a world of eternal beauty. It\'s the key to understanding the dolce vita.'
+            ],
+            [
+                'name' => 'Japanese',
+                'description' => 'Learning Japanese is delving into the harmony between tradition and modernity. Explore refined aesthetics, technological ingenuity, and a culture that values balance and contemplation.'
             ],
             [
                 'name' => 'Korean',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit autem rerum, ad ea repellendus eius!'
+                'description' => 'Korean reveals a captivating fusion of tradition and modernity. Learning this language opens the door to a rich pop culture, tasty cuisine, and deep interpersonal connections.'
+            ],
+            [
+                'name' => 'Spanish',
+                'description' => 'Speaking Spanish is stepping into the vibrant world of passion, music, and conviviality. This language awakens the senses, opens doors to sunny destinations, and warm cultures.'
             ],
         ];
 
@@ -350,29 +397,29 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $datas = [
             [
-                'title' => 'Formation 1',
-                'objective' => 'Online course',
-                'duration' => 30,
+                'title' => 'Chinese economic lexicon part 2/3',
+                'objective' => ' Online course',
+                'duration' => 60,
                 'startDate' => new DateTime('2023-10-04'),
                 'satisfaction' => 5,
                 'cost' => 100,
                 'language' => $language1,
             ],
             [
-                'title' => 'Formation 2',
+                'title' => 'English for business',
                 'objective' => 'Online course',
                 'duration' => 45,
                 'startDate' => new DateTime('2023-10-04'),
-                'satisfaction' => 5,
-                'cost' => 50,
+                'satisfaction' => 4,
+                'cost' => 75,
                 'language' => $language2,
             ],
             [
-                'title' => 'Formation 3',
+                'title' => ' French Arts',
                 'objective' => 'Online course',
-                'duration' => 60,
+                'duration' => 45,
                 'startDate' => new DateTime('2023-10-04'),
-                'satisfaction' => 3,
+                'satisfaction' => 4,
                 'cost' => 75,
                 'language' => $language3,
             ]
@@ -487,23 +534,53 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $datas = [
             [
-                'title' => 'Lesson 1',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'level' => 1,
-                'language' => $language1
-            ],
-            [
-                'title' => 'Lesson 2',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'level' => 2,
-                'language' => $language2
-            ],
-            [
-                'title' => 'Lesson 3',
-                'content' => 'Dolores ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veniam in expedita mollitia impedit! Illo optio sed nisi aperiam libero. ',
-                'level' => 3,
-                'language' => $language3
-            ]
+        'title' => 'French Basics',
+        'content' => 'Learn the essentials of French language and culture. Explore common phrases, greetings, and basic grammar to start your journey into the beauty of French communication.',
+        'level' => 1,
+        'language' => 'French'
+    ],
+    [
+        'title' => 'English Conversation Skills',
+        'content' => 'Enhance your English conversation skills. This lesson covers everyday topics, useful expressions, and practical communication strategies. Build confidence in your English communication abilities.',
+        'level' => 2,
+        'language' => 'English'
+    ],
+    [
+        'title' => 'Chinese Characters Unveiled',
+        'content' => 'Discover the fascinating world of Chinese characters. This lesson introduces basic characters, stroke order, and their cultural significance. Lay the foundation for Mandarin proficiency.',
+        'level' => 3,
+        'language' => 'Chinese'
+    ],
+    [
+        'title' => 'Spanish Travel Essentials',
+        'content' => 'Prepare for your Spanish-speaking adventures. Learn essential phrases, navigate common travel situations, and immerse yourself in the language and customs of Spanish-speaking regions.',
+        'level' => 1,
+        'language' => 'Spanish'
+    ],
+    [
+        'title' => 'Japanese Cultural Insights',
+        'content' => 'Explore the rich cultural nuances of the Japanese language. Dive into traditional customs, social etiquette, and expressions unique to Japanese communication. Enhance your understanding of Japan.',
+        'level' => 2,
+        'language' => 'Japanese'
+    ],
+    [
+        'title' => 'German Grammar Essentials',
+        'content' => 'Master fundamental German grammar rules. This lesson covers verb conjugations, sentence structure, and key grammar concepts to solidify your understanding of the German language.',
+        'level' => 3,
+        'language' => 'German'
+    ],
+    [
+        'title' => 'Italian Art and Language Fusion',
+        'content' => 'Merge the beauty of Italian art with language learning. Explore art-related vocabulary, expressions, and cultural insights. Immerse yourself in the artistic charm of the Italian language.',
+        'level' => 1,
+        'language' => 'Italian'
+    ],
+    [
+        'title' => 'Korean Pop Culture Phrases',
+        'content' => 'Dive into the world of Korean pop culture. Learn trendy phrases, expressions from K-dramas, and key aspects of contemporary Korean language usage. Connect with modern Korean communication.',
+        'level' => 2,
+        'language' => 'Korean'
+    ],
         ];
 
         foreach ($datas as $data) {
@@ -511,8 +588,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $lesson->setTitle($data['title']);
             $lesson->setContent($data['content']);
             $lesson->setLevel($data['level']);
-            $lesson->setLanguage($data['language']);
-
             $this->manager->persist($lesson);
         }
         $this->manager->flush();
@@ -536,20 +611,69 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
         $datas = [
             [
-                'title' => 'Assignment 1',
-                'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, facilis! ',
+                'title' => 'French Conversation Challenge',
+                'content' => 'Engage in a French conversation challenge. Discuss daily topics, share opinions, and practice fluency. Start from ' .
+                    'October 4, 2023, and submit by October 7, 2023. Grade: 7.',
                 'startDate' => new DateTime('2023-10-04'),
                 'dueDate' => new DateTime('2023-10-07'),
                 'grade' => 7,
             ],
             [
-                'title' => 'Assignment 2',
-                'content' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, quisquam? ',
+                'title' => 'English Writing Mastery',
+                'content' => 'Master English writing skills. Create a compelling essay on a given topic. Begin on October 8, 2023, and submit by ' .
+                    'October 10, 2023. Grade: 8.',
                 'startDate' => new DateTime('2023-10-08'),
                 'dueDate' => new DateTime('2023-10-10'),
                 'grade' => 8,
             ],
-            // 3ème assignement ?
+            [
+                'title' => 'Chinese Character Exploration',
+                'content' => 'Explore Chinese characters and their meanings. Write a short composition using newly learned characters. Commence on ' .
+                    'October 12, 2023, and complete by October 15, 2023. Grade: 6.',
+                'startDate' => new DateTime('2023-10-12'),
+                'dueDate' => new DateTime('2023-10-15'),
+                'grade' => 6,
+            ],
+            [
+                'title' => 'Spanish Cultural Reflection',
+                'content' => 'Reflect on a Spanish cultural aspect. Write a commentary on its significance. Initiate on October 18, 2023, and ' .
+                    'finalize by October 20, 2023. Grade: 7.',
+                'startDate' => new DateTime('2023-10-18'),
+                'dueDate' => new DateTime('2023-10-20'),
+                'grade' => 7,
+            ],
+            [
+                'title' => 'Japanese Language and Tradition Essay',
+                'content' => 'Compose an essay on the integration of language and tradition in Japanese society. Begin on October 22, 2023, and ' .
+                    'submit by October 25, 2023. Grade: 8.',
+                'startDate' => new DateTime('2023-10-22'),
+                'dueDate' => new DateTime('2023-10-25'),
+                'grade' => 8,
+            ],
+            [
+                'title' => 'German Grammar Quiz',
+                'content' => 'Test your knowledge of German grammar. Answer questions on verb conjugations, cases, and syntax. Start from October ' .
+                    '28, 2023, and complete by October 31, 2023. Grade: 7.',
+                'startDate' => new DateTime('2023-10-28'),
+                'dueDate' => new DateTime('2023-10-31'),
+                'grade' => 7,
+            ],
+            [
+                'title' => 'Italian Artistic Expression Project',
+                'content' => 'Create a project showcasing Italian artistic expressions. Include visual elements and a brief explanation. Commence on ' .
+                    'November 3, 2023, and conclude by November 6, 2023. Grade: 8.',
+                'startDate' => new DateTime('2023-11-03'),
+                'dueDate' => new DateTime('2023-11-06'),
+                'grade' => 8,
+            ],
+            [
+                'title' => 'Korean Pop Culture Analysis',
+                'content' => 'Analyze a aspect of Korean pop culture. Present findings on its impact and popularity. Begin on November 9, 2023, and ' .
+                    'finish by November 12, 2023. Grade: 7.',
+                'startDate' => new DateTime('2023-11-09'),
+                'dueDate' => new DateTime('2023-11-12'),
+                'grade' => 7,
+            ],
         ];
         foreach ($datas as $data) {
             $assignment = new Assignment();
@@ -578,62 +702,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     }
 
 
-    public function loadFlags(): void
-    {
-        //static datas
-
-        $languageRepository = $this->manager->getRepository(Language::class);
-        $languages = $languageRepository->findAll();
-
-        $language1 = $languageRepository->find(1);
-        $language2 = $languageRepository->find(2);
-        $language3 = $languageRepository->find(3);
-
-        $datas = [
-            [
-                'country' => 'Flag 1',
-                'image' => 'Flag 1',
-                'iso_code' => 'Flag 1',
-                'language' => $language1
-            ],
-            [
-                'country' => 'Flag 2',
-                'image' => 'Flag 2',
-                'iso_code' => 'Flag 2',
-                'language' => $language2
-            ],
-            [
-                'country' => 'Flag 3',
-                'image' => 'Flag 3',
-                'iso_code' => 'Flag 3',
-                'language' => $language3
-            ]
-        ];
-
-        foreach ($datas as $data) {
-            $flag = new Flag();
-            $flag->setCountry($data['country']);
-            $flag->setImage($data['image']);
-            $flag->setIsoCode($data['iso_code']);
-            $flag->setLanguage($data['language']);
-
-            $this->manager->persist($flag);
-        }
-        $this->manager->flush();
-
-        //dynamic datas
-
-        for ($i = 0; $i < 20; $i++) {
-            $flag = new Flag();
-            $flag->setCountry($this->faker->country());
-            $flag->setImage($this->faker->word());
-            $flag->setIsoCode($this->faker->countryCode());
-            $flag->setLanguage($this->faker->randomElement($languages));
-
-            $this->manager->persist($flag);
-        }
-        $this->manager->flush();
-    }
 
     public function loadResources(): void
     {
@@ -647,26 +715,61 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $datas = [
             [
-                'type' => 'Resource 1',
-                'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-                'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
+                'type' => 'Language Basics Guide',
+                'title' => 'Unlocking the Wonders of French',
+                'content' => 'Discover the essentials of the French language. Master common phrases, pronunciation, and basic grammar rules to kickstart your French language journey.',
                 'publishedDate' => new DateTime('2023-10-02'),
-                'language' => $language1
+                'language' => 'French',
             ],
             [
-                'type' => 'Resource 2',
-                'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-                'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
+                'type' => 'Language Mastery Handbook',
+                'title' => 'Essential English Language Tips',
+                'content' => 'Enhance your English language skills with this comprehensive guide. Explore tips on grammar, vocabulary expansion, and effective communication strategies.',
+                'publishedDate' => new DateTime('2023-10-05'),
+                'language' => 'English',
+            ],
+            [
+                'type' => 'Character Writing Tutorial',
+                'title' => 'Cracking the Code: Chinese Characters',
+                'content' => 'Embark on a journey to understand and write Chinese characters. This resource provides step-by-step guidance on strokes, radicals, and character meanings.',
+                'publishedDate' => new DateTime('2023-10-03'),
+                'language' => 'Chinese',
+            ],
+            [
+                'type' => 'Cultural Insight Handbook',
+                'title' => 'Navigating Spanish Culture',
+                'content' => 'Immerse yourself in Spanish culture with this insightful guide. Learn about customs, traditions, and essential cultural nuances for effective language communication.',
+                'publishedDate' => new DateTime('2023-10-09'),
+                'language' => 'Spanish',
+            ],
+            [
+                'type' => 'Language and Tradition Manual',
+                'title' => 'Japanese Language & Tradition Tips',
+                'content' => 'Explore the synergy between the Japanese language and cultural traditions. Gain insights into idioms, expressions, and cultural nuances that shape the language.',
                 'publishedDate' => new DateTime('2023-10-08'),
-                'language' => $language2
+                'language' => 'Japanese',
             ],
             [
-                'type' => 'Resource 3',
-                'title' => 'Consectetur adipisicing elit.',
-                'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia eius eaque id aperiam aspernatur impedit eos atque quas, autem voluptatum. Facere fugiat amet consequatur dicta.',
-                'publishedDate' => new DateTime('2023-09-22'),
-                'language' => $language3
-            ]
+                'type' => 'Grammar Essentials Handbook',
+                'title' => 'Mastering German Grammar',
+                'content' => 'This handbook is your guide to mastering German grammar. Dive into verb conjugations, cases, and sentence structure for a solid foundation in German language skills.',
+                'publishedDate' => new DateTime('2023-10-12'),
+                'language' => 'German',
+            ],
+            [
+                'type' => 'Art and Language Fusion Guide',
+                'title' => 'Italian Art & Language Connection',
+                'content' => 'Explore the fusion of art and language in Italian culture. This guide offers tips on appreciating Italian art and understanding artistic expressions within the language.',
+                'publishedDate' => new DateTime('2023-10-11'),
+                'language' => 'Italian',
+            ],
+            [
+                'type' => 'Pop Culture Language Tips',
+                'title' => 'Navigating Korean Pop Culture',
+                'content' => 'Delve into the world of Korean pop culture with this guide. Learn key phrases, expressions, and language nuances influenced by modern Korean entertainment.',
+                'publishedDate' => new DateTime('2023-10-15'),
+                'language' => 'Korean',
+            ],
         ];
         foreach ($datas as $data) {
             $resource = new Resource();
@@ -674,7 +777,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $resource->setTitle($data['title']);
             $resource->setContent($data['content']);
             $resource->setPublishedDate($data['publishedDate']);
-            $resource->setLanguage($data['language']);
 
             $this->manager->persist($resource);
         }
@@ -766,16 +868,48 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
 
         $datas = [
-            [
-                'question' => 'Question 1',
-                'answer' => 'Answer 1',
-            ],
-            [
-                'question' => 'Question 2',
-                'answer' => 'Answer 2',
-            ],
+                [
+                    'question' => 'How do I enroll in a language course?',
+                    'answer' => 'To enroll, visit our website and navigate to the "Courses" section. Choose your desired language, select a course, and click on the "Enroll" button. Follow the instructions to complete the enrollment process.',
+                ],
+                [
+                    'question' => 'What technology do I need for online classes?',
+                    'answer' => 'You\'ll need a computer or laptop with a stable internet connection. Ensure you have a webcam, microphone, and speakers for interactive sessions. Our platform is compatible with common browsers like Chrome, Firefox, and Safari.',
+                ],
+                [
+                    'question' => 'Are the classes live or pre-recorded?',
+                    'answer' => 'Our classes are conducted live by experienced language instructors. Live sessions allow real-time interaction, Q&A, and personalized feedback, creating a dynamic and engaging learning experience.',
+                ],
+                [
+                    'question' => 'Can I access course materials after the live sessions?',
+                    'answer' => 'Yes, all course materials, including recorded sessions, presentations, and additional resources, are available in your account for review. This ensures you can reinforce your learning at your own pace.',
+                ],
+                [
+                    'question' => 'How can I get assistance if I face technical issues during a class?',
+                    'answer' => 'In case of technical issues, our support team is available 24/7. Contact us through the dedicated technical support channel provided on the platform, and we\'ll assist you promptly.',
+                ],
+                [
+                    'question' => 'What is the duration of each course?',
+                    'answer' => 'The duration varies depending on the course level and intensity. Most standard courses run for 8-12 weeks, with multiple sessions per week. Check the course details for specific duration information.',
+                ],
+                [
+                    'question' => 'Is there a placement test to determine my language proficiency level?',
+                    'answer' => 'Yes, we offer a placement test to assess your current language proficiency. The results help us recommend the most suitable course level for you, ensuring an optimal learning experience.',
+                ],
+                [
+                    'question' => 'Are there any scholarships or discounts available?',
+                    'answer' => 'We occasionally offer scholarships and discounts. Keep an eye on our website, newsletters, and social media for announcements. Additionally, we may have special promotions during certain periods.',
+                ],
+                [
+                    'question' => 'Can I switch to a different course if I find my current level too easy or challenging?',
+                    'answer' => 'Yes, we understand the importance of finding the right challenge. You can discuss your concerns with your instructor, and if necessary, we\'ll assist you in transferring to a more suitable course level.',
+                ],
+                [
+                    'question' => 'How do I receive my certificate upon course completion?',
+                    'answer' => 'Upon successful completion of the course, you will receive a digital certificate. Certificates are typically available for download directly from your account on the platform. Be sure to check your email for additional instructions.',
+                ],
+            ];
 
-        ];
 
         foreach ($datas as $data) {
             $faq = new FAQ();
