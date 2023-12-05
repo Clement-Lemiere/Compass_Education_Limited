@@ -73,13 +73,13 @@ const FrontNav = () => {
             // Render a greeting message with the user's first name and a link to their profile
             return (
                 <>
-                    <a href={user.student ? "/sprofile" : "/tprofile"}><PowerIcon /><span className="linkWord">Hello, {firstName}!</span></a>
+                    <a href={user.student ? "/sprofile" : "/tprofile"}><PowerIcon /><span className="linkWord">Hello {firstName}!</span></a>
                 </>
             );
         } else if (isAdmin) {
             return (
                 <>
-                    <a href="/admin/user"><PowerIcon /><span className="linkWord">Hello, Admin!</span></a>
+                    <a href="/admin/user"><PowerIcon /><span className="linkWord">Hello Admin!</span></a>
                 </>
             );
         } else {
