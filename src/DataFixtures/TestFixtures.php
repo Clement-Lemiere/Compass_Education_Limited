@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use DateTime;
+use DateTimeInterface;
 use App\Entity\User;
 use App\Entity\Student;
 use App\Entity\Teacher;
@@ -43,54 +44,75 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
+        $this->loadLanguages();
+        $this->loadResources();
+        $this->loadLessons();
+        $this->loadAssignments();
         $this->loadStudents();
         $this->loadTeachers();
-        $this->loadLanguages();
         $this->loadSessions();
         $this->loadFormations();
         $this->loadQuizzes();
-        $this->loadAssignments();
-        // $this->loadLessons();
-        // $this->loadResources();
         $this->loadPayments();
         $this->loadFAQs();
     }
 
     public function loadStudents(): void
     {
-        //static datas
+        $languageRepository = $this->manager->getRepository(Language::class);
+        $languages = $languageRepository->findAll();
+        $language1 = $languageRepository->find(1);
+        $language2 = $languageRepository->find(2);
+        $language3 = $languageRepository->find(3);
+
+        $assignmentRepository = $this->manager->getRepository(Assignment::class);
+        $assignments = $assignmentRepository->findAll();
+        $french = $assignmentRepository->find(1);
+        $english = $assignmentRepository->find(2);
+        $chinese = $assignmentRepository->find(3);
+
+
+
         $datas = [
             [
-                'email' => 'foo.foo@example.com',
-                'password' => '123',
-                'roles' => ['student'],
-                'firstName' => 'Mike',
-                'lastName' => 'Doe',
-                'birthDate' => new DateTime(),
-                'nationality' => 'USA',
-                'level' => 5,
-            ],
-            [
-                'email' => 'bat.bar@example.com',
-                'password' => '123',
-                'roles' => ['student'],
-                'firstName' => 'Jane',
-                'lastName' => 'Bellane',
-                'birthDate' => new DateTime(),
-                'nationality' => 'France',
-                'level' => 6,
-            ],
-            [
-                'email' => 'baz.baz@example.com',
+                'email' => 'foo@example.com',
                 'password' => '123',
                 'roles' => ['student'],
                 'firstName' => 'John',
                 'lastName' => 'Doe',
-                'birthDate' => new DateTime(),
+                'birthdate' => new DateTime(),
                 'nationality' => 'USA',
-                'level' => 7,
+                'level' => 4,
+                'languages' => [$language1],
+                'assignments' => [$french],
+
+            ],
+            [
+                'email' => 'bar@example.com',
+                'password' => '123',
+                'roles' => ['student'],
+                'firstName' => 'Alice',
+                'lastName' => 'Smith',
+                'birthdate' => new DateTime(),
+                'nationality' => 'UK',
+                'level' => 5,
+                'languages' => [$language2],
+                'assignments' => [$english],
+            ],
+            [
+                'email' => 'baz@example.com',
+                'password' => '123',
+                'roles' => ['student'],
+                'firstName' => 'Bob',
+                'lastName' => 'Johnson',
+                'birthdate' => new DateTime(),
+                'nationality' => 'Canada',
+                'level' => 6,
+                'languages' => [$language3],
+                'assignments' => [$chinese],
             ],
         ];
+
         foreach ($datas as $data) {
             $user = new User();
             $user->setEmail($data['email']);
@@ -101,12 +123,33 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $student->setUser($user);
             $student->setFirstName($data['firstName']);
             $student->setLastName($data['lastName']);
-            $student->setBirthDate($data['birthDate']);
+            $birthdate = $data['birthdate'];
+
+            // Check if $birthdate is a string and create a DateTimeInterface object
+            if (is_string($birthdate)) {
+                $birthdate = new DateTime($birthdate);
+            }
+
+            // Check if $birthdate is an array and create a DateTimeInterface object
+            if (is_array($birthdate)) {
+                $birthdate = new DateTime($birthdate['date']);
+            }
+
+            $student->setBirthdate($birthdate);
             $student->setNationality($data['nationality']);
             $student->setLevel($data['level']);
 
+            foreach ($data['languages'] as $language) {
+                $student->addLanguage($language);
+            }
+
+            foreach ($data['assignments'] as $assignment) {
+                $student->addAssignment($assignment);
+            }
+
             $this->manager->persist($student);
         }
+
         $this->manager->flush();
 
         // dynamic datas
@@ -131,8 +174,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
             $level = $this->faker->numberBetween(1, 10);
             $student->setLevel($level);
+            $student->addLanguage($languages[$this->faker->numberBetween(0, 7)]);
 
-
+            $student->addAssignment($assignments[$this->faker->numberBetween(0, 7)]);
+            
             $student->setUser($user);
 
             $this->manager->persist($user);
@@ -142,6 +187,18 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
     public function loadTeachers(): void
     {
+
+        $repository = $this->manager->getRepository(Language::class);
+        $languages = $repository->findAll();
+        $language1 = $repository->find(1);
+        $language2 = $repository->find(2);
+        $language3 = $repository->find(3);
+        $language4 = $repository->find(4);
+        $language5 = $repository->find(5);
+        $language6 = $repository->find(6);
+        $language7 = $repository->find(7);
+        $language8 = $repository->find(8);
+
 
         // static datas
         $datas = [
@@ -154,6 +211,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'French',
                 'availability' => 'Available',
                 'qualification' => 'French',
+                'languages' => [$language3],
             ],
             [
                 'email' => 'emily.anderson@email.com',
@@ -164,6 +222,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'British',
                 'availability' => 'Available',
                 'qualification' => 'English',
+                'languages' => [$language2],
             ],
             [
                 'email' => 'markus.wagner@email.com',
@@ -174,6 +233,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'German',
                 'availability' => 'Available',
                 'qualification' => 'German',
+                'languages' => [$language4],
             ],
             [
                 'email' => 'isabella.rossi@email.com',
@@ -184,6 +244,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'Italian',
                 'availability' => 'Available',
                 'qualification' => 'Italian',
+                'languages' => [$language5],
             ],
             [
                 'email' => 'javier.rodriguez@email.com',
@@ -194,6 +255,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'Spanish',
                 'availability' => 'Available',
                 'qualification' => 'Spanish',
+                'languages' => [$language8],
             ],
             [
                 'email' => 'wei.chen@email.com',
@@ -204,6 +266,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'Chinese',
                 'availability' => 'Available',
                 'qualification' => 'Chinese',
+                'languages' => [$language1],
             ],
             [
                 'email' => 'yuki.tanaka@email.com',
@@ -214,6 +277,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'Japanese',
                 'availability' => 'Available',
                 'qualification' => 'Japanese',
+                'languages' => [$language6],
             ],
             [
                 'email' => 'minho.kim@email.com',
@@ -224,6 +288,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'nationality' => 'South Korean',
                 'availability' => 'Available',
                 'qualification' => 'Korean',
+                'languages' => [$language7],
             ],
         ];
 
@@ -241,6 +306,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $teacher->setNationality($data['nationality']);
             $teacher->setAvailability($data['availability']);
             $teacher->setQualification($data['qualification']);
+
+            foreach ($data['languages'] as $language) {
+                $teacher->addLanguage($language);
+            }
 
             $this->manager->persist($teacher);
         }
@@ -267,8 +336,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
             $availability = $this->faker->randomElement(['Available', 'Busy']);
             $teacher->setAvailability($availability);
+            $teacher->addLanguage($languages[$this->faker->numberBetween(0, 7)]);
 
             $teacher->setUser($user);
+
+
+
 
             $this->manager->persist($user);
         }
@@ -339,25 +412,34 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $teacher2 = $teacherRepository->find(2);
         $teacher3 = $teacherRepository->find(3);
 
+        $studentRepository = $this->manager->getRepository(Student::class);
+        $students = $studentRepository->findAll();
+
+        $student1 = $studentRepository->find(1);
+        $student2 = $studentRepository->find(2);
+        $student3 = $studentRepository->find(3);
+
         $datas = [
             [
                 'type' => 'Online course',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('13:30:00'),
                 'teacher' => [$teacher1],
-
+                'student' => $student1,
             ],
             [
                 'type' => 'Session 2',
                 'date' => new DateTime('2023-08-04'),
                 'time' => new DateTime('14:15:00'),
                 'teacher' => [$teacher2],
+                'student' => $student2,
             ],
             [
                 'type' => 'Session 3',
                 'date' => new DateTime('2023-10-04'),
                 'time' => new DateTime('15:15:00'),
                 'teacher' => [$teacher3],
+                'student' => $student3,
             ]
         ];
 
@@ -367,6 +449,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $session->setDate($data['date']);
             $session->setTime($data['time']);
             $session->setTeacher($data['teacher'][0]);
+            $session->setStudent($data['student']);
 
             $this->manager->persist($session);
         }
@@ -380,6 +463,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $session->setDate($this->faker->dateTimeBetween('-1 year', 'now'));
             $session->setTime($this->faker->dateTimeBetween('-1 year', 'now'));
             $session->setTeacher($this->faker->randomElement($teachers));
+            $session->setStudent($this->faker->randomElement($students));
 
             $this->manager->persist($session);
         }
@@ -540,53 +624,53 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $datas = [
             [
-        'title' => 'French Basics',
-        'content' => 'Learn the essentials of French language and culture. Explore common phrases, greetings, and basic grammar to start your journey into the beauty of French communication.',
-        'level' => 1,
-        'language' => 'French'
-    ],
-    [
-        'title' => 'English Conversation Skills',
-        'content' => 'Enhance your English conversation skills. This lesson covers everyday topics, useful expressions, and practical communication strategies. Build confidence in your English communication abilities.',
-        'level' => 2,
-        'language' => 'English'
-    ],
-    [
-        'title' => 'Chinese Characters Unveiled',
-        'content' => 'Discover the fascinating world of Chinese characters. This lesson introduces basic characters, stroke order, and their cultural significance. Lay the foundation for Mandarin proficiency.',
-        'level' => 3,
-        'language' => 'Chinese'
-    ],
-    [
-        'title' => 'Spanish Travel Essentials',
-        'content' => 'Prepare for your Spanish-speaking adventures. Learn essential phrases, navigate common travel situations, and immerse yourself in the language and customs of Spanish-speaking regions.',
-        'level' => 1,
-        'language' => 'Spanish'
-    ],
-    [
-        'title' => 'Japanese Cultural Insights',
-        'content' => 'Explore the rich cultural nuances of the Japanese language. Dive into traditional customs, social etiquette, and expressions unique to Japanese communication. Enhance your understanding of Japan.',
-        'level' => 2,
-        'language' => 'Japanese'
-    ],
-    [
-        'title' => 'German Grammar Essentials',
-        'content' => 'Master fundamental German grammar rules. This lesson covers verb conjugations, sentence structure, and key grammar concepts to solidify your understanding of the German language.',
-        'level' => 3,
-        'language' => 'German'
-    ],
-    [
-        'title' => 'Italian Art and Language Fusion',
-        'content' => 'Merge the beauty of Italian art with language learning. Explore art-related vocabulary, expressions, and cultural insights. Immerse yourself in the artistic charm of the Italian language.',
-        'level' => 1,
-        'language' => 'Italian'
-    ],
-    [
-        'title' => 'Korean Pop Culture Phrases',
-        'content' => 'Dive into the world of Korean pop culture. Learn trendy phrases, expressions from K-dramas, and key aspects of contemporary Korean language usage. Connect with modern Korean communication.',
-        'level' => 2,
-        'language' => 'Korean'
-    ],
+                'title' => 'French Basics',
+                'content' => 'Learn the essentials of French language and culture. Explore common phrases, greetings, and basic grammar to start your journey into the beauty of French communication.',
+                'level' => 1,
+                'language' => $language3,
+            ],
+            [
+                'title' => 'English Conversation Skills',
+                'content' => 'Enhance your English conversation skills. This lesson covers everyday topics, useful expressions, and practical communication strategies. Build confidence in your English communication abilities.',
+                'level' => 2,
+                'language' => $language2,
+            ],
+            [
+                'title' => 'Chinese Characters Unveiled',
+                'content' => 'Discover the fascinating world of Chinese characters. This lesson introduces basic characters, stroke order, and their cultural significance. Lay the foundation for Mandarin proficiency.',
+                'level' => 3,
+                'language' => $language1,
+            ],
+            [
+                'title' => 'Spanish Travel Essentials',
+                'content' => 'Prepare for your Spanish-speaking adventures. Learn essential phrases, navigate common travel situations, and immerse yourself in the language and customs of Spanish-speaking regions.',
+                'level' => 1,
+                'language' => $language8,
+            ],
+            [
+                'title' => 'Japanese Cultural Insights',
+                'content' => 'Explore the rich cultural nuances of the Japanese language. Dive into traditional customs, social etiquette, and expressions unique to Japanese communication. Enhance your understanding of Japan.',
+                'level' => 2,
+                'language' => $language6,
+            ],
+            [
+                'title' => 'German Grammar Essentials',
+                'content' => 'Master fundamental German grammar rules. This lesson covers verb conjugations, sentence structure, and key grammar concepts to solidify your understanding of the German language.',
+                'level' => 3,
+                'language' => $language4,
+            ],
+            [
+                'title' => 'Italian Art and Language Fusion',
+                'content' => 'Merge the beauty of Italian art with language learning. Explore art-related vocabulary, expressions, and cultural insights. Immerse yourself in the artistic charm of the Italian language.',
+                'level' => 1,
+                'language' => $language5,
+            ],
+            [
+                'title' => 'Korean Pop Culture Phrases',
+                'content' => 'Dive into the world of Korean pop culture. Learn trendy phrases, expressions from K-dramas, and key aspects of contemporary Korean language usage. Connect with modern Korean communication.',
+                'level' => 2,
+                'language' => $language7,
+            ],
         ];
 
         foreach ($datas as $data) {
@@ -594,26 +678,40 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $lesson->setTitle($data['title']);
             $lesson->setContent($data['content']);
             $lesson->setLevel($data['level']);
+            $lesson->setLanguage($data['language']);
+
             $this->manager->persist($lesson);
         }
         $this->manager->flush();
 
         // dynamic datas
 
-        for ($i = 0; $i < 20; $i++) {
-            $lesson = new Lesson();
-            $lesson->setTitle($this->faker->sentence());
-            $lesson->setContent($this->faker->sentence());
-            $lesson->setLevel($this->faker->randomNumber(1, 20));
-            $lesson->setLanguage($this->faker->randomElement($languages));
+        // for ($i = 0; $i < 20; $i++) {
+        //     $lesson = new Lesson();
+        //     $lesson->setTitle($this->faker->sentence());
+        //     $lesson->setContent($this->faker->sentence());
+        //     $lesson->setLevel($this->faker->randomNumber(1, 20));
+        //     $lesson->setLanguage($this->faker->randomElement($languages));
 
-            $this->manager->persist($lesson);
-        }
-        $this->manager->flush();
+        //     $this->manager->persist($lesson);
+        // }
+        // $this->manager->flush();
     }
 
     public function loadAssignments(): void
     {
+        $lessonRepository = $this->manager->getRepository(Lesson::class);
+        $lessons = $lessonRepository->findAll();
+        $frenchLesson = $lessonRepository->find(1);
+        $englishLesson = $lessonRepository->find(2);
+        $chineseLesson = $lessonRepository->find(3);
+        $spanishLesson = $lessonRepository->find(4);
+        $japaneseLesson = $lessonRepository->find(5);
+        $germanLesson = $lessonRepository->find(6);
+        $italianLesson = $lessonRepository->find(7);
+        $koreanLesson = $lessonRepository->find(8);
+
+
         //static datas
         $datas = [
             [
@@ -623,6 +721,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-04'),
                 'dueDate' => new DateTime('2023-10-07'),
                 'grade' => 7,
+                'lessons' => $frenchLesson,
+                 
             ],
             [
                 'title' => 'English Writing Mastery',
@@ -631,6 +731,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-08'),
                 'dueDate' => new DateTime('2023-10-10'),
                 'grade' => 8,
+                'lessons' => $englishLesson,
             ],
             [
                 'title' => 'Chinese Character Exploration',
@@ -639,6 +740,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-12'),
                 'dueDate' => new DateTime('2023-10-15'),
                 'grade' => 6,
+                'lessons' => $chineseLesson,
             ],
             [
                 'title' => 'Spanish Cultural Reflection',
@@ -647,6 +749,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-18'),
                 'dueDate' => new DateTime('2023-10-20'),
                 'grade' => 7,
+                'lessons' => $spanishLesson,
             ],
             [
                 'title' => 'Japanese Language and Tradition Essay',
@@ -655,6 +758,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-22'),
                 'dueDate' => new DateTime('2023-10-25'),
                 'grade' => 8,
+                'lessons' => $japaneseLesson,
             ],
             [
                 'title' => 'German Grammar Quiz',
@@ -663,6 +767,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-10-28'),
                 'dueDate' => new DateTime('2023-10-31'),
                 'grade' => 7,
+                'lessons' => $germanLesson,
             ],
             [
                 'title' => 'Italian Artistic Expression Project',
@@ -671,6 +776,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-11-03'),
                 'dueDate' => new DateTime('2023-11-06'),
                 'grade' => 8,
+                'lessons' => $italianLesson,
             ],
             [
                 'title' => 'Korean Pop Culture Analysis',
@@ -679,6 +785,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'startDate' => new DateTime('2023-11-09'),
                 'dueDate' => new DateTime('2023-11-12'),
                 'grade' => 7,
+                'lessons' => $koreanLesson,
             ],
         ];
         foreach ($datas as $data) {
@@ -689,22 +796,27 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $assignment->setDueDate($data['dueDate']);
             $assignment->setGrade($data['grade']);
 
+            foreach ($data['lessons'] as $lesson) {
+                $assignment->addLesson($lesson);
+            }
+            
+
             $this->manager->persist($assignment);
         }
         $this->manager->flush();
 
         //Dynamic datas
-        for ($i = 0; $i < 20; $i++) {
-            $assignment = new Assignment();
-            $assignment->setTitle($this->faker->sentence());
-            $assignment->setContent($this->faker->sentence());
-            $assignment->setStartDate($this->faker->dateTimeBetween('-1 year', 'now'));
-            $assignment->setDueDate($this->faker->dateTimeBetween('-1 year', 'now'));
-            $assignment->setGrade($this->faker->numberBetween(1, 10));
+        // for ($i = 0; $i < 20; $i++) {
+        //     $assignment = new Assignment();
+        //     $assignment->setTitle($this->faker->sentence());
+        //     $assignment->setContent($this->faker->sentence());
+        //     $assignment->setStartDate($this->faker->dateTimeBetween('-1 year', 'now'));
+        //     $assignment->setDueDate($this->faker->dateTimeBetween('-1 year', 'now'));
+        //     $assignment->setGrade($this->faker->numberBetween(1, 10));
 
-            $this->manager->persist($assignment);
-        }
-        $this->manager->flush();
+        //     $this->manager->persist($assignment);
+        // }
+        // $this->manager->flush();
     }
 
 
@@ -718,6 +830,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $language1 = $languageRepository->find(1);
         $language2 = $languageRepository->find(2);
         $language3 = $languageRepository->find(3);
+        $language4 = $languageRepository->find(4);
+        $language5 = $languageRepository->find(5);
+        $language6 = $languageRepository->find(6);
+        $language7 = $languageRepository->find(7);
+        $language8 = $languageRepository->find(8);
+
 
         $datas = [
             [
@@ -725,61 +843,56 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'title' => 'Unlocking the Wonders of French',
                 'content' => 'Discover the essentials of the French language. Master common phrases, pronunciation, and basic grammar rules to kickstart your French language journey.',
                 'publishedDate' => new DateTime('2023-10-02'),
-                'language' => 'French',
+                'language' => $language3,
             ],
             [
                 'type' => 'Language Mastery Handbook',
                 'title' => 'Essential English Language Tips',
                 'content' => 'Enhance your English language skills with this comprehensive guide. Explore tips on grammar, vocabulary expansion, and effective communication strategies.',
                 'publishedDate' => new DateTime('2023-10-05'),
-                'language' => 'English',
+                'language' => $language2,
             ],
             [
                 'type' => 'Character Writing Tutorial',
                 'title' => 'Cracking the Code: Chinese Characters',
                 'content' => 'Embark on a journey to understand and write Chinese characters. This resource provides step-by-step guidance on strokes, radicals, and character meanings.',
                 'publishedDate' => new DateTime('2023-10-03'),
-                'language' => 'Chinese',
+                'language' => $language1,
             ],
             [
                 'type' => 'Cultural Insight Handbook',
                 'title' => 'Navigating Spanish Culture',
                 'content' => 'Immerse yourself in Spanish culture with this insightful guide. Learn about customs, traditions, and essential cultural nuances for effective language communication.',
                 'publishedDate' => new DateTime('2023-10-09'),
-                'language' => 'Spanish',
-                'type' => 'Cultural Insight Handbook',
-                'title' => 'Navigating Spanish Culture',
-                'content' => 'Immerse yourself in Spanish culture with this insightful guide. Learn about customs, traditions, and essential cultural nuances for effective language communication.',
-                'publishedDate' => new DateTime('2023-10-09'),
-                'language' => 'Spanish',
+                'language' => $language8,
             ],
             [
                 'type' => 'Language and Tradition Manual',
                 'title' => 'Japanese Language & Tradition Tips',
                 'content' => 'Explore the synergy between the Japanese language and cultural traditions. Gain insights into idioms, expressions, and cultural nuances that shape the language.',
                 'publishedDate' => new DateTime('2023-10-08'),
-                'language' => 'Japanese',
+                'language' => $language6,
             ],
             [
                 'type' => 'Grammar Essentials Handbook',
                 'title' => 'Mastering German Grammar',
                 'content' => 'This handbook is your guide to mastering German grammar. Dive into verb conjugations, cases, and sentence structure for a solid foundation in German language skills.',
                 'publishedDate' => new DateTime('2023-10-12'),
-                'language' => 'German',
+                'language' => $language4,
             ],
             [
                 'type' => 'Art and Language Fusion Guide',
                 'title' => 'Italian Art & Language Connection',
                 'content' => 'Explore the fusion of art and language in Italian culture. This guide offers tips on appreciating Italian art and understanding artistic expressions within the language.',
                 'publishedDate' => new DateTime('2023-10-11'),
-                'language' => 'Italian',
+                'language' => $language5,
             ],
             [
                 'type' => 'Pop Culture Language Tips',
                 'title' => 'Navigating Korean Pop Culture',
                 'content' => 'Delve into the world of Korean pop culture with this guide. Learn key phrases, expressions, and language nuances influenced by modern Korean entertainment.',
                 'publishedDate' => new DateTime('2023-10-15'),
-                'language' => 'Korean',
+                'language' => $language7,
             ],
         ];
         foreach ($datas as $data) {
@@ -788,6 +901,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $resource->setTitle($data['title']);
             $resource->setContent($data['content']);
             $resource->setPublishedDate($data['publishedDate']);
+            $resource->setLanguage($data['language']);
 
             $this->manager->persist($resource);
         }
@@ -796,17 +910,17 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //dynamic datas
 
-        for ($i = 0; $i < 20; $i++) {
-            $resource = new Resource();
-            $resource->setType($this->faker->word());
-            $resource->setTitle($this->faker->sentence());
-            $resource->setContent($this->faker->paragraph());
-            $resource->setPublishedDate($this->faker->dateTime());
-            $resource->setLanguage($this->faker->randomElement($languages));
+        // for ($i = 0; $i < 20; $i++) {
+        //     $resource = new Resource();
+        //     $resource->setType($this->faker->word());
+        //     $resource->setTitle($this->faker->sentence());
+        //     $resource->setContent($this->faker->paragraph());
+        //     $resource->setPublishedDate($this->faker->dateTime());
+        //     $resource->setLanguage($this->faker->randomElement($languages));
 
-            $this->manager->persist($resource);
-        }
-        $this->manager->flush();
+        //     $this->manager->persist($resource);
+        // }
+        // $this->manager->flush();
     }
 
     public function loadPayments(): void
@@ -879,47 +993,47 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         //static datas
 
         $datas = [
-                [
-                    'question' => 'How do I enroll in a language course?',
-                    'answer' => 'To enroll, visit our website and navigate to the "Courses" section. Choose your desired language, select a course, and click on the "Enroll" button. Follow the instructions to complete the enrollment process.',
-                ],
-                [
-                    'question' => 'What technology do I need for online classes?',
-                    'answer' => 'You\'ll need a computer or laptop with a stable internet connection. Ensure you have a webcam, microphone, and speakers for interactive sessions. Our platform is compatible with common browsers like Chrome, Firefox, and Safari.',
-                ],
-                [
-                    'question' => 'Are the classes live or pre-recorded?',
-                    'answer' => 'Our classes are conducted live by experienced language instructors. Live sessions allow real-time interaction, Q&A, and personalized feedback, creating a dynamic and engaging learning experience.',
-                ],
-                [
-                    'question' => 'Can I access course materials after the live sessions?',
-                    'answer' => 'Yes, all course materials, including recorded sessions, presentations, and additional resources, are available in your account for review. This ensures you can reinforce your learning at your own pace.',
-                ],
-                [
-                    'question' => 'How can I get assistance if I face technical issues during a class?',
-                    'answer' => 'In case of technical issues, our support team is available 24/7. Contact us through the dedicated technical support channel provided on the platform, and we\'ll assist you promptly.',
-                ],
-                [
-                    'question' => 'What is the duration of each course?',
-                    'answer' => 'The duration varies depending on the course level and intensity. Most standard courses run for 8-12 weeks, with multiple sessions per week. Check the course details for specific duration information.',
-                ],
-                [
-                    'question' => 'Is there a placement test to determine my language proficiency level?',
-                    'answer' => 'Yes, we offer a placement test to assess your current language proficiency. The results help us recommend the most suitable course level for you, ensuring an optimal learning experience.',
-                ],
-                [
-                    'question' => 'Are there any scholarships or discounts available?',
-                    'answer' => 'We occasionally offer scholarships and discounts. Keep an eye on our website, newsletters, and social media for announcements. Additionally, we may have special promotions during certain periods.',
-                ],
-                [
-                    'question' => 'Can I switch to a different course if I find my current level too easy or challenging?',
-                    'answer' => 'Yes, we understand the importance of finding the right challenge. You can discuss your concerns with your instructor, and if necessary, we\'ll assist you in transferring to a more suitable course level.',
-                ],
-                [
-                    'question' => 'How do I receive my certificate upon course completion?',
-                    'answer' => 'Upon successful completion of the course, you will receive a digital certificate. Certificates are typically available for download directly from your account on the platform. Be sure to check your email for additional instructions.',
-                ],
-            ];
+            [
+                'question' => 'How do I enroll in a language course?',
+                'answer' => 'To enroll, visit our website and navigate to the "Courses" section. Choose your desired language, select a course, and click on the "Enroll" button. Follow the instructions to complete the enrollment process.',
+            ],
+            [
+                'question' => 'What technology do I need for online classes?',
+                'answer' => 'You\'ll need a computer or laptop with a stable internet connection. Ensure you have a webcam, microphone, and speakers for interactive sessions. Our platform is compatible with common browsers like Chrome, Firefox, and Safari.',
+            ],
+            [
+                'question' => 'Are the classes live or pre-recorded?',
+                'answer' => 'Our classes are conducted live by experienced language instructors. Live sessions allow real-time interaction, Q&A, and personalized feedback, creating a dynamic and engaging learning experience.',
+            ],
+            [
+                'question' => 'Can I access course materials after the live sessions?',
+                'answer' => 'Yes, all course materials, including recorded sessions, presentations, and additional resources, are available in your account for review. This ensures you can reinforce your learning at your own pace.',
+            ],
+            [
+                'question' => 'How can I get assistance if I face technical issues during a class?',
+                'answer' => 'In case of technical issues, our support team is available 24/7. Contact us through the dedicated technical support channel provided on the platform, and we\'ll assist you promptly.',
+            ],
+            [
+                'question' => 'What is the duration of each course?',
+                'answer' => 'The duration varies depending on the course level and intensity. Most standard courses run for 8-12 weeks, with multiple sessions per week. Check the course details for specific duration information.',
+            ],
+            [
+                'question' => 'Is there a placement test to determine my language proficiency level?',
+                'answer' => 'Yes, we offer a placement test to assess your current language proficiency. The results help us recommend the most suitable course level for you, ensuring an optimal learning experience.',
+            ],
+            [
+                'question' => 'Are there any scholarships or discounts available?',
+                'answer' => 'We occasionally offer scholarships and discounts. Keep an eye on our website, newsletters, and social media for announcements. Additionally, we may have special promotions during certain periods.',
+            ],
+            [
+                'question' => 'Can I switch to a different course if I find my current level too easy or challenging?',
+                'answer' => 'Yes, we understand the importance of finding the right challenge. You can discuss your concerns with your instructor, and if necessary, we\'ll assist you in transferring to a more suitable course level.',
+            ],
+            [
+                'question' => 'How do I receive my certificate upon course completion?',
+                'answer' => 'Upon successful completion of the course, you will receive a digital certificate. Certificates are typically available for download directly from your account on the platform. Be sure to check your email for additional instructions.',
+            ],
+        ];
 
 
         foreach ($datas as $data) {
@@ -934,13 +1048,13 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //dynamic datas
 
-        for ($i = 0; $i < 20; $i++) {
-            $faq = new FAQ();
-            $faq->setQuestion($this->faker->sentence());
-            $faq->setAnswer($this->faker->paragraph());
+        // for ($i = 0; $i < 20; $i++) {
+        //     $faq = new FAQ();
+        //     $faq->setQuestion($this->faker->sentence());
+        //     $faq->setAnswer($this->faker->paragraph());
 
-            $this->manager->persist($faq);
-        }
-        $this->manager->flush();
+        //     $this->manager->persist($faq);
+        // }
+        // $this->manager->flush();
     }
 }

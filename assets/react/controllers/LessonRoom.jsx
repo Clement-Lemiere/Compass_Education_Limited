@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Test from '../../images/test.png';
 
 function LessonRoom() {
     const [lessons, setLessons] = useState([]);
