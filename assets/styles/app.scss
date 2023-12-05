@@ -238,62 +238,78 @@ main{
         @include dFlex(column);
         @include centerXY(space-between, center);
     
-        h2 {
-            font-size: 2rem;
+        h1 {
+            font-size: 3rem;
+            color: $primaryDark;
+            text-shadow: 5px 5px 5px $primaryLight;
+
         }
     
         
-        div{
-            
-            .teacherComponent {
+        .teacherComponent {
             @include dFlex(row);
             @include centerXY(space-evenly, center);
-            margin-bottom: 40px;
+            padding-block: 50px;
+            border-bottom: solid 2px;
+            border-image: linear-gradient(to right, transparent 25%, $primaryDark 25%, $primaryDark 75%, transparent 75%) 1;
             
-                
-                h3 {
-                    font-size: 1.5rem;
-                }
-        
-                .teacherInfos {
-                    @include dFlex(column);
-                    @include centerXY(center, center);
-                    width: 40%;
-        
-                    .imgContainer{
-                        width: 50%;
-        
-                        img {
-                            width: 100%;
-                            border-radius: 15px;
-                            box-shadow: black 0 0 15px;
-                        }
-        
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+    
+            .teacherInfos {
+                @include dFlex(column);
+                @include centerXY(center, center);
+                width: 40%;
+    
+                .imgContainer{
+                    width: 50%;
+    
+                    img {
+                        width: 100%;
+                        border-radius: 15px;
+                        box-shadow: black 0 0 15px;
                     }
-        
-                    >p{
-                        text-align: center;
-                        margin-top: 0;
-                    }
+    
                 }
 
-                >p {
-                    width: 40%;
+                >h3{
                     font-size: 1.5rem;
-                    text-align: justify;
-                    line-height: 2.3rem;
+                    margin-block: 1rem;
+                }
+    
+                >p{
+                    text-align: center;
+                    font-size: 1.2rem;
+                    margin-top: 0;
                 }
             }
             
-            
-            .teacherComponent:nth-child(odd) {
-                flex-direction: row-reverse;
+            >p {
+                width: 40%;
+                font-size: 1.5rem;
+                text-align: justify;
+                line-height: 2.3rem;
             }
         }
-        
-        .separate{
-            width: 50%;
-            border-bottom: $primaryDark 1px solid;
+
+        .teacherComponent:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .back{
+            width: 250px;
+            margin: 30px auto;
+            text-align: center;
+
+            a{
+                @include roundedBtn;
+                color: white;
+                font-size: 1.2rem;
+                width: 100%;
+                padding: 10px 30px;
+            }
         }
     }
 }

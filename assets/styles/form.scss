@@ -36,6 +36,8 @@ form {
                 border-radius: 5px;
                 padding: 5px;
                 margin-top: 10px;
+                transition: all 0.3s ease-in-out;
+
                 &:active, &:focus{
                     outline: none;
                     background-color: whitesmoke;
@@ -54,6 +56,7 @@ form {
                 padding: 5px;
                 margin-top: 10px;
                 margin-inline: 10%;
+                transition: all 0.3s ease-in-out;
             
                 &:active,
                 &:focus {
@@ -85,6 +88,7 @@ form {
                 margin-right: 25px;
                 padding: 5px 10px;
                 border-radius: 10px;
+                transition: all 0.3s ease-in-out;
     
                 &:hover {
                     background-color: whitesmoke;
@@ -99,9 +103,6 @@ input[type="checkbox"]:active,
 input[type="checkbox"]:focus {
     box-shadow: none;
 }
-option{
-    outline: $primaryBasic;
-}
 option:checked{
     background-color: $primaryDark;
     color: whitesmoke;
@@ -115,8 +116,9 @@ option:hover{
     flex-direction: row;
     justify-content: flex-start;
     margin-inline: 10%;
-
+    
     select{
+        outline: none;
         background-color: $primaryBasic;
         color: whitesmoke;
         width: 100px;
@@ -124,6 +126,7 @@ option:hover{
         margin-right: 25px;
         padding: 5px 10px;
         border-radius: 10px;
+        transition: all 0.3s ease-in-out;
 
         &:hover {
             background-color: whitesmoke;
@@ -141,6 +144,8 @@ option:hover{
     text-align: center;
     padding: 5px 10px;
     border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
         background-color: whitesmoke;
