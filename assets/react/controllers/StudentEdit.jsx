@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Test from '../../images/test.png';
+import Test from '../../images/empty.png';
 
 function EditStudent() {
 

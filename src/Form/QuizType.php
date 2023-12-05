@@ -17,7 +17,9 @@ class QuizType extends AbstractType
             ->add('answer')
             ->add('score')
             ->add('level')
-            ->add('language')
+            ->add('language', null, [
+            'attr' => ['class' => 'selectStyle'],
+        ])
         ;
     }
 

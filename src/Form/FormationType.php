@@ -16,9 +16,13 @@ class FormationType extends AbstractType
             ->add('objective')
             ->add('duration')
             ->add('cost')
-            ->add('startDate')
+            ->add('startDate', null, [
+            'attr' => ['class' => 'dateTime'],
+        ])
             ->add('satisfaction')
-            ->add('language')
+            ->add('language', null, [
+            'attr' => ['class' => 'selectStyle'],
+        ])
         ;
     }
 

@@ -50,8 +50,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $this->loadFormations();
         $this->loadQuizzes();
         $this->loadAssignments();
-        $this->loadLessons();
-        $this->loadResources();
+        // $this->loadLessons();
+        // $this->loadResources();
         $this->loadPayments();
         $this->loadFAQs();
     }
@@ -531,55 +531,60 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $language1 = $languageRepository->find(1);
         $language2 = $languageRepository->find(2);
         $language3 = $languageRepository->find(3);
+        $language4 = $languageRepository->find(4);
+        $language5 = $languageRepository->find(5);
+        $language6 = $languageRepository->find(6);
+        $language7 = $languageRepository->find(7);
+        $language8 = $languageRepository->find(8);
 
         $datas = [
             [
         'title' => 'French Basics',
         'content' => 'Learn the essentials of French language and culture. Explore common phrases, greetings, and basic grammar to start your journey into the beauty of French communication.',
         'level' => 1,
-        'language' => 'French'
+        'language' => $language3
     ],
     [
         'title' => 'English Conversation Skills',
         'content' => 'Enhance your English conversation skills. This lesson covers everyday topics, useful expressions, and practical communication strategies. Build confidence in your English communication abilities.',
         'level' => 2,
-        'language' => 'English'
+        'language' => $language2
     ],
     [
         'title' => 'Chinese Characters Unveiled',
         'content' => 'Discover the fascinating world of Chinese characters. This lesson introduces basic characters, stroke order, and their cultural significance. Lay the foundation for Mandarin proficiency.',
         'level' => 3,
-        'language' => 'Chinese'
+        'language' => $language1
     ],
     [
         'title' => 'Spanish Travel Essentials',
         'content' => 'Prepare for your Spanish-speaking adventures. Learn essential phrases, navigate common travel situations, and immerse yourself in the language and customs of Spanish-speaking regions.',
         'level' => 1,
-        'language' => 'Spanish'
+        'language' => $language8
     ],
     [
         'title' => 'Japanese Cultural Insights',
         'content' => 'Explore the rich cultural nuances of the Japanese language. Dive into traditional customs, social etiquette, and expressions unique to Japanese communication. Enhance your understanding of Japan.',
         'level' => 2,
-        'language' => 'Japanese'
+        'language' => $language6
     ],
     [
         'title' => 'German Grammar Essentials',
         'content' => 'Master fundamental German grammar rules. This lesson covers verb conjugations, sentence structure, and key grammar concepts to solidify your understanding of the German language.',
         'level' => 3,
-        'language' => 'German'
+        'language' => $language4
     ],
     [
         'title' => 'Italian Art and Language Fusion',
         'content' => 'Merge the beauty of Italian art with language learning. Explore art-related vocabulary, expressions, and cultural insights. Immerse yourself in the artistic charm of the Italian language.',
         'level' => 1,
-        'language' => 'Italian'
+        'language' => $language5
     ],
     [
         'title' => 'Korean Pop Culture Phrases',
         'content' => 'Dive into the world of Korean pop culture. Learn trendy phrases, expressions from K-dramas, and key aspects of contemporary Korean language usage. Connect with modern Korean communication.',
         'level' => 2,
-        'language' => 'Korean'
+        'language' => $language7
     ],
         ];
 

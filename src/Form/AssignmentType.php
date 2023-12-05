@@ -16,8 +16,12 @@ class AssignmentType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('startDate')
-            ->add('dueDate')
+            ->add('startDate', null, [
+            'attr' => ['class' => 'dateTime'],
+        ])
+            ->add('dueDate', null, [
+            'attr' => ['class' => 'dateTime'],
+        ])
             ->add('grade')
         ;
     }

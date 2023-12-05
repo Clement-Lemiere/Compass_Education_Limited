@@ -20,6 +20,9 @@ class LessonType extends AbstractType
             ->add('language', EntityType::class, [
                 'class' => Language::class,
                 'choice_label' => 'name', // Utilise le champ 'name' pour l'affichage des choix
+                'attr' => [
+                    'class' => 'selectStyle',
+                ],
             ])
         ;
     }

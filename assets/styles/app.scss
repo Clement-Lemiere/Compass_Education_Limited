@@ -145,7 +145,7 @@ header {
 
 .homeHeader {
     width: 100%;
-    background-image: url("../images/library.jpg");
+    background-image: url("../images/compass_header_background.jpg");
     background-size: cover;
     @include dFlex(column);
     @include centerXY(center, center);
@@ -192,10 +192,10 @@ header {
     .whoAreWeProfile {
         @include dFlex(row);
         @include centerXY(space-between, center);
-        margin-bottom: 10px;
+        margin-bottom: 40px;
 
         .imgContainer {
-            width: 30%;
+            width: 35%;
             margin: 0 auto;
     
             img{
@@ -209,6 +209,7 @@ header {
             width: 50%;
             font-size: 1.5rem;
             text-align: justify;
+            line-height: 2.3rem;
         }
     }
 
@@ -226,6 +227,104 @@ header {
         }
     }
 }
+
+// _________________||| TEAM \\\________________\\
+main{
+    width: 90%;
+    margin-inline: auto;
+    
+    .professorsList {
+        margin-block: 40px;
+        @include dFlex(column);
+        @include centerXY(space-between, center);
+    
+        h2 {
+            font-size: 2rem;
+        }
+    
+        
+        div{
+            
+            .teacherComponent {
+            @include dFlex(row);
+            @include centerXY(space-evenly, center);
+            margin-bottom: 40px;
+            
+                
+                h3 {
+                    font-size: 1.5rem;
+                }
+        
+                .teacherInfos {
+                    @include dFlex(column);
+                    @include centerXY(center, center);
+                    width: 40%;
+        
+                    .imgContainer{
+                        width: 50%;
+        
+                        img {
+                            width: 100%;
+                            border-radius: 15px;
+                            box-shadow: black 0 0 15px;
+                        }
+        
+                    }
+        
+                    >p{
+                        text-align: center;
+                        margin-top: 0;
+                    }
+                }
+
+                >p {
+                    width: 40%;
+                    font-size: 1.5rem;
+                    text-align: justify;
+                    line-height: 2.3rem;
+                }
+            }
+            
+            
+            .teacherComponent:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
+        }
+        
+        .separate{
+            width: 50%;
+            border-bottom: $primaryDark 1px solid;
+        }
+    }
+}
+
+// _________________||| FAQ \\\________________\\
+
+.faq {
+
+    .QA{
+        padding: 25px;
+        width: 80%;
+        margin: 30px auto;
+        background: linear-gradient(65deg, $primaryLight 30%, $primaryBasic);
+        border-radius: 15px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $primaryDark;
+        box-shadow: 0 0 5px $primaryDark;
+        line-height: 2.5rem;
+        
+        summary {
+            font-weight: normal;
+            font-size: 1.5rem;
+            margin-block: 10px;
+        }
+        
+    }
+}
+
+
+// _________________||| FOOTER \\\________________\\
 
 footer {
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
