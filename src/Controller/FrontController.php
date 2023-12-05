@@ -7,6 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Language;
+use App\Entity\Student;
+use App\Form\StudentType;
+use App\Repository\StudentRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 
 #[Route('/')]
@@ -58,5 +63,34 @@ class FrontController extends AbstractController
     {
 
         return $this->render('front/contact.html.twig');
+    }
+
+    #[Route('/signUp', name: 'signUp')]
+    public function signUp(): Response
+    {
+
+        return $this->render('front/signUp.html.twig');
+    }
+
+    #[Route('/newStudent', name: 'app_new_student', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $student = new Student();
+        $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+        $user = $student->getUser();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['student']);
+            $entityManager->persist($student);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('front/newStudent.html.twig', [
+            'student' => $student,
+            'form' => $form,
+        ]);
     }
 }
