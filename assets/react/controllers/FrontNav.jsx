@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../images/logo.png';
+import Logo from '../../images/compass_logo.png';
+import { HomeIcon, PowerIcon } from './SvgBox';
 
 const Links = [
     { name: 'Languages', href: '/languages' },
     { name: 'Prices', href: '/prices' },
-    { name: 'Team', href: '/ourTeachers' },
+    { name: 'Team', href: '/team' },
     { name: 'Contact', href: '/contact' },
     { name: 'About', href: '/about' },
     { name: 'FAQ', href: '/faq' },
@@ -72,20 +73,20 @@ const FrontNav = () => {
             // Render a greeting message with the user's first name and a link to their profile
             return (
                 <>
-                    <a href={user.student ? "/sprofile" : "/tprofile"}>Hello, {firstName}!</a>
+                    <a href={user.student ? "/sprofile" : "/tprofile"}><PowerIcon /><span className="linkWord">Hello, {firstName}!</span></a>
                 </>
             );
         } else if (isAdmin) {
             return (
                 <>
-                    <a href="/admin/user">Hello, Admin!</a>
+                    <a href="/admin/user"><PowerIcon /><span className="linkWord">Hello, Admin!</span></a>
                 </>
             );
         } else {
             // Render a login link if the user is not logged in
             return (
                 <>
-                    <a href="/login">Login</a>
+                    <a href="/login"><PowerIcon /><span className="linkWord">Login</span></a>
                 </>
             );
         }
@@ -94,7 +95,16 @@ const FrontNav = () => {
     return (
         <nav className="frontNav">
             <div className="logo">
-                <a href="/"><img src={Logo} alt="logo" /></a>
+                <a href="/"><img src={Logo} alt="logo" />
+                    <span className='textLogo'>
+                        <span>Compass</span>
+                        <span>School</span>
+                    </span>
+                </a>
+                        
+            </div>
+            <div className="homeBtn">
+                <a href="/"><HomeIcon /></a>
             </div>
             <div className='dropdownBtnContainer'>
                 <div className='dropdownBtn' onClick={toggleDropdown}>

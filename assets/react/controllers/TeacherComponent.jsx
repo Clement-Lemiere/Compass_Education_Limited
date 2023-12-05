@@ -8,12 +8,14 @@ const ProfessorsList = () => {
             <div className="teacherComponent">
                 <div className="teacherInfos">
                     <h3>{name}</h3>
-                    <p>{language} teacher</p>
                     <div className="imgContainer">
                         <img src={TeacherPic} alt="teacher pic" />
                     </div>
                 </div>
-                <p>{description}</p>
+                <div className="description">
+                    <h3>{language} teacher</h3>
+                    <p>{description}</p>
+                </div>
             </div>
         );
     };
