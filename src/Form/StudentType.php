@@ -17,7 +17,7 @@ class StudentType extends AbstractType
             ->add('lastName')
             ->add('birthdate', null, [
                 'attr' => [
-                    'class' => 'dateChoice',
+                    'class' => 'multiSelectStyle',
                 ],
             ])
             ->add('nationality')

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Test = require('../../images/test.png');
+const Test = require('../../images/empty.png');
 
 function TeacherDashboard() {
 

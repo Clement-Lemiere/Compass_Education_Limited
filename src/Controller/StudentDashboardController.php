@@ -27,6 +27,13 @@ class StudentDashboardController extends AbstractController
         return $this->render('studentDashboard/student_calendar.html.twig');
     }
 
+    #[Route('/studentLesson', name: 'app_student_lesson_dashboard')]
+    public function studentLesson(): Response
+    {
+        return $this->render('studentDashboard/student_lesson.html.twig');
+    }
+    
+
     #[Route('/sprogress', name: 'app_student_progress_dashboard')]
     public function studentProgress(): Response
     {

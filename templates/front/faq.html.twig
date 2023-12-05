@@ -10,23 +10,14 @@
         </section>
     </header>
     <main>
-        <section class="priceMain">
-        <table>
-            <tbody>
-                <tr>
-                    <th>Question</th>
-                    <th>Answer</th>
-                </tr>
+        <section class="faq">
         {% for faq in faqs %}
-                <tr>
-                    <td>{{ faq.question }}</td>
-                    <td>{{ faq.answer }}</td>
-                </tr>
+            <details class="QA">
+                <summary class="question">{{ faq.question }}</summary>
+                {{ faq.answer }}
+            </details>
         {% endfor %}
-            </tbody>
-        </table>
         </section>
-        <section></section>
     </main>
     
 {% endblock %}

@@ -16,16 +16,15 @@ class EditStudentType extends AbstractType
             ->add('lastName')
             ->add('birthdate', null, [
                 'attr' => [
-                    'class' => 'dateChoice',
+                    'class' => 'multiSelectStyle',
                 ],
             ])
             ->add('nationality')
             ->add('level')
             ->add('language', null, [
                 'attr' => [
-                    'class' => 'checkboxStyle',
+                    'class' => 'selectStyle',
                 ],
-                'expanded' => true,
             ]);
     }
 

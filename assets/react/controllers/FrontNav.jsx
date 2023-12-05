@@ -4,7 +4,7 @@ import Logo from '../../images/logo.png';
 const Links = [
     { name: 'Languages', href: '/languages' },
     { name: 'Prices', href: '/prices' },
-    { name: 'Tips', href: '/tips' },
+    { name: 'Team', href: '/ourTeachers' },
     { name: 'Contact', href: '/contact' },
     { name: 'About', href: '/about' },
     { name: 'FAQ', href: '/faq' },

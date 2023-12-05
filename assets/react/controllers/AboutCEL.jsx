@@ -1,6 +1,6 @@
 import React from "react";
 
-const Test = require('../../images/test.png');
+const Test = require('../../images/empty.png');
 
 const AboutCEL = () => {
 

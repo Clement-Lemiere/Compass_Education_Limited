@@ -12,7 +12,9 @@ class PaymentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
+            ->add('date', null, [
+            'attr' => ['class' => 'multiSelectStyle'],
+        ])
             ->add('type')
             ->add('formation')
             // ->add('student', StudentType::class)

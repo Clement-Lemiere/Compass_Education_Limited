@@ -3,11 +3,10 @@
 {% block title %}Edit Session{% endblock %}
 
 {% block body %}
-    <h1>Edit Session</h1>
-
-    {{ include('admin/session/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_admin_session_index') }}">back to list</a>
-
-    {{ include('admin/session/_delete_form.html.twig') }}
+    <div class="formStructure">
+        <a href="{{ path('app_admin_session_index') }}"><img src="{{ asset('public/images/icons/arrow-left-solid.svg') }}" alt="back"> back to list</a>
+        <h1>Edit Session</h1>
+        {{ include('admin/session/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('admin/session/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

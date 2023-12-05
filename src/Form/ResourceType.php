@@ -15,7 +15,9 @@ class ResourceType extends AbstractType
             ->add('type')
             ->add('title')
             ->add('content')
-            ->add('publishedDate')
+            ->add('publishedDate', null, [
+            'attr' => ['class' => 'dateTime'],
+        ])
             ->add('language')
         ;
     }

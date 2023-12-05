@@ -12,11 +12,16 @@ class SessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('type')
-            ->add('date')
-            ->add('time')
-            ->add('teacher')
-        ;
+        ->add('type')
+        ->add('date', null, [
+            'attr' => ['class' => 'multiSelectStyle'],
+        ])
+        ->add('time', null, [
+            'attr' => ['class' => 'multiSelectStyle'],
+        ])
+        ->add('teacher', null, [
+            'attr' => ['class' => 'selectStyle'],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

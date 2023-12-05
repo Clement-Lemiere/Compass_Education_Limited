@@ -11,20 +11,20 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Language</th>
+                <th>Level</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th>Level</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for lesson in lessons %}
             <tr>
-                <td>{{ lesson.id }}</td>
+                <td>{{ lesson.language.name }}</td>
+                <td>{{ lesson.level }}</td>
                 <td>{{ lesson.title }}</td>
                 <td>{{ lesson.content }}</td>
-                <td>{{ lesson.level }}</td>
                 <td>
                     <a href="{{ path('app_admin_lesson_show', {'id': lesson.id}) }}">show</a>
                     <a href="{{ path('app_admin_lesson_edit', {'id': lesson.id}) }}">edit</a>

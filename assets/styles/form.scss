@@ -2,55 +2,224 @@
 @import "../styles/variables.scss";
 
 
+
+
+// _________________||| GENERAL/ADMIN FORM \\\________________
+
+form {
+    @include dFlex(column);
+    @include centerXY(flex-start, center);
+    width: 55vw;
+    margin: 50px auto 20px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: linear-gradient(20deg, $primaryLight 0%, $lightGrey 90%);
+
+
+        div{
+            @include dFlex(column);
+            width: 100%;
+            @include centerXY(space-between, flex-start);
+            margin: 10px auto;
+
+            label, input{
+                width: 80%;
+                margin-inline: 10%;
+                font-size: 1.2rem;
+            }
+
+            input{
+                background-color: $primaryBasic;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                margin-top: 10px;
+                &:active, &:focus{
+                    outline: none;
+                    background-color: whitesmoke;
+                    color: $primaryDark;
+                    box-shadow: 0 0 10px 1px $primaryDark;
+                }
+
+            }
+            textarea{
+                min-height: 100px;
+                width: 80%;
+                background-color: $primaryBasic;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                margin-top: 10px;
+                margin-inline: 10%;
+            
+                &:active,
+                &:focus {
+                    outline: none;
+                    background-color: whitesmoke;
+                    color: $primaryDark;
+                    box-shadow: 0 0 10px 1px $primaryDark;
+                }
+            }   
+        }
+}
+.btn{
+    @include roundedBtn;
+    padding: 10px 25px;
+}
+  
+.dateTime{
+
+    >div {
+            flex-direction: row;
+            justify-content: flex-start;
+            margin-inline: 10%;
+    
+            select {
+                background-color: $primaryBasic;
+                color: whitesmoke;
+                width: 100px;
+                text-align: center;
+                margin-right: 25px;
+                padding: 5px 10px;
+                border-radius: 10px;
+    
+                &:hover {
+                    background-color: whitesmoke;
+                    color: $primaryDark;
+                    box-shadow: 0 0 10px 1px $primaryDark;
+                }
+            }
+        }
+}
+
+input[type="checkbox"]:active,
+input[type="checkbox"]:focus {
+    box-shadow: none;
+}
+option{
+    outline: $primaryBasic;
+}
+option:checked{
+    background-color: $primaryDark;
+    color: whitesmoke;
+}
+option:hover{
+    background-color: $primaryDark;
+    color: whitesmoke;
+}
+
+.multiSelectStyle{
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-inline: 10%;
+
+    select{
+        background-color: $primaryBasic;
+        color: whitesmoke;
+        width: 100px;
+        text-align: center;
+        margin-right: 25px;
+        padding: 5px 10px;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: whitesmoke;
+            color: $primaryDark;
+            box-shadow: 0 0 10px 1px $primaryDark;
+        }
+    }
+}
+
+.selectStyle{
+    margin-inline: 10%;
+    margin-top: 10px;
+    background-color: $primaryBasic;
+    color: whitesmoke;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: whitesmoke;
+        color: $primaryDark;
+        box-shadow: 0 0 10px 1px $primaryDark;
+    }
+}
+
+.checkboxStyle {
+    width: 80%;
+    flex-direction: row;
+    justify-content: flex-start;
+    input {
+        margin-inline: 0;
+        accent-color: $primaryDark;
+    }
+    label{
+        width: 40%;
+        margin-inline: 0;
+    }
+}
+
+.deleteSection{
+    background: none;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 0 auto 50px;
+    @include dFlex(row);
+    @include centerXY(center, center);
+    
+    button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: transparent;
+        text-align: center;
+        font-weight: bold;
+        color: whitesmoke;
+        background-color: $danger;
+        transition: all 0.3s ease-in;
+        
+        &:hover{
+            background-color: whitesmoke;
+            box-shadow: 0 0 10px 2px $danger;
+            color: $danger;
+        }
+    }
+}
+
+
+
 // _________________||| LOGIN_FORM \\\________________
 
 .loginForm {
-    width: 35vw;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    width: 45%;
     text-align: center;
     background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
 
-    .formTitle {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    div {
-        margin-bottom: 25px;
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 70%;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .rememberMe {
-            display: flex;
-
-            input[type="checkbox"] {
-                margin-right: 5px;
-            }
+    .logOutSection{
+        @include dFlex(column);
+        @include centerXY(center, flex-end);
+        
+        .logOutBtn{
+            @include roundedBtn;
+            padding: 5px 10px;
+            margin-top: 10px;
         }
     }
+
+    
 
     .submitBtn, .signUpBtn {
         @include roundedBtn;
+        padding: 5px 10px;
         background-color: $primaryDark;
         color: white;
         cursor: pointer;
         width: 150px;
+        margin: 0 auto;
 
         &:hover {
             background-color: $primaryLight;
@@ -59,9 +228,10 @@
     }
 
     p {
-        margin-top: 20px;
+        margin: 20px auto;
         font-size: 16px;
     }
+
     .signUpBtn{
         margin: 0 auto;
         a{
