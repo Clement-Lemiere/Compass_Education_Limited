@@ -141,9 +141,8 @@ function EditStudent() {
 
     return (
         <main className='profilePage'>
-            <div className="leftColumn">
+            {/* LEFT COLUMN */}
                 {renderNavigation()}
-            </div>
             <div className="mainCtn">
                 <h1>PROFILE</h1>
                 <div className='profileContainer'>

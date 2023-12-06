@@ -20,28 +20,27 @@ const navigation = [
   { name: 'lesson', href: '/studentLesson', icon: bookIcon },
 ];
 
+const renderNavigation = () => (
+  <ul className="aLeft">
+    {navigation.map((item) => (
+      <li key={item.name}>
+        <a
+          href={item.href}
+          aria-current={item.current ? 'page' : undefined}
+        >
+          {<i dangerouslySetInnerHTML={{ __html: item.icon }} />}
+          <span className='linkWord'>{item.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+);
+
 const StudentCalendar = () => {
   return (
     <main className='profilePage'>
-
       {/* LEFT COLUMN */}
-
-      <div className="leftColumn">
-        <ul className="aLeft">
-          {navigation.map((item) => (
-            <li>
-              <a
-                key={item.name}
-                href={item.href}
-                aria-current={item.current ? 'page' : undefined}
-              >
-                <i dangerouslySetInnerHTML={{ __html: item.icon }}></i>
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {renderNavigation()}
       <div className='calendar'>
         <h1>Calendar</h1>
       <FullCalendar

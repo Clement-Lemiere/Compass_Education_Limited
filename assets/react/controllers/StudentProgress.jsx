@@ -18,6 +18,22 @@ function StudentProgress() {
         { name: 'lesson', href: '/studentLesson', icon: bookIcon },
     ];
 
+    const renderNavigation = () => (
+        <ul className="aLeft">
+            {navigation.map((item) => (
+                <li key={item.name}>
+                    <a
+                        href={item.href}
+                        aria-current={item.current ? 'page' : undefined}
+                    >
+                        {<i dangerouslySetInnerHTML={{ __html: item.icon }} />}
+                        <span className='linkWord'>{item.name}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    );
+
     return (
 
         //_____________________________ PAGE CONTENT_______________________________________\\
@@ -25,26 +41,9 @@ function StudentProgress() {
         <main className='profilePage'>
 
             {/* LEFT COLUMN */}
-
-            <div className="leftColumn">
-                <ul className="aLeft">
-                    {navigation.map((item) => (
-                        <li>
-                            <a
-                                key={item.name}
-                                href={item.href}
-                                aria-current={item.current ? 'page' : undefined}
-                            >
-                                <i dangerouslySetInnerHTML={{ __html: item.icon }}></i>
-                                {item.name}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {renderNavigation()}
 
             {/* MAIN CONTENT */}
-
             <div className="mainCtn">
                 <h1>PROGRESS</h1>
                 <div className='progressBar'>

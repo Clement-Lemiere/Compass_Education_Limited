@@ -19,6 +19,7 @@ class StudentType extends AbstractType
                 'attr' => [
                     'class' => 'multiSelectStyle',
                 ],
+                'years' => range(1930, date('Y')),
             ])
             ->add('nationality')
             ->add('level')

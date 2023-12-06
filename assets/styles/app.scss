@@ -34,11 +34,19 @@ h2{
 
 // _________________||| HEADER \\\________________
 header {
-        width: 80vw;
+    @include dFlex(column);
+    @include centerXY(center, center);
+    width: 80vw;
+    margin: 0 auto;
+    padding: 25px;
+    h1, p{
+        text-align: center;
+        margin-top: 0;
+    }
+    p {
+        width: 90%;
         margin: 0 auto;
-        h1{
-            text-align: center;
-        }
+    }
 }
 
 // _________________||| NAVBARS \\\________________
@@ -193,13 +201,14 @@ header {
         @include centerXY(center, center);
         width: 55vw;
         margin-block: 50px;
+        padding-block: 25px;
         background-color: $lightGrey;
         opacity: 0.8;
         border-radius: 15px;
         text-align: center;
 
         h1 {
-            margin-inline: 20px;
+            padding: 20px;
         }
 
         .description {
@@ -350,6 +359,66 @@ main{
     }
 }
 
+
+// _________________||| ABOUT COMPASS \\\________________\\
+
+.aboutCompass{
+    @include dFlex(row);
+    @include centerXY(space-evenly, center);
+    margin-block: 50px;
+    width: 90%;
+    margin-inline: auto;
+
+    .aboutContainer{
+        @include dFlex(column);
+        @include centerXY(center, center);
+        width: 50%;
+    
+
+        .imgContainer{
+            @include dFlex(row);
+            @include centerXY(center, center);
+            width: 300px;
+            border-top-right-radius: 67% 59%;
+            border-top-left-radius: 33% 52%;
+            border-bottom-left-radius: 35% 48%;
+            border-bottom-right-radius: 72% 51%;
+            overflow: hidden;
+            
+            img{
+                width: 100%;
+                transform: scaleX(-1);
+            }
+
+        }
+
+        .imgContainerBis {
+            @include dFlex(row);
+            @include centerXY(center, center);
+            width: 300px;
+            border-top-left-radius: 67% 59%;
+            border-top-right-radius: 33% 52%;
+            border-bottom-right-radius: 35% 48%;
+            border-bottom-left-radius: 72% 51%;
+            overflow: hidden;
+            
+            img{
+                width: 100%;
+            }
+        }
+
+        
+
+        h2, p{
+            width: 65%;
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 2.3rem;
+        }
+    }
+}
+
+
 // _________________||| FAQ \\\________________\\
 
 .faq {
@@ -363,6 +432,7 @@ main{
         box-shadow: 0 0 5px $primaryDark;
         
         p{
+            cursor: pointer;
             padding: 25px;
             padding-top: 0;
             font-size: 1.5rem;
@@ -371,6 +441,7 @@ main{
         }
         
         summary {
+            cursor: pointer;
             padding: 25px;
             font-weight: normal;
             font-size: 1.5rem;
@@ -428,6 +499,7 @@ footer {
             border-radius: 15px;
             box-shadow: 0 0 5px $primaryLight;
             margin-block: 15px;
+            border-left: none;
             transition: all 0.3s ease-in;
 
             a{
@@ -449,10 +521,10 @@ footer {
             }
         }
         .loginBtn{
-            right: 5vw;
+            right: 10vw;
         }
         .homeBtn{
-            left: 5vw;
+            left: 10vw;
             
 
             a{
@@ -471,7 +543,7 @@ footer {
             @include centerXY(center, center);
             position: fixed;
                 top: 0;
-            background: linear-gradient(90deg, $primaryDark,black 20% 80%, $primaryDark);
+            background: linear-gradient(90deg, $primaryDark,black 15% 85%, $primaryDark);
             width: 100vw;
             height: 15vh;
             z-index: 100;
