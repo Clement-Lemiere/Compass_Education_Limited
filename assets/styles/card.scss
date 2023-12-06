@@ -112,7 +112,12 @@ main {
             }
         }
 
+        &:hover {
+            box-shadow: 0 0 25px 2px $primaryDark;
+        }
+
     }
+
 
     .card.expanded {
         position: fixed;
