@@ -4,9 +4,10 @@
 {% block title %}FAQ{% endblock %}
 
 {% block body %}
-    <header>
+    <header class="basicHeader">
         <section>
             <h1>FAQ</h1>
+            <p>Frequently Asked Questions</p>
         </section>
     </header>
     <main>
@@ -14,7 +15,7 @@
         {% for faq in faqs %}
             <details class="QA">
                 <summary class="question">{{ faq.question }}</summary>
-                {{ faq.answer }}
+                <p>{{ faq.answer }}</p>
             </details>
         {% endfor %}
         </section>

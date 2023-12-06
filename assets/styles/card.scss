@@ -226,20 +226,20 @@ main {
 
         margin-block: 20px;
         background: none;
-        width: 70%;
+        width: 100%;
         justify-content: center;
 
         .card {
-            width: 60%;
+            width: 80%;
             object-fit: contain;
         }
 
         .card.expanded {
             position: fixed;
-            width: 70%;
+            width: 90%;
             top: 17%;
-            left: 15%;
-            right: 15%;
+            left: 5%;
+            right: 5%;
 
             .cardImg {
                 height: 120px;

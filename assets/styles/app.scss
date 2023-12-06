@@ -19,16 +19,34 @@ i {
     margin-right: 15px;
 }
 
+h1{
+    margin-top: 15vh;
+}
+
+h2{
+    font-size: 2.3rem;
+    color: $primaryDark;
+    text-shadow: 5px 5px 5px $primaryLight;
+}
+
 
 
 
 // _________________||| HEADER \\\________________
 header {
-        width: 80vw;
+    @include dFlex(column);
+    @include centerXY(center, center);
+    width: 80vw;
+    margin: 0 auto;
+    padding: 25px;
+    h1, p{
+        text-align: center;
+        margin-top: 0;
+    }
+    p {
+        width: 90%;
         margin: 0 auto;
-        h1{
-            text-align: center;
-        }
+    }
 }
 
 // _________________||| NAVBARS \\\________________
@@ -40,52 +58,71 @@ header {
     @include centerXY(space-between, center);
     background: linear-gradient(100deg, $primaryLight, $primaryDark);
     color: $primaryDark;
-    padding-left: 20px;
     box-shadow: 0 0 4px 1px $primaryDark;
+    width: 100%;
 
 
     // _________________||| LOGO \\\________________
     .logo {
         font-size: 22px;
-        width: 10vw;
+        height: 10vh;
+        width: 15vw;
         transition: color 0.3s ease;
-
+        
         a {
+            @include dFlex(row);
+            @include centerXY(center, center);
             cursor: pointer;
             color: white;
+            height: 100%;
+            width: 100%;
 
             img {
-                padding: 5px;
-                width: 3vw;
+                height: 100%;
             }
         }
 
-        h2 {
-            color: white;
-            text-shadow: 0 0 7px black;
-            margin: 0
+        .textLogo{
+            @include dFlex(column);
+
+            span{
+                color: $primaryDark;
+                font-size: 1.5rem;
+                font-weight: bold;
+    
+                &:nth-child(2){
+                    color: $primaryDark;
+                    font-size: 1.2rem;
+                    font-weight: normal;
+                    font-style: italic;
+                    margin-left: 10px;
+                    margin-top: -5px;
+    
+                }
+            }
         }
     }
 
     // _________________||| LINKS \\\________________
-    .dropDownBtn {
+    .dropDownBtn, .homeBtn {
         display: none;
     }
     .navLinks {
         @include dFlex(row);
-        @include centerXY(center, center);
+        @include centerXY(space-evenly, center);
         font-size: 18px;
-        width: 75vw;
+        width: 68vw;
         padding: 0;
 
         li {
             list-style: none;
-            width: 120px;
-            margin-inline: 20px;
+            width: 14%;
+            margin-inline: 5px;
 
             a {
                 display: block;
                 width: 100%;
+                
                 @include roundedBtn;
                 color: white;
                 text-decoration: none;
@@ -111,12 +148,18 @@ header {
         border-left: solid 1px white;
         
         a {
-            width: 10vw;
+            width: 15vw;
             height: 70px;
             @include dFlex(row);
             @include centerXY(center, center);
             text-decoration: none;
             color: white;
+
+            svg{
+                height: 20px;
+                width: 20px;
+                margin-right: 15px;
+            }
         }
 
         &:hover {
@@ -131,6 +174,9 @@ header {
 }
 
 .backNav {
+    position: fixed;
+    top:0;
+
     ul {
         margin-block-start: 0.5em;
         margin-block-end: 0;
@@ -143,7 +189,7 @@ header {
 
 // _________________||| TITLE & DESCRIPTION \\\________________
 
-.homeHeader {
+.bgHeader {
     width: 100%;
     background-image: url("../images/compass_header_background.jpg");
     background-size: cover;
@@ -155,13 +201,14 @@ header {
         @include centerXY(center, center);
         width: 55vw;
         margin-block: 50px;
+        padding-block: 25px;
         background-color: $lightGrey;
         opacity: 0.8;
         border-radius: 15px;
         text-align: center;
 
         h1 {
-            margin-inline: 20px;
+            padding: 20px;
         }
 
         .description {
@@ -180,10 +227,6 @@ header {
     margin-top: 40px;
     @include dFlex(column);
     @include centerXY(space-between, center);
-
-    h2 {
-        font-size: 2rem;
-    }
 
     h3 {
         font-size: 1.5rem;
@@ -238,83 +281,168 @@ main{
         @include dFlex(column);
         @include centerXY(space-between, center);
     
-        h2 {
-            font-size: 2rem;
+        h1 {
+            font-size: 3rem;
+            color: $primaryDark;
+            text-shadow: 5px 5px 5px $primaryLight;
+
         }
     
         
-        div{
-            
-            .teacherComponent {
+        .teacherComponent {
             @include dFlex(row);
             @include centerXY(space-evenly, center);
-            margin-bottom: 40px;
+            padding-block: 50px;
+            border-bottom: solid 2px;
+            border-image: linear-gradient(to right, transparent 25%, $primaryDark 25%, $primaryDark 75%, transparent 75%) 1;
             
-                
-                h3 {
-                    font-size: 1.5rem;
-                }
-        
-                .teacherInfos {
-                    @include dFlex(column);
-                    @include centerXY(center, center);
-                    width: 40%;
-        
-                    .imgContainer{
-                        width: 50%;
-        
-                        img {
-                            width: 100%;
-                            border-radius: 15px;
-                            box-shadow: black 0 0 15px;
-                        }
-        
+            
+            
+    
+            .teacherInfos {
+                @include dFlex(column);
+                @include centerXY(center, center);
+                width: 40%;
+    
+                .imgContainer{
+                    width: 60%;
+    
+                    img {
+                        width: 100%;
+                        border-radius: 15px;
+                        box-shadow: black 0 0 15px;
                     }
-        
-                    >p{
-                        text-align: center;
-                        margin-top: 0;
-                    }
+    
                 }
 
-                >p {
-                    width: 40%;
-                    font-size: 1.5rem;
-                    text-align: justify;
-                    line-height: 2.3rem;
+                >h3{
+                    font-size: 1.7rem;
+                    margin-block: 1rem;
                 }
             }
             
-            
-            .teacherComponent:nth-child(odd) {
-                flex-direction: row-reverse;
+            >.description {
+                width: 40%;
+                
+                >h3{
+                    font-size: 1.7rem;
+                    font-weight: normal;
+                    margin-block: 1rem;
+                    font-style: italic;
+                    color: $primaryDark;
+                }
+                >p{
+                    font-size: 1.5rem;
+                    text-align: justify;
+                    line-height: 2.2rem;
+                }
             }
         }
-        
-        .separate{
-            width: 50%;
-            border-bottom: $primaryDark 1px solid;
+
+        .teacherComponent:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .back{
+            width: 250px;
+            margin: 30px auto;
+            text-align: center;
+
+            a{
+                @include roundedBtn;
+                color: white;
+                font-size: 1.2rem;
+                width: 100%;
+                padding: 10px 30px;
+            }
         }
     }
 }
+
+
+// _________________||| ABOUT COMPASS \\\________________\\
+
+.aboutCompass{
+    @include dFlex(row);
+    @include centerXY(space-evenly, center);
+    margin-block: 50px;
+    width: 90%;
+    margin-inline: auto;
+
+    .aboutContainer{
+        @include dFlex(column);
+        @include centerXY(center, center);
+        width: 50%;
+    
+
+        .imgContainer{
+            @include dFlex(row);
+            @include centerXY(center, center);
+            width: 300px;
+            border-top-right-radius: 67% 59%;
+            border-top-left-radius: 33% 52%;
+            border-bottom-left-radius: 35% 48%;
+            border-bottom-right-radius: 72% 51%;
+            overflow: hidden;
+            
+            img{
+                width: 100%;
+                transform: scaleX(-1);
+            }
+
+        }
+
+        .imgContainerBis {
+            @include dFlex(row);
+            @include centerXY(center, center);
+            width: 300px;
+            border-top-left-radius: 67% 59%;
+            border-top-right-radius: 33% 52%;
+            border-bottom-right-radius: 35% 48%;
+            border-bottom-left-radius: 72% 51%;
+            overflow: hidden;
+            
+            img{
+                width: 100%;
+            }
+        }
+
+        
+
+        h2, p{
+            width: 65%;
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 2.3rem;
+        }
+    }
+}
+
 
 // _________________||| FAQ \\\________________\\
 
 .faq {
 
     .QA{
-        padding: 25px;
         width: 80%;
         margin: 30px auto;
         background: linear-gradient(65deg, $primaryLight 30%, $primaryBasic);
         border-radius: 15px;
-        font-size: 1.5rem;
-        font-weight: bold;
         color: $primaryDark;
         box-shadow: 0 0 5px $primaryDark;
-        line-height: 2.5rem;
+        
+        p{
+            cursor: pointer;
+            padding: 25px;
+            padding-top: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 2.5rem;
+        }
         
         summary {
+            cursor: pointer;
+            padding: 25px;
             font-weight: normal;
             font-size: 1.5rem;
             margin-block: 10px;
@@ -339,6 +467,10 @@ footer {
 
 @media screen and (max-width: 768px) {
 
+    h1, h2, h3, p, a, span,  summary, details, button, label {
+        font-size: smaller;
+    }
+
 
     // _________________||| NAVIGATION \\\________________\\
 
@@ -350,12 +482,60 @@ footer {
         transition: all 0.5s ease-in-out;
         background: none;
 
-        .loginBtn{
-            display: none;
-        }
-
         .logo{
             display: none;
+        }
+        .linkWord{
+            display: none;
+        }
+        
+        .loginBtn, .homeBtn{
+            display: flex;
+            position: fixed;
+            top: 0;
+            z-index: 101;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            box-shadow: 0 0 5px $primaryLight;
+            margin-block: 15px;
+            border-left: none;
+            transition: all 0.3s ease-in;
+
+            a{
+                @include dFlex(column);
+                @include centerXY(center, center);
+                width: 100%;
+                height: 100%;
+
+                svg{
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 0;
+                }
+            }
+
+            &:hover{
+                box-shadow: 0 0 10px 2px $primaryLight;
+                background-color: transparent;
+            }
+        }
+        .loginBtn{
+            right: 10vw;
+        }
+        .homeBtn{
+            left: 10vw;
+            
+
+            a{
+                width: 100%;
+                height: 100%;
+
+                svg{
+                    width: 27px;
+                    height: 24px;
+                }
+            }
         }
         
         .dropdownBtnContainer{
@@ -375,6 +555,7 @@ footer {
                 border-radius: 15px;
                 box-shadow: 0 0 5px $primaryLight;
                 margin-block: 15px;
+                transition: all 0.3s ease-in;
     
                 span{
                     display: block;
@@ -454,10 +635,13 @@ footer {
 
     // _________________||| HEADER \\\________________\\
 
-    header {
+    .bgHeader {
         padding-top: 15vh;
-        width: 80vw;
         margin: 0 auto 20px;
+
+        section{
+            width: 80%;
+        }
 
         h1 {
             font-size: 2rem;
@@ -482,6 +666,32 @@ footer {
 
             p {
                 width: 60vw;
+            }
+        }
+    }
+
+    // _________________||| Teachers \\\________________\\
+
+    main{
+
+        .professorsList{
+
+            .teacherComponent,
+            .teacherComponent:nth-child(odd)
+            { 
+                @include dFlex(column);
+                @include centerXY(space-evenly, center);
+            }
+
+            .teacherComponent{
+
+                .teacherInfos{
+                    width: 80%;
+                }
+
+                .description{
+                    width: 80%;
+                }
             }
         }
     }

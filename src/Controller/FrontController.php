@@ -37,11 +37,11 @@ class FrontController extends AbstractController
         return $this->render('front/prices.html.twig');
     }
 
-    #[Route('/ourTeachers', name: 'ourTeachers')]
-    public function ourTeachers(): Response
+    #[Route('/team', name: 'team')]
+    public function team(): Response
     {
 
-        return $this->render('front/ourTeachers.html.twig');
+        return $this->render('front/team.html.twig');
     }
 
     #[Route('/about', name: 'about')]

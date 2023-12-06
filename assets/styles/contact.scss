@@ -1,6 +1,25 @@
 @import "../styles/mixins.scss";
 @import "../styles/variables.scss";
 
+
+// _______________||| HEADER \\\________________\\
+.basicHeader{
+
+    h1{
+        color: $primaryDark;
+        text-shadow: 5px 5px 5px $primaryLight;
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+        line-height: 2rem;
+    }
+
+    
+}
+
+
 // _______________||| CONTACT_FORM \\\________________\\
 
 .formContent {
@@ -14,6 +33,8 @@
 
     h2 {
         text-align: center;
+        color: black;
+        text-shadow: none;
     }
 
     

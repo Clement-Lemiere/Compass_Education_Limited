@@ -15,8 +15,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: LessonRepository::class)]
 #[ApiResource(
     operations: [
-        new GetCollection(normalizationContext: ['groups' => ['lesson:list']]),
-        new Get(normalizationContext: ['groups' => 'lesson:item']),
+        new GetCollection(normalizationContext: ['groups' => ['lesson:read']]),
+        new Get(normalizationContext: ['groups' => 'lesson:write']),
 
     ]
 )]

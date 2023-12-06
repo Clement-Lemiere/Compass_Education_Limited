@@ -3,9 +3,11 @@
 {% block title %}Languages{% endblock %}
 
 {% block body %}
-    <header>
-        <h1>Choose the language you want to learn and get ready!</h1>
-        <p>Compass School offers a wide range of languages.</p>
+    <header class="bgHeader">
+        <section>
+            <h1>Choose the language you want to learn and get ready!</h1>
+            <p class="description">Choose from a rich tapestry of languages, each taught by expert instructors passionate about sharing their knowledge. Whether you're drawn to the elegance of French, the precision of German, or the poetic beauty of Japanese, our immersive courses offer a gateway to global communication. Select your desired language below and open the door to a world of words, expressions, and cultural connections. Let the adventure begin!"</p>
+        </section>
     </header>
     <main>
         <section {{ react_component('LanguageCard') }}></section>
