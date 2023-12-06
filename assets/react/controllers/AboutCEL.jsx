@@ -15,7 +15,7 @@ const AboutCEL = () => {
                         alt="About us"
                     />
                 </div> 
-                <p> Meet Leyli Dorchies Aleksanyan, co-founder of Compass School. Her dedication to education shines through every lesson. Layli, a passionate linguist, guides learners with infectious energy, creating a memorable and enriching learning experience. </p>
+                <p> Meet Leyli Dorchies Aleksanyan, co-founder of Compass School. Her dedication to education shines through every lesson. Leyli, a passionate linguist, guides learners with infectious energy, creating a memorable and enriching learning experience. </p>
             </div>
             <div className="aboutContainer">
                 <h2> Christopher Dorchies </h2>

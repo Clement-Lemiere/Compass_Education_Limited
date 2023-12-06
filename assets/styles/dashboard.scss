@@ -27,7 +27,7 @@ body {
                 font-size: 22px;
                 height: 10vh;
                 width: 15vw;
-                transition: color 0.3s ease;
+                transition: color 0.3s ease-in;
         
                 a {
                     @include dFlex(row);
@@ -88,7 +88,7 @@ body {
                     color: white;
                     height: 100%;
                     width: 150px;
-                    transition: color 0.3s ease;
+                    transition: all 0.3s ease-in;
                     background-color: $darkBlue;
 
                     &:hover {
@@ -97,6 +97,12 @@ body {
                         cursor: pointer;
                         box-shadow: 0 0 5px black;
                         background-color: $lightBlue;
+
+                        svg {
+                                path {
+                                    fill: $darkBlue;
+                                }
+                            }
                     }
                 }
             }
@@ -108,9 +114,9 @@ body {
         border-left: solid 1px white;
         padding: 0 50px;
         height: 100%;
-        transition: all 0.3s ease-in;
         @include dFlex(row);
         @include centerXY(center, center);
+        transition: all 0.3s ease-in;
 
         a {
             vertical-align: middle;
@@ -125,10 +131,16 @@ body {
         &:hover {
             background-color: $lightBlue;
             cursor: pointer;
-
+            
             a {
+                color: $darkBlue;
                 font-weight: bold;
-                // font-style: italic;
+                
+                svg {
+                        path {
+                            fill: $darkBlue
+                        }
+                    }
             }
         }
     }
@@ -160,6 +172,7 @@ body {
                 text-decoration: none;
                 background-color: $darkBlue;
                 width: 100%;
+                transition: all 0.3s ease-in;
 
                 &:hover {
                     color: $darkBlue;
@@ -167,6 +180,12 @@ body {
                     cursor: pointer;
                     box-shadow: 0 0 5px black;
                     background-color: $lightBlue;
+
+                    svg {
+                            path {
+                                fill: $darkBlue;
+                            }
+                        }
                 }
             }
         }

@@ -36,9 +36,9 @@ h2{
 header {
     @include dFlex(column);
     @include centerXY(center, center);
-    width: 80vw;
-    margin: 0 auto;
+    width: 100%;
     padding: 25px;
+
     h1, p{
         text-align: center;
         margin-top: 0;
@@ -49,11 +49,63 @@ header {
     }
 }
 
+.basicHeader {
+    margin-top: 15vh;
+
+    h1 {
+        color: $primaryDark;
+        text-shadow: 5px 5px 5px $primaryLight;
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+        line-height: 2rem;
+    }
+
+
+}
+
+.bgHeader {
+    margin-top: 5vh;
+    background-image: url("../images/compass_header_background.jpg");
+    background-size: cover;
+    opacity: 0.9;
+    box-shadow: 0 0 5px $primaryDark;
+    
+    section {
+        @include dFlex(column);
+        @include centerXY(center, center);
+        width: 55vw;
+        margin-block: 50px;
+        padding-block: 25px;
+        background-color: $lightGrey;
+        opacity: 0.8;
+        border-radius: 15px;
+        text-align: center;
+
+        h1 {
+            padding: 20px;
+        }
+
+        .description {
+            padding-inline: 30px;
+            font-size: 1.4rem;
+            line-height: 2.5rem;
+        }
+    }
+}
+
+
 // _________________||| NAVBARS \\\________________
 
 
 .frontNav,
 .backNav {
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 99;
     @include dFlex(row);
     @include centerXY(space-between, center);
     background: linear-gradient(100deg, $primaryLight, $primaryDark);
@@ -67,7 +119,7 @@ header {
         font-size: 22px;
         height: 10vh;
         width: 15vw;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease-in;
         
         a {
             @include dFlex(row);
@@ -159,6 +211,8 @@ header {
                 height: 20px;
                 width: 20px;
                 margin-right: 15px;
+
+
             }
         }
 
@@ -189,35 +243,6 @@ header {
 
 // _________________||| TITLE & DESCRIPTION \\\________________
 
-.bgHeader {
-    width: 100%;
-    background-image: url("../images/compass_header_background.jpg");
-    background-size: cover;
-    @include dFlex(column);
-    @include centerXY(center, center);
-
-    section {
-        @include dFlex(column);
-        @include centerXY(center, center);
-        width: 55vw;
-        margin-block: 50px;
-        padding-block: 25px;
-        background-color: $lightGrey;
-        opacity: 0.8;
-        border-radius: 15px;
-        text-align: center;
-
-        h1 {
-            padding: 20px;
-        }
-
-        .description {
-            padding-inline: 30px;
-            font-size: 1.4rem;
-            line-height: 2.5rem;
-        }
-    }
-}
 
 
 
@@ -384,6 +409,7 @@ main{
             border-bottom-left-radius: 35% 48%;
             border-bottom-right-radius: 72% 51%;
             overflow: hidden;
+            box-shadow: 1px 2px 5px black;
             
             img{
                 width: 100%;
@@ -401,6 +427,7 @@ main{
             border-bottom-right-radius: 35% 48%;
             border-bottom-left-radius: 72% 51%;
             overflow: hidden;
+            box-shadow: -1px 2px 5px black;
             
             img{
                 width: 100%;
@@ -430,6 +457,7 @@ main{
         border-radius: 15px;
         color: $primaryDark;
         box-shadow: 0 0 5px $primaryDark;
+        transition: all 0.3s ease-in;
         
         p{
             cursor: pointer;
@@ -447,8 +475,13 @@ main{
             font-size: 1.5rem;
             margin-block: 10px;
         }
+
+        &:hover{
+            box-shadow: 0 0 15px 2px $primaryDark;
+        }
         
     }
+
 }
 
 
@@ -479,8 +512,8 @@ footer {
         flex-direction: column;
         @include centerXY(flex-start, center);
         padding: 0;
-        transition: all 0.5s ease-in-out;
         background: none;
+        transition: all 0.3s ease-in;
 
         .logo{
             display: none;
@@ -562,7 +595,7 @@ footer {
                     border-top: solid 2px rgb(188, 247, 222);
                     width: 70%;
                     margin: 23% auto 0;
-                    transition: all 0.5s ease-in-out;
+                    transition: all 0.3s ease-in;
                 }
             }
     
@@ -618,7 +651,7 @@ footer {
                 span:nth-child(1){
                     transform: rotate(45deg);
                     translate: 0 15px;
-                    transition: all 0.5s ease-in-out;
+                    transition:all 0.5s ease-in-out;
                 }
                 span:nth-child(3){
                     transform: rotate(-45deg);
@@ -693,6 +726,17 @@ footer {
                     width: 80%;
                 }
             }
+        }
+    }
+
+
+    // _________________||| ABOUT COMPASS \\\________________\\
+    
+    .aboutCompass{
+        @include dFlex(column);
+    
+        .aboutContainer{
+            width: 90%;
         }
     }
 }
