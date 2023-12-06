@@ -48,7 +48,7 @@ main {
     .card {
         @include dFlex(column);
         @include centerXY(space-between, center);
-        background: linear-gradient(45deg, $primaryDark, black);
+        background: linear-gradient(45deg, $primaryDark, rgb(9, 0, 19));
         padding: 20px 40px;
         margin-block: 25px;
         opacity: 0.9;
