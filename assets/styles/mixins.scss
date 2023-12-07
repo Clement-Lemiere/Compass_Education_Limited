@@ -14,13 +14,13 @@
     margin-bottom: 0.3rem;
     border-radius: 10px;
     border: transparent;
-    background-color: $primaryDark;
+    background: linear-gradient(65deg, $primaryDark, $primaryBasic);
     color: white;
     box-shadow: 0 0 2px 0 black;
     transition: background-color 0.5s;
 
     &:hover {
-        background-color: $primaryLight;
+        background: linear-gradient(65deg, $primaryLight, whitesmoke);
         cursor: pointer;
         color: black;
 

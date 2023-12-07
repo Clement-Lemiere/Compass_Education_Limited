@@ -1,0 +1,110 @@
+@keyframes moveBubble1 {
+    0% {
+        top: 0;
+        left: 0;
+    }
+
+    17% {
+        top: 60%;
+        left: 30%;
+    }
+
+    34% {
+        top:30%;
+        left: 60%;
+    }
+
+    50% {
+        top: 60%;
+        left: 85%;
+    }
+
+    67% {
+        top: 90%;
+        left: 60%;
+    }
+
+    75% {
+        top: 60%;
+        left: 30%;
+    }
+
+    100% {
+        top: 20%;
+        left: 0;
+    }
+}
+
+@keyframes moveBubble2 {
+    0% {
+        bottom: 0;
+        right: 50%;
+    }
+
+    17% {
+        bottom: 50%;
+        right: 80%;
+    }
+
+    34% {
+        bottom: 80%;
+        right: 60%;
+    }
+
+    50% {
+        bottom: 55%;
+        right: 45%;
+    }
+
+    67% {
+        bottom: 70%;
+        right: 5%;
+    }
+
+    75% {
+        bottom: 50%;
+        right: 30%;
+    }
+
+    100% {
+        bottom: 20%;
+        right: 40%;
+    }
+}
+
+@keyframes moveBubble3 {
+    0% {
+        top: 0;
+        right: 0;
+    }
+
+    17% {
+        top: 30%;
+        right: 30%;
+    }
+
+    34% {
+        top: 60%;
+        right: 60%;
+    }
+
+    50% {
+        top: 80%;
+        right: 85%;
+    }
+
+    67% {
+        top: 50%;
+        right: 60%;
+    }
+
+    84% {
+        top: 30%;
+        right: 30%;
+    }
+
+    100% {
+        top: 20%;
+        right: 15%;
+    }
+}

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 const ContactForm = ({ onSubmit }) => {
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [subject, setSubject] = useState("");
 
 
 
@@ -12,8 +14,10 @@ const ContactForm = ({ onSubmit }) => {
 
         // Envoi du formulaire par e-mail
         onSubmit({
-            name,
+            firstName,
+            lastName,
             email,
+            subject,
             message,
         });
     };
@@ -25,36 +29,31 @@ const ContactForm = ({ onSubmit }) => {
             onSubmit={handleSubmit}
         >
             <h2>Contact Form</h2>
-            <div className="fullNameForm">
-                <div>
-                    <label
-                        className="formLabel"
-                        htmlFor="firstName"
-                    >First Name
-                    </label>
-                    <input
-                        className="formControl"
-                        type="text"
-                        placeholder="first name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    </div>
-                <div>
-                    <label
-                        className="formLabel"
-                        htmlFor="lastName"
-                    >Last Name
-                    </label>
-                    <input
-                        className="formControl"
-                        type="text"
-                        placeholder="last name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-            </div>
+            
+            <label
+                className="formLabel fullNameLabel"
+                htmlFor="firstName"
+            >First Name
+            </label>
+            <label
+                className="formLabel fullNameLabel"
+                htmlFor="lastName"
+            >Last Name
+            </label>
+            <input
+                className="formControl fullNameInput"
+                type="text"
+                placeholder="first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+                className="formControl fullNameInput"
+                type="text"
+                placeholder="last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+            />
             <label
                 className="formLabel"
                 htmlFor="email"
@@ -75,7 +74,8 @@ const ContactForm = ({ onSubmit }) => {
                 className="formControl"
                 type="text"
                 placeholder="Subject"
-                onChange={(e) => setTitle(e.target.value)} />
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)} />
             <label
                 className="formLabel"
                 htmlFor="message"

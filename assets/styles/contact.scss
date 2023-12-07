@@ -8,18 +8,21 @@
 // _______________||| CONTACT_FORM \\\________________\\
 
 .formContent {
-    @include dFlex(column);
-    @include centerXY(flex-start, center);
+    position: relative;
+    @include dFlex(row);
+    @include centerXY(space-evenly, center);
     width: 55vw;
     padding: 20px;
     margin: 0 auto;
     box-shadow: 0 0 8px black;
     border-radius: 10px;
+    z-index: 10;
 
     h2 {
         text-align: center;
         color: black;
         text-shadow: none;
+        width: 100%;
     }
 
     
@@ -30,13 +33,20 @@
         width: 90%;
     }
 
+    .fullNameLabel{
+        width: 42.5%;
+    }
+
     .formControl {
         width: 90%;
         padding: 8px 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        margin-top: 20px;
-        margin-bottom: 10px;
+        margin-block: 10px 20px;
+    }
+
+    .fullNameInput {
+        width: 42.5%;
     }
 
     .formControl:focus {
@@ -55,40 +65,6 @@
 
     textarea {
         height: 100px;
-    }
-
-    .fullNameForm{
-        @include dFlex(row);
-        @include centerXY(space-between, center);
-
-        div{
-            @include dFlex(column);
-            @include centerXY(flex-start, center);
-            width: 40%;
-            
-            label, input{
-                margin-left: 0;
-            }
-
-            .formLabel{
-                font-size: 16px;
-                font-weight: bold;
-                margin-bottom: 5px;
-                width: 100%;
-
-            }
-
-            .formControl{
-                background-color: white;
-                width: 100%;
-                padding: 8px 12px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                margin-top: 20px;
-                margin-bottom: 10px;
-            }
-        }
-
     }
 }
 

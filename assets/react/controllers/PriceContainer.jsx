@@ -5,8 +5,6 @@ const PriceContainer = () => {
 
 
         <section className='priceSection'>
-            <h2>Pricing Overview</h2>
-            <p className='priceDescription'>Explore our flexible pricing options designed to cater to your language-learning needs. From the 'Discovery' plan for a single lesson to the comprehensive 'Confirmed' package for 20 lessons, we offer various durations to suit your schedule. Dive into specialized monthly subscriptions with a commitment of 6 months, ensuring consistent progress. Select from 1 to 2 lessons per week, each tailored to your desired duration. Compass School makes language mastery accessible, empowering you to embark on this transformative journey at competitive rates. Start your adventure today!</p>
             <div className="perLessons">
                 <div className='priceCard'>   
                     <h3>Discovery</h3>
