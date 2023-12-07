@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardContainer = () => {
     return (
-        <section className="cardSection" id="why_us">
+        <section className="homeCardSection" id="why_us">
             <h2>WHY CHOOSE US ?</h2>
             <div className="cardContainer">
                 <div className="card">

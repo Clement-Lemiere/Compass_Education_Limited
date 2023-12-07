@@ -18,7 +18,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ApiResource(
     operations: [
-        new GetCollection(normalizationContext: ['groups' => ['language']]),
+        new GetCollection(normalizationContext: ['groups' => ['language']] ),
+
     ]
 )]
 class Language

@@ -25,18 +25,36 @@ const ContactForm = ({ onSubmit }) => {
             onSubmit={handleSubmit}
         >
             <h2>Contact Form</h2>
-            <label
-                className="formLabel"
-                htmlFor="nom"
-            >Name
-            </label>
-            <input
-                className="formControl"
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)} />
-            
+            <div className="fullNameForm">
+                <div>
+                    <label
+                        className="formLabel"
+                        htmlFor="firstName"
+                    >First Name
+                    </label>
+                    <input
+                        className="formControl"
+                        type="text"
+                        placeholder="first name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    </div>
+                <div>
+                    <label
+                        className="formLabel"
+                        htmlFor="lastName"
+                    >Last Name
+                    </label>
+                    <input
+                        className="formControl"
+                        type="text"
+                        placeholder="last name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+            </div>
             <label
                 className="formLabel"
                 htmlFor="email"
@@ -48,6 +66,16 @@ const ContactForm = ({ onSubmit }) => {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} />
+            <label
+                className="formLabel"
+                htmlFor="title"
+            >Subject
+            </label>
+            <input
+                className="formControl"
+                type="text"
+                placeholder="Subject"
+                onChange={(e) => setTitle(e.target.value)} />
             <label
                 className="formLabel"
                 htmlFor="message"

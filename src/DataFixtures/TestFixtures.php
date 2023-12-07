@@ -78,9 +78,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'email' => 'foo@example.com',
                 'password' => '123',
                 'roles' => ['student'],
-                'firstName' => 'John',
-                'lastName' => 'Doe',
-                'birthdate' => new DateTime(),
+                'firstName' => 'Orion',
+                'lastName' => 'Spikes',
+                'birthdate' => new DateTime( '1990-02-19' ),
                 'nationality' => 'USA',
                 'level' => 4,
                 'languages' => [$language1],
@@ -92,9 +92,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'password' => '123',
                 'roles' => ['student'],
                 'firstName' => 'Alice',
-                'lastName' => 'Smith',
-                'birthdate' => new DateTime(),
-                'nationality' => 'UK',
+                'lastName' => 'Delacourt',
+                'birthdate' => new DateTime( '1998-11-07' ),
+                'nationality' => 'France',
                 'level' => 5,
                 'languages' => [$language2],
                 'assignments' => [$english],
@@ -103,10 +103,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 'email' => 'baz@example.com',
                 'password' => '123',
                 'roles' => ['student'],
-                'firstName' => 'Bob',
-                'lastName' => 'Johnson',
-                'birthdate' => new DateTime(),
-                'nationality' => 'Canada',
+                'firstName' => 'Marco',
+                'lastName' => 'Vellini',
+                'birthdate' => new DateTime('2008-04-13' ),
+                'nationality' => 'Italian',
                 'level' => 6,
                 'languages' => [$language3],
                 'assignments' => [$chinese],
@@ -123,19 +123,18 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $student->setUser($user);
             $student->setFirstName($data['firstName']);
             $student->setLastName($data['lastName']);
+            
             $birthdate = $data['birthdate'];
-
             // Check if $birthdate is a string and create a DateTimeInterface object
             if (is_string($birthdate)) {
                 $birthdate = new DateTime($birthdate);
             }
-
             // Check if $birthdate is an array and create a DateTimeInterface object
             if (is_array($birthdate)) {
                 $birthdate = new DateTime($birthdate['date']);
             }
-
             $student->setBirthdate($birthdate);
+
             $student->setNationality($data['nationality']);
             $student->setLevel($data['level']);
 
@@ -169,7 +168,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $nationality = $this->faker->country();
             $student->setNationality($nationality);
 
-            $birthDate = $this->faker->dateTimeBetween('-80 years', '-5 years');
+            $birthDate = $this->faker->dateTimeBetween('-40 years', '-5 years');
             $student->setBirthDate($birthDate);
 
             $level = $this->faker->numberBetween(1, 10);

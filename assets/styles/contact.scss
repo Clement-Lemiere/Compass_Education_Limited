@@ -24,7 +24,6 @@
 
     
     .formLabel {
-        text-align: start;
         font-size: 16px;
         font-weight: bold;
         margin-bottom: 5px;
@@ -56,5 +55,55 @@
 
     textarea {
         height: 100px;
+    }
+
+    .fullNameForm{
+        @include dFlex(row);
+        @include centerXY(space-between, center);
+
+        div{
+            @include dFlex(column);
+            @include centerXY(flex-start, center);
+            width: 40%;
+            
+            label, input{
+                margin-left: 0;
+            }
+
+            .formLabel{
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                width: 100%;
+
+            }
+
+            .formControl{
+                background-color: white;
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .formContent {
+        width: 80%;
+
+        .fullNameForm {
+            @include dFlex(column);
+            @include centerXY(flex-start, flex-start);
+    
+            div {
+                width: 90%;
+            }
+        }
     }
 }
