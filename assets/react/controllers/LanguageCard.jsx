@@ -68,7 +68,11 @@ const LanguageCard = (props) => {
             <Blurred expanded={expandedCards.some(card => card)} /> {/* Passe l'état des cartes étendues à Blurred */}
             <div className="cardContainer" ref={cardContainerRef}>
                 {language.map((lang, index) => (
-                    <div className={`card ${expandedCards[index] ? 'expanded' : ''}`} key={index} onClick={() => handleCardClick(index)}>
+                    <div
+                        className={`card ${expandedCards[index] ? 'expanded' : ''}`}
+                        key={index}
+                        onClick={() => handleCardClick(index)}
+                    >
                         <div className="cardImg">
                             <img src={imagePath(lang)} alt={lang.name} />
                         </div>

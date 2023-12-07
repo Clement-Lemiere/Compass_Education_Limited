@@ -104,7 +104,6 @@ header {
 .backNav {
 position: fixed;
 top: 0;
-width: 100%;
 z-index: 99;
     @include dFlex(row);
     @include centerXY(space-between, center);
@@ -490,12 +489,114 @@ main{
 footer {
     background: linear-gradient(100deg, $primaryDark, $primaryLight);
     color: black;
-    font-weight: bold;
-    padding: 10px 20px;
+    padding: 20px;
     text-align: center;
     margin-top: 50px;
     box-shadow: 0 0 5px $primaryDark;
+
+    .copyright{
+        font-size: 1.2rem;
+        margin: 5px 0;
+    }
+    
+    section{
+        
+        .legals{
+            @include dFlex(row);
+            @include centerXY(space-evenly, center);
+            width: 15%;
+            margin-inline: auto;
+
+            div{
+                display: none;
+            }
+
+            h4{
+                font-size: 1rem;
+                margin: 15px auto;
+                font-weight: normal;
+                padding: 8px 15px;
+                border-radius: 25px;
+                box-shadow: inset 0 0 5px;
+
+
+            }
+
+            &:hover{
+                cursor: pointer;
+                text-shadow: 0 0 5px black;
+                color: whitesmoke;
+            }
+        }
+        
+        .legals.showLegal{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 90vh;
+            background: linear-gradient(75deg, $primaryDark, black);
+            color: $primaryDark;
+
+            h4{
+                width: 100%;
+                color: whitesmoke;
+            }
+
+            >div{
+                @include dFlex(column);
+                width: 38%;
+                height: 38vh;
+                color: whitesmoke;
+
+                h5{
+                    text-align: center;
+                    font-size: 1rem;
+                    margin: 15px 0;
+                }
+                
+                p{
+                    text-align: center;
+                    line-height: 1.5rem;
+                }
+
+                >div{
+                    @include dFlex(column);
+                    @include centerXY(space-evenly, center);
+                    width: 100%;
+
+                    p{
+                        margin-bottom: 0;
+
+                        a{
+                            color: $primaryLight;
+                            font-weight: bold;
+                            transition: color 0.3s ease-in;
+
+                            &:hover{
+                                color: white;
+                                text-shadow: 0 0 2px $primaryLight;
+
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            &:hover{
+                text-shadow: none;
+                color: whitesmoke;
+                
+                h4{
+                    box-shadow: none;
+                }
+            }
+        }
+    }
 }
+
 
 
 @media screen and (max-width: 768px) {
