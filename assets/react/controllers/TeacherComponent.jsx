@@ -67,7 +67,7 @@ const ProfessorsList = () => {
 
     return (
         <section className="professorsList">
-            <h1>Discover Our Teachers !</h1>
+            <h2>Discover Our Teachers !</h2>
             {professorsData.map((professor, index) => (
                 <ProfessorCard key={index} {...professor} />
             ))}
