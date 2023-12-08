@@ -584,6 +584,7 @@ footer {
             height: 90vh;
             background: linear-gradient(75deg, $primaryDark, black);
             color: $primaryDark;
+            z-index: 100;
 
             h4{
                 width: 100%;

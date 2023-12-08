@@ -66,6 +66,11 @@
     textarea {
         height: 100px;
     }
+
+    &.editProfile {
+        background: linear-gradient(160deg, whitesmoke, $darkBlue 120%);
+        margin-block: 25px;
+    }
 }
 
 

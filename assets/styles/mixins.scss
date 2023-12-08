@@ -39,13 +39,14 @@
     margin-bottom: 0.3rem;
     border-radius: 10px;
     border: transparent;
-    background-color: $darkBlue;
+    background: linear-gradient(35deg, black, $darkBlue);
     color: white;
     box-shadow: 0 0 2px 0 black;
     transition: background-color 0.5s;
 
     &:hover {
-        background-color: $lightBlue;
+        background: linear-gradient(35deg, $darkBlue, white);
         cursor: pointer;
+        color: black;
     }
 }

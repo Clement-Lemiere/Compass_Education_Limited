@@ -306,7 +306,7 @@ body {
 
             .profileBtn {
                 @include backBtn;
-                margin: 50px auto 80px;
+                margin: 30px auto;
 
                 a {
                     color: white;
@@ -322,6 +322,10 @@ body {
         }
     }
 }
+
+
+
+
 
 @media screen and (max-width: 768px) {
     
@@ -371,12 +375,13 @@ body {
     .profilePage {
 
         .aLeft {
+            @include dFlex(row);
+            @include centerXY(space-evenly, center);
             position: fixed;
             bottom: 0;
             width: 100%;
             height: 10%;
-            @include dFlex(row);
-            @include centerXY(space-evenly, center);
+            z-index: 50;
             
             li{
                  

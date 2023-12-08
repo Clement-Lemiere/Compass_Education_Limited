@@ -4,14 +4,10 @@
 .profilePage {
 
     .calendar {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: normal;
-        align-items: center;
-        width: 90vw;
-        max-width: 90vw;
-
+        @include dFlex(column);
+        @include centerXY(normal, center);
+        width: 100%;
+        
         h1 {
             width: 50%;
             margin: 25px auto;
@@ -20,6 +16,7 @@
             box-shadow: black 0 0 15px;
             background-color: $darkBlue;
             color: white;
+            text-shadow: none;
         }
 
         .fc .fc-toolbar {
@@ -36,8 +33,13 @@
         }
 
         .fc-direction-ltr {
-            width: 85vw;
+            width: 95%;
             height: 700px;
+            margin-bottom: 50px;
+
+            h2{
+                text-shadow: none;
+            }
 
 
             table {
@@ -55,6 +57,10 @@
 
                     a {
                         background-color: $darkBlue;
+                        box-shadow: none;
+                        padding: 5px;
+                        border-radius: 50%;
+                        width: 1.8rem;
 
                         &:hover {
                             color: $darkBlue;
@@ -97,7 +103,7 @@
         }
 
         .fc .fc-daygrid-day.fc-day-today {
-            background-color: $darkBlue;
+            background-color: rgb(179, 196, 216);
         }
 
     }

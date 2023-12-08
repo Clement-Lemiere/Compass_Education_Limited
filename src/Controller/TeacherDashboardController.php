@@ -27,6 +27,12 @@ class TeacherDashboardController extends AbstractController
         return $this->render('teacherDashboard/teacher_calendar.html.twig');
     }
 
+    #[Route('/teacherLesson', name: 'app_teacher_lesson_dashboard')]
+    public function teacherLesson(): Response
+    {
+        return $this->render('teacherDashboard/teacher_lesson.html.twig');
+    }
+
     #[Route('/editTprofile', name: 'app_teacher_edit_dashboard')]
     public function editTprofile(): Response
     {
