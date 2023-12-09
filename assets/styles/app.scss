@@ -78,7 +78,7 @@ header {
         aspect-ratio: 1;
         border-radius: 50%;
         box-shadow: inset 0 0 30px $primaryDark, 0 0 5px $primaryDark;
-        opacity: 0.2;
+        opacity: 0.3;
         z-index: 1;
 
         
@@ -647,7 +647,7 @@ footer {
 
 
 @media screen and (max-width: 768px) {
-
+bubb
     h1, h2, h3, p, a, span,  summary, details, button, label {
         font-size: smaller;
     }

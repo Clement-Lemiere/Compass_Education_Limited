@@ -203,6 +203,7 @@ option:hover{
     width: 45%;
     text-align: center;
     background: linear-gradient(160deg, $primaryLight 0%, $lightGrey 90%);
+    margin:125px auto 40px;
 
     .logOutSection{
         @include dFlex(column);
