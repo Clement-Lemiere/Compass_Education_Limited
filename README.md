@@ -1,7 +1,7 @@
 # Le Projet
 
 - Ce projet est une application Web développée dans le cadre d'un stage en tant que développeur Web/Mobile.
-- Ce projet a été créé par [PARSY Julien](https://github.com/ArkunLeSerein) en collaboration avec [LEMIERE Clement](https://github.com/Clement-Lemiere).
+- Ce projet a été créé par [PARSY Julien](https://github.com/julienParsy) en collaboration avec [LEMIERE Clement](https://github.com/Clement-Lemiere).
 - Il s'agit de la création d'un site d'apprentissage de langue étrangère en ligne.
 
 ## Pré-requis
